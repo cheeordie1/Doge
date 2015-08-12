@@ -37,3 +37,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+# coffee-script-source 1.9.0 is too mainstream for Doge
+gem 'coffee-script-source', '1.8.0'
+
+# add Faye websocket for making message sockets
+gem 'faye'
+
+# Thin for faye support
+gem 'thin'
+
+# Secure transmission from Faye to my app and from app to Faye
+gem 'private_pub'

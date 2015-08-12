@@ -53,4 +53,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root 'doge#index'
+  resource :doge
+  post "/woof" => "doge#woof"
 end
