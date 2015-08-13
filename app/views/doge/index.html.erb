@@ -1,0 +1,16 @@
+<p>Hello, there Doge!</p>
+<div id="stream">
+</div>
+<div id="chat">
+  <div id="chat-border" class="border"></div>
+  <div id="chat-box" class="chatbox scrolly"></div>
+  <div id="type-msg">
+    <textArea id="msg" maxlength="1024" rows="1" cols="98" name="msg"></textArea>
+    <button id="send" type="submit">Woof</button>
+    <p id="remaining"></p>
+  </div>
+  <%= form_tag "/woof", :id => "rails_secure_form", :remote => true do %>
+    <%= hidden_field_tag 'deliverable_msg' %>
+  <% end %>
+  <%= subscribe_to "/woof" %>
+</div>
