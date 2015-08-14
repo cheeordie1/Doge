@@ -48,4 +48,4 @@ gem 'faye'
 gem 'thin'
 
 # Secure transmission from Faye to my app and from app to Faye
-gem 'private_pub', :git => 'git://github.com/ryanb/private_pub.git'
+gem 'private_pub'
