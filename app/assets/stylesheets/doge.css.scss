@@ -1,15 +1,26 @@
 // Place all the styles related to the doge controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+span {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 .scrolly {
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .chatbox {
   position: absolute;
   height: 300px;
-  width: 770px;
-  top:116px;
+  width: 730px;
+  top:73px;
+  left:46px;
 }
 
 .border {
