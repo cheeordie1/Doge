@@ -49,3 +49,10 @@ gem 'thin'
 
 # Secure transmission from Faye to my app and from app to Faye
 gem 'private_pub'
+
+# Heroku hates sqlite3
+gem 'sqlite3', :group => [:development, :test]
+group :production do
+  gem 'thin'
+  gem 'pg'
+end
