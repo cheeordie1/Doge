@@ -16,11 +16,11 @@ span {
 }
 
 .chatbox {
-  position: absolute;
+  position: relative;
   height: 300px;
   width: 730px;
-  top:73px;
-  left:46px;
+  top: 63px;
+  left: 36px;
 }
 
 .border {
@@ -31,6 +31,7 @@ span {
 }
 
 #chat {
+  position: relative;
 }
 
 #chat-border {

@@ -2,7 +2,7 @@ $(document).ready(function ()
   {
     var msg, cur_msg, remaining, enter, shift,
         form, publication, username, color, tab_id, 
-	cur_node, msg_id, i, postpend;
+	cur_node, msg_id, i, postpend, scrolled, height;
     shift = false;
     cur_msg = "";
     msg_id = 0;
@@ -16,6 +16,8 @@ $(document).ready(function ()
 
     function addMessage (username, text, color)
       {
+	height =  $("#chat-lines")[0].scrollHeight - $("#chat-lines")[0].clientHeight;
+	scrolled = $("#chat-lines").scrollTop () == height;
         cur_node = document.getElementById ("chat-lines").appendChild (document.createElement ("div"));
 	postpend = username + "-" + msg_id.toString ();
 	// vulnerability if popular!!
@@ -44,11 +46,13 @@ $(document).ready(function ()
 	cur_node.innerHTML = text;
 	cur_node.style.color = "#000000";
 	cur_node.style.fontSize = "15px";
+	if (scrolled)
+	  {
+            $("#chat-lines").scrollTop ($("#chat-lines")[0].scrollHeight);
+	  }
       };
 
     PrivatePub.subscribe ("/woof", function (data){
-      console.log (data.tabid);
-      console.log (tab_id);
       if (data.tabid != tab_id)
         addMessage (data.username, data.deliverable_msg, data.color);
     });
@@ -57,7 +61,7 @@ $(document).ready(function ()
       {
 	addMessage (username, cur_msg, color);
 	$("#deliverable_msg").val (cur_msg);        
-	$("#rails_secure_form").submit ();
+	$("#rails_secure_form").trigger ('submit.rails');
         msg.val("");
       };
 
