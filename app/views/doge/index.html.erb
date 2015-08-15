@@ -9,7 +9,7 @@
     <button id="send" type="submit">Woof</button>
     <p id="remaining"></p>
   </div>
-  <%= form_tag "/woof", :id => "rails_secure_form", :remote => true do %>
+  <%= form_tag "/woof", :method => "post", :id => "rails_secure_form", :remote => true do %>
     <%= hidden_field_tag 'deliverable_msg' %>
     <%= hidden_field_tag 'tab_id', @tab_id %>
     <%= hidden_field_tag 'color', @color %>

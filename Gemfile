@@ -2,8 +2,12 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
-# Use pg as the database for Active Record
-gem 'pg'
+# Use sqlite3 as the database for Active Record, but not in heroku
+#gem 'sqlite3', :group => [:development, :test]
+#group :production do
+  gem 'pg'
+#end
+
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.3'
 
@@ -49,6 +53,9 @@ gem 'thin'
 
 # Secure transmission from Faye to my app and from app to Faye
 gem 'private_pub'
+<<<<<<< HEAD
 
 # heroku wants this
 gem 'rails_12factor'
+=======
+>>>>>>> 585094a44c1b9e716151ca697d9418b3cbdf8552
