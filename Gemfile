@@ -53,9 +53,6 @@ gem 'thin'
 
 # Secure transmission from Faye to my app and from app to Faye
 gem 'private_pub'
-<<<<<<< HEAD
 
 # heroku wants this
 gem 'rails_12factor'
-=======
->>>>>>> 585094a44c1b9e716151ca697d9418b3cbdf8552
