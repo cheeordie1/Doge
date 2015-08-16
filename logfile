@@ -50,3 +50,5 @@ LOG:  shutting down
 LOG:  database system is shut down
 2015-08-15 11:56:02 CDT LOG:  redirecting log output to logging collector process
 2015-08-15 11:56:02 CDT HINT:  Future log output will appear in directory "pg_log".
+2015-08-16 13:13:48 CDT LOG:  redirecting log output to logging collector process
+2015-08-16 13:13:48 CDT HINT:  Future log output will appear in directory "pg_log".
