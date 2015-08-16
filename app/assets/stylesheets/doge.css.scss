@@ -30,11 +30,29 @@ span {
   border: 1px solid #9097E2;
 }
 
-#chat {
-  position: relative;
+#background {
+  height: 100%;
+  width:100%;
+  position: fixed;
+  background: #a6ffbd; /* Old browsers */
+  background: -moz-linear-gradient(top,  #a6ffbd 0%, #0fea00 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6ffbd), color-stop(100%,#0fea00)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #a6ffbd 0%,#0fea00 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffbd', endColorstr='#0fea00',GradientType=0 ); /* IE6-9 */ 
 }
 
-#chat-border {
+#chat {
+  display: inline-block;
+  position: relative;
+  top: 265px;
+  left: 600px;
+}
+
+#chat-border { 
+  background-color: white; 
   width: 768px;
   height: 400px;
 }
