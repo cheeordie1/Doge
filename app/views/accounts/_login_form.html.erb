@@ -1,0 +1,23 @@
+<div id="login_form">
+<div id="backdrop"></div>
+<div id="login_box" class="hori-vert-center">
+  <%= image_tag "exit_normal.png", :id => "exit_button" %>
+  <p id="login_title" class="form_title">So Login, Much Doge</p>
+  <div id="login_info">
+    <%= form_for :login, :remote => true do |f| %>
+      <%= f.label :username, :id => "username_label", :class => "form_label" %>
+      </br>
+      <%= f.text_field :username, :class => "form_input" %>
+      </br></br>
+      <%= f.label :password, :id => "password_label", :class => "form_label" %>
+      </br>
+      <%= f.password_field :password, :class => "form_input" %>
+      <div id="underline"></div>
+      <%= image_tag "doge_face_thumb.png", :id => "login_form_doge_img", :class => "hori-center" %>
+      <br>
+      <%= f.submit "Login", :class => "form_submit hori-center" %>
+    <% end %>
+  </div>
+</div>
+<%= javascript_include_tag "accounts-bundle" %>
+</div>

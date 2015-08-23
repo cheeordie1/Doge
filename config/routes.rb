@@ -59,4 +59,6 @@ Rails.application.routes.draw do
   root 'doge#index'
   resource :doge
   post "/woof" => "doge#woof"
+  get "/login" => "accounts#login"
+  post "/login" => "accounts#post_login"
 end

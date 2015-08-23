@@ -61,6 +61,19 @@ class AccountsController < ApplicationController
     end
   end
 
+  # GET /accounts/login
+  def login
+    
+  end
+
+  # POST /accounts/post_login
+  def post_login
+    @account = Account.find_by_username (params[:username])
+    if @account == nil then
+      # render username or password incorrect in red
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
@@ -69,6 +82,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:username, :password, :salt)
+      params.require(:account).permit(:username, :password_digest, :salt)
     end
 end

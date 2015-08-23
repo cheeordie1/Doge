@@ -9,11 +9,11 @@
 <body>
 
 <div id="login_bar">
-  <table>
+  <table class="vert-center">
     <tr>
-      <td>Sign up</td>
+      <td class="login_link"><%= link_to "Sign up", new_account_path, :remote => true %></td>
       <td>|</td>
-      <td>Login</td>
+      <td class="login_link"><%= link_to "Login", "javascript:;", :id => "login_link" %></td>
     </tr>
   </table>
 </div>

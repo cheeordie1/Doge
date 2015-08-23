@@ -16,3 +16,12 @@ ActiveRecord::Schema.define(version: 20150815161859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "accounts", force: true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+end

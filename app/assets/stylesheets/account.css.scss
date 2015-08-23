@@ -1,3 +1,74 @@
 // Place all the styles related to the account controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.form_title {
+  font: bold 22px Tahoma, Geneva, sans-serif;
+  color: #E89923;
+}
+
+.form_label {
+  font: normal 16px Tahoma, Geneva, sans-serif;
+  color: #E09D3A;;
+}
+
+.form_input {
+  height: 20px;
+}
+
+.form_submit {
+  position: relative;
+  height: 30px;
+  width: 100px;
+  font-size: 15px;  
+}
+
+#backdrop {
+  background-color: #000000;
+  opacity: 0.3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#login_box {
+  border: 1px solid #888888;
+  background-color: #FFFFFF;
+  color: black;
+  width:280px;
+  height: 400px;
+  position: absolute;
+}
+
+#exit_button {
+  position: absolute;
+  height: 16px;
+  top: 6px;
+  left: 254px;
+}
+
+#login_title {
+  position: relative;
+  top: 22px;
+  padding-left: 20px;
+  margin: 0;
+}
+
+#login_info {
+  padding: 20px;
+  position: relative;
+  top: 20px;
+}
+
+#login_form_doge_img {
+  width: 136px;
+  height: 136px;
+  position: relative;
+}
+
+#underline {
+  position: relative;
+  width: 100%;
+  border-bottom: thin solid #000000;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

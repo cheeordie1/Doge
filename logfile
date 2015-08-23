@@ -54,3 +54,33 @@ LOG:  database system is shut down
 2015-08-16 13:13:48 CDT HINT:  Future log output will appear in directory "pg_log".
 2015-08-16 13:30:42 CDT LOG:  redirecting log output to logging collector process
 2015-08-16 13:30:42 CDT HINT:  Future log output will appear in directory "pg_log".
+2015-08-20 21:34:49 CDT LOG:  could not bind IPv6 socket: No error
+2015-08-20 21:34:49 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-20 21:34:49 CDT LOG:  could not bind IPv4 socket: No error
+2015-08-20 21:34:49 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-20 21:34:49 CDT WARNING:  could not create listen socket for "*"
+2015-08-20 21:34:49 CDT FATAL:  could not create any TCP/IP sockets
+2015-08-20 21:38:15 CDT LOG:  could not bind IPv6 socket: No error
+2015-08-20 21:38:15 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-20 21:38:15 CDT LOG:  could not bind IPv4 socket: No error
+2015-08-20 21:38:15 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-20 21:38:15 CDT WARNING:  could not create listen socket for "*"
+2015-08-20 21:38:15 CDT FATAL:  could not create any TCP/IP sockets
+2015-08-20 22:14:32 CDT LOG:  could not bind IPv6 socket: No error
+2015-08-20 22:14:32 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-20 22:14:32 CDT LOG:  could not bind IPv4 socket: No error
+2015-08-20 22:14:32 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-20 22:14:32 CDT WARNING:  could not create listen socket for "localhost"
+2015-08-20 22:14:32 CDT FATAL:  could not create any TCP/IP sockets
+2015-08-21 16:55:25 CDT LOG:  could not bind IPv6 socket: No error
+2015-08-21 16:55:25 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-21 16:55:25 CDT LOG:  could not bind IPv4 socket: No error
+2015-08-21 16:55:25 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-21 16:55:25 CDT WARNING:  could not create listen socket for "localhost"
+2015-08-21 16:55:25 CDT FATAL:  could not create any TCP/IP sockets
+2015-08-22 00:24:27 CDT LOG:  could not bind IPv6 socket: No error
+2015-08-22 00:24:27 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-22 00:24:27 CDT LOG:  could not bind IPv4 socket: No error
+2015-08-22 00:24:27 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-22 00:24:27 CDT WARNING:  could not create listen socket for "localhost"
+2015-08-22 00:24:27 CDT FATAL:  could not create any TCP/IP sockets
