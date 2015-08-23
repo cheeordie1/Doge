@@ -7,20 +7,17 @@ ul {
   margin: 0;
 }
 
+li {
+  white-space: pre;
+}
+
 span {
   font-family: Verdana, Geneva, sans-serif;
+  word-wrap: break-word;
 }
 
 .scrolly {
   overflow-y: scroll;
-}
-
-.chatbox {
-  position: relative;
-  height: 300px;
-  width: 730px;
-  top: 63px;
-  left: 36px;
 }
 
 .border {
@@ -45,30 +42,42 @@ span {
 }
 
 #chat {
-  display: inline-block;
   position: relative;
-  top: 265px;
-  left: 600px;
+  white-space: nowrap;
+  top: 120px;
+  left: 48%;
+  width: 48%;
 }
 
 #chat-border { 
   background-color: white; 
-  width: 768px;
+  width: 100%;
   height: 400px;
 }
 
+#chat-lines {
+  position: relative;
+  height: 300px;
+  width: 95%;
+  top: 63px;
+  left: 5%;
+}
+
 #msg {
+  position: relative;
   font-size: medium;
   height: 30px;
   line-height:17px;
+  width: 92%;
   resize: none;
 }
 
 #send {
   position: relative;
   height: 35px;
-  width: 52px;
-  top:-14px;
+  width: 3vw;
+  font-size: .8vw;
+  top: -14px;
 }
 
 #type-msg {
