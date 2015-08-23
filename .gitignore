@@ -16,7 +16,7 @@
 /tmp
 
 # Ignore all things ending in ~
-*.*~
+*~
 
 # Ignore all swap files
 *.swp
