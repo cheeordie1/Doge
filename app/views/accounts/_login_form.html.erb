@@ -1,7 +1,7 @@
 <div id="login_form">
 <div id="backdrop"></div>
 <div id="login_box" class="hori-vert-center">
-  <%= image_tag "exit_normal.png", :id => "exit_button" %>
+	<%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
   <p id="login_title" class="form_title">So Login, Much Doge</p>
   <div id="login_info">
     <%= form_for :login, :remote => true do |f| %>
@@ -18,6 +18,10 @@
       <%= f.submit "Login", :class => "form_submit hori-center" %>
     <% end %>
   </div>
+</div>
+<div id="preload_login_form">
+  <%= image_tag "exit_highlight.png", :height => "1px", :width => "1px" %>
+  <%= image_tag "exit_pressed.png", :height => "1px", :width => "1px" %>
 </div>
 <%= javascript_include_tag "accounts-bundle" %>
 </div>
