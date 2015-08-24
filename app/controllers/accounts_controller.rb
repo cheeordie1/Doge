@@ -62,8 +62,7 @@ class AccountsController < ApplicationController
   end
 
   # GET /accounts/login
-  def login
-    
+  def login 
   end
 
   # POST /accounts/post_login

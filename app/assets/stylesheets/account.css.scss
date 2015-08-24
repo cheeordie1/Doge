@@ -31,11 +31,11 @@
 }
 
 #login_box {
+  display: inline-block;
   border: 1px solid #888888;
   background-color: #FFFFFF;
   color: black;
   width:280px;
-  height: 400px;
   position: absolute;
 }
 
@@ -62,15 +62,23 @@
 #login_form_doge_img {
   width: 136px;
   height: 136px;
+  margin-top: 15px;
   position: relative;
+}
+
+#login_error {
+  position: relative;
+  word-wrap: break-word;
+  margin: 0px;
+  margin-top: 15px;
 }
 
 #underline {
   position: relative;
+  margin-top: 15px;
+  height: 1px;
   width: 100%;
   border-bottom: thin solid #000000;
-  margin-top: 20px;
-  margin-bottom: 10px;
 }
 
 #preload_login_form {

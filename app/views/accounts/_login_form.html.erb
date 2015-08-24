@@ -12,10 +12,13 @@
       <%= f.label :password, :id => "password_label", :class => "form_label" %>
       </br>
       <%= f.password_field :password, :class => "form_input" %>
+      <% if flash[:login_error] %>
+        <div id="login_error" class="error"><%= flash[:login_error] %></div>
+      <% end %>
       <div id="underline"></div>
       <%= image_tag "doge_face_thumb.png", :id => "login_form_doge_img", :class => "hori-center" %>
       <br>
-      <%= f.submit "Login", :class => "form_submit hori-center" %>
+      <%= f.submit "Login", :class => "form_submit hori-center", :id => "login_form_submit" %>
     <% end %>
   </div>
 </div>

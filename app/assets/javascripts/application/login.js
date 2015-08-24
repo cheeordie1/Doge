@@ -1,6 +1,7 @@
 var title_first = ["So", "Such", "Much", "How", "Many", "Very", "Moar"];
 var title_second = ["Wow!", "Wow.", "Doge", "Cute!", "Amaze!", "Soft", "Cuddle", "Excite!", "Cool", "Happi", "Euphoric"];
-var title_length;
+var title_length, login_form, font_family, h_shadow, v_shadow, blur_radius;
+
 var random_title = function ()
   {
     // 25/75 chance 0 or 1
@@ -20,7 +21,6 @@ var random_color = function ()
 
 var random_shadow = function ()
   {
-    var h_shadow, v_shadow, blur_radius;
     if (Math.random () >= 0.3)
       return "";
     else
@@ -57,8 +57,6 @@ load_random_font ();
 
 $(document).ready (function ()
   {
-    var login_form, font_family;
-
     $("#doge_title").html (random_title ());
     $("#doge_title").css ("color", random_color ());
     font_family = "'" + random_font_family + "'";
@@ -72,14 +70,15 @@ $(document).ready (function ()
         options.async = true;
       });
 
-    $("#login_link").on ("click", function ()
+    $("#login_link").on ("ajax:beforeSend", function (event, xhr, settings)
       {
-	if ($("#login_form").length)
-	  return;
-	$.get ("/login", function (data)
-          {
-	    login_form = $(data).filter ("#login_form").clone (true);
-            login_form.appendTo ("body");
-          });
+        if ($("#login_form").length)
+          xhr.abort ();   
+      });
+
+    $("#login_link").on ("ajax:success", function (event, data, status, xhr)
+      {
+       	login_form = $(data).filter ("#login_form").clone (true);
+        login_form.appendTo ("body");
       });
   });
