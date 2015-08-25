@@ -67,10 +67,27 @@ class AccountsController < ApplicationController
 
   # POST /accounts/post_login
   def post_login
-    @account = Account.find_by_username (params[:username])
-    if @account == nil then
-      # render username or password incorrect in red
+    error = nil
+    if params[:login][:username] == "" || params[:login][:password] == "" then
+      error = "Enter a username and password"
+    else
+      @account = Account.find_by_username(params[:login][:username])
+      if @account == nil then
+	error = "Invalid username or password"
+      else
+        if not @account.password_valid? params[:login][:password] then
+	  error = "Invalid username or password"
+	end
+      end
     end
+    if error != nil then
+      flash[:login_form] = true
+      flash[:login_error] = error
+    else
+      session[:username] = @account.username
+      session[:color] = @account.color
+    end
+    head :ok, :login_error => error != nil
   end
 
   private

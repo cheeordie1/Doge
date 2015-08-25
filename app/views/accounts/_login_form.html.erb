@@ -1,10 +1,10 @@
-<div id="login_form">
+<div id="login_form_container">
 <div id="backdrop"></div>
 <div id="login_box" class="hori-vert-center">
 	<%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
   <p id="login_title" class="form_title">So Login, Much Doge</p>
   <div id="login_info">
-    <%= form_for :login, :remote => true do |f| %>
+	  <%= form_for :login, :remote => true, :html => {:id => "login_form"} do |f| %>
       <%= f.label :username, :id => "username_label", :class => "form_label" %>
       </br>
       <%= f.text_field :username, :class => "form_input" %>
@@ -13,7 +13,7 @@
       </br>
       <%= f.password_field :password, :class => "form_input" %>
       <% if flash[:login_error] %>
-        <div id="login_error" class="error"><%= flash[:login_error] %></div>
+        <div id="login_error" class="error"><%= sanitize flash[:login_error] %></div>
       <% end %>
       <div id="underline"></div>
       <%= image_tag "doge_face_thumb.png", :id => "login_form_doge_img", :class => "hori-center" %>

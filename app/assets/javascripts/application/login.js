@@ -72,13 +72,13 @@ $(document).ready (function ()
 
     $("#login_link").on ("ajax:beforeSend", function (event, xhr, settings)
       {
-        if ($("#login_form").length)
+        if ($("#login_form_container").length)
           xhr.abort ();   
       });
 
     $("#login_link").on ("ajax:success", function (event, data, status, xhr)
       {
-       	login_form = $(data).filter ("#login_form").clone (true);
+       	login_form = $(data).filter ("#login_form_container").clone (true);
         login_form.appendTo ("body");
       });
   });
