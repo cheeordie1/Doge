@@ -16,6 +16,10 @@ span {
   word-wrap: break-word;
 }
 
+.space-cell {
+  opacity: 0;
+}
+
 .scrolly {
   overflow-y: scroll;
 }
@@ -31,6 +35,7 @@ span {
   height: 100%;
   width:100%;
   position: fixed;
+  z-index: 0;
   background: #a6ffbd; /* Old browsers */
   background: -moz-linear-gradient(top,  #a6ffbd 0%, #0fea00 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6ffbd), color-stop(100%,#0fea00)); /* Chrome,Safari4+ */
@@ -38,7 +43,7 @@ span {
   background: -o-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* Opera 11.10+ */
   background: -ms-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* IE10+ */
   background: linear-gradient(to bottom,  #a6ffbd 0%,#0fea00 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffbd', endColorstr='#0fea00',GradientType=0 ); /* IE6-9 */ 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffbd', endColorstr='#0fea00',GradientType=0 ); /* IE6-9 */
 }
 
 #chat {

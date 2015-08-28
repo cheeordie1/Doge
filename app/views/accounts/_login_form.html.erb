@@ -1,10 +1,9 @@
 <div id="login_form_container">
-<div id="backdrop"></div>
-<div id="login_box" class="hori-vert-center">
-	<%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
+<div id="login_box">
+  <%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
   <p id="login_title" class="form_title">So Login, Much Doge</p>
   <div id="login_info">
-	  <%= form_for :login, :remote => true, :html => {:id => "login_form"} do |f| %>
+    <%= form_for :login, :remote => true, :html => {:id => "login_form"} do |f| %>
       <%= f.label :username, :id => "username_label", :class => "form_label" %>
       </br>
       <%= f.text_field :username, :class => "form_input" %>
@@ -26,5 +25,6 @@
   <%= image_tag "exit_highlight.png", :height => "1px", :width => "1px" %>
   <%= image_tag "exit_pressed.png", :height => "1px", :width => "1px" %>
 </div>
-<%= javascript_include_tag "accounts-bundle" %>
+<%= javascript_include_tag "exit-button-bundle" %>
+<%= javascript_include_tag "login-form-bundle" %>
 </div>

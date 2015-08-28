@@ -11,9 +11,9 @@
 <div id="login_bar">
   <div id="logo_container"><%= image_tag "dogetime.png", :id => "logo", :class => "vert-center" %></div>
   <div id="title_container"><p id="doge_title" class="vert-center"></p></div>
-  <table class="vert-center">
+  <table id="title_table" class="vert-center">
     <tr>
-      <td class="login_link"><%= link_to "Sign up", new_account_path, :remote => true %></td>
+      <td class="login_link"><%= link_to "Sign up", new_account_path, :remote => true, :id => "signup_link" %></td>
       <td>|</td>
       <td class="login_link"><%= link_to "Login", login_path, :remote => true, :id => "login_link" %></td>
     </tr>
@@ -21,6 +21,8 @@
 </div>
 
 <%= yield %>
+
+<%= render "layouts/ls_form_container" %>
 
 </body>
 </html>

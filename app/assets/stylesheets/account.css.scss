@@ -22,17 +22,14 @@
   font-size: 15px;  
 }
 
-#backdrop {
-  background-color: #000000;
-  opacity: 0.3;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+#login_form_container {
+  z-index: 2;
+  position: relative;
 }
 
 #login_box {
   display: inline-block;
-  border: 1px solid #888888;
+  border: 1px solid #333333;
   background-color: #FFFFFF;
   color: black;
   width:280px;
