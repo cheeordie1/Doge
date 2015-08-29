@@ -15,4 +15,3 @@
 //= require turbolinks
 //= require_tree ./application/
 //= require private_pub
-alert ("some things get compiled");
