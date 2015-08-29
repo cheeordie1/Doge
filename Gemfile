@@ -59,7 +59,3 @@ gem 'private_pub'
 
 # heroku wants this
 gem 'rails_12factor'
-
-# heroku asset fix
-gem 'rails_serve_static_assets'
-gem 'rails_stdout_logging'
