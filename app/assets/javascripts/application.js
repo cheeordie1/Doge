@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree ./application/
+//= require_tree ./
 //= require private_pub
