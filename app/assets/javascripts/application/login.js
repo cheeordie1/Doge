@@ -77,8 +77,6 @@ $(document).ready (function ()
             xhr.abort ();
 	    return;
 	  }
-        $("#signup_tab").css ("border-color", "#333333");
-        $("#login_tab").css ("border-color", "#888888");
       });
 
     $("#login_link").on ("ajax:beforeSend", function (event, xhr, settings)
@@ -88,8 +86,6 @@ $(document).ready (function ()
             xhr.abort ();
 	    return;
 	  }
-        $("#login_tab").css ("border-color", "#333333");
-        $("#signup_tab").css ("border-color", "#888888");
       });
    
     $("#signup_tab").on ("click", function ()
@@ -108,6 +104,8 @@ $(document).ready (function ()
 	if ($("#login_form_container").length)
           $("#login_form_container").remove ();
 	login_form.appendTo ("#center_form");
+        $("#signup_tab").css ("border-color", "#333333");
+        $("#login_tab").css ("border-color", "#888888");
 	$("#signup_cover").css ("visibility", "visible");
 	$("#login_cover").css ("visibility", "hidden");
         $("#ls_form_container").css ("display", "block");
@@ -119,6 +117,8 @@ $(document).ready (function ()
 	if ($("#signup_form_container").length)
           $("#signup_form_container").remove ();
 	login_form.appendTo ("#center_form");
+	$("#login_tab").css ("border-color", "#333333");
+        $("#signup_tab").css ("border-color", "#888888");
 	$("#login_cover").css ("visibility", "visible");
 	$("#signup_cover").css ("visibility", "hidden");
         $("#ls_form_container").css ("display", "block");
