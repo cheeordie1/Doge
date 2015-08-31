@@ -1,9 +1,9 @@
-<div id="signup_form_container">
-<div id="login_box">
+<div id="signup_form_container" class="form_container">
+<div id="signup_box" class="form_box">
   <%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
-  <p id="login_title" class="form_title">Very Sign Up!</p>
-  <div id="login_info">
-    <%= form_for :login, :remote => true, :html => {:id => "login_form"} do |f| %>
+  <p id="signup_title" class="form_title">Very Sign Up!</p>
+  <div id="login_info" class="form_info">
+    <%= form_for @account, :remote => true, :url => {:controller => "accounts", :action => "create"}, :html => {:id => "login_form"} do |f| %>
       <%= f.label :username, :id => "username_label", :class => "form_label" %>
       </br>
       <%= f.text_field :username, :class => "form_input" %>
@@ -11,17 +11,19 @@
       <%= f.label :password, :id => "password_label", :class => "form_label" %>
       </br>
       <%= f.password_field :password, :class => "form_input" %>
-      <% if flash[:login_error] %>
-        <div id="login_error" class="error"><%= sanitize flash[:login_error] %></div>
+      <% if @account.errors.any? then %>
+        <% @account.errors.full_messages.each do |msg| %>
+	  <div class="error form_error"><%= sanitize msg %></div>
+	<% end %>
       <% end %>
-      <div id="underline"></div>
-      <%= image_tag "doge_fooce_thumb.png", :id => "login_form_doge_img", :class => "hori-center" %>
+      <div id="underline" class="underline"></div>
+      <%= image_tag "doge_fooce_thumb.png", :id => "signup_form_doge_img", :class => "hori-center form_img" %>
       <br>
-      <%= f.submit "Sign Up", :class => "form_submit hori-center", :id => "login_form_submit" %>
+      <%= f.submit "Sign Up", :class => "form_submit hori-center", :id => "signup_form_submit" %>
     <% end %>
   </div>
 </div>
-<div id="preload_login_form">
+<div id="preload_signup_form" class="form_preload">
   <%= image_tag "exit_highlight.png", :height => "1px", :width => "1px" %>
   <%= image_tag "exit_pressed.png", :height => "1px", :width => "1px" %>
 </div>

@@ -132,3 +132,9 @@ LOG:  database system is shut down
 2015-08-28 04:59:50 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
 2015-08-28 04:59:50 CDT WARNING:  could not create listen socket for "localhost"
 2015-08-28 04:59:50 CDT FATAL:  could not create any TCP/IP sockets
+2015-08-29 18:55:08 CDT LOG:  could not bind IPv6 socket: No error
+2015-08-29 18:55:08 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-29 18:55:08 CDT LOG:  could not bind IPv4 socket: No error
+2015-08-29 18:55:08 CDT HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2015-08-29 18:55:08 CDT WARNING:  could not create listen socket for "localhost"
+2015-08-29 18:55:08 CDT FATAL:  could not create any TCP/IP sockets

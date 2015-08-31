@@ -4,12 +4,12 @@
   <div id="chat">
     <div id="chat-border" class="border">
       <ul id="chat-lines" class="scrolly"></ul>
+      <div id="type-msg">
+        <textArea id="msg" maxlength="1024" name="msg"></textArea>
+        <button id="send" type="submit">Woof</button>
+      </div>
     </div>
-    <div id="type-msg">
-      <textArea id="msg" maxlength="1024" name="msg"></textArea>
-      <button id="send" type="submit">Woof</button>
-      <p id="remaining"></p>
-    </div>
+    <p id="remaining"></p>
     <%= form_tag "/woof", :method => "post", :id => "rails_secure_form", :remote => true do %>
       <%= hidden_field_tag 'deliverable_msg' %>
       <%= hidden_field_tag 'tab_id', @tab_id %>

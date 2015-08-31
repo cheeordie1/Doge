@@ -106,6 +106,7 @@ $(document).ready (function ()
 	login_form.appendTo ("#center_form");
         $("#signup_tab").css ("border-color", "#333333");
         $("#login_tab").css ("border-color", "#888888");
+        $("#login_tab").css ("border-bottom-color", "#333333");
 	$("#signup_cover").css ("visibility", "visible");
 	$("#login_cover").css ("visibility", "hidden");
         $("#ls_form_container").css ("display", "block");
@@ -117,8 +118,9 @@ $(document).ready (function ()
 	if ($("#signup_form_container").length)
           $("#signup_form_container").remove ();
 	login_form.appendTo ("#center_form");
-	$("#login_tab").css ("border-color", "#333333");
+        $("#login_tab").css ("border-color", "#333333");
         $("#signup_tab").css ("border-color", "#888888");
+	$("#signup_tab").css ("border-bottom-color", "#333333");
 	$("#login_cover").css ("visibility", "visible");
 	$("#signup_cover").css ("visibility", "hidden");
         $("#ls_form_container").css ("display", "block");

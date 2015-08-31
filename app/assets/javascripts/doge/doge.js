@@ -1,6 +1,6 @@
 $(document).ready (function ()
   {
-    var msg, cur_msg, remaining, enter, shift,
+    var msg, cur_msg, enter, shift,
         form, publication, username, color, tab_id, 
 	cur_node, msg_id, i, postpend, scrolled, height;
     shift = false;
@@ -8,8 +8,7 @@ $(document).ready (function ()
     msg_id = 0;
     form = $("#rails_secure_form");
     msg = $("#msg");
-    remaining = $("#remaining");
-    remaining.innerHTML = "characters left 1024";
+    $("#remaining").html ("characters left 1024");
     tab_id = $("#tab_id").val ();
     username = $("#username").val ();
     color = $("#color").val ();
