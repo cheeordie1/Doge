@@ -29,8 +29,10 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     @account.password=(params[:account][:password])
     if @account.save then
+      response.headers["signup-error"] = "false"
       head :ok
     else
+      response.headers["signup-error"] = "true"
       render "new"
     end
   end

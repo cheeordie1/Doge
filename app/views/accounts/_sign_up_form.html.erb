@@ -3,7 +3,7 @@
   <%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
   <p id="signup_title" class="form_title">Very Sign Up!</p>
   <div id="login_info" class="form_info">
-    <%= form_for @account, :remote => true, :url => {:controller => "accounts", :action => "create"}, :html => {:id => "login_form"} do |f| %>
+    <%= form_for @account, :remote => true, :url => {:controller => "accounts", :action => "create"}, :html => {:id => "signup_form"} do |f| %>
       <%= f.label :username, :id => "username_label", :class => "form_label" %>
       </br>
       <%= f.text_field :username, :class => "form_input" %>
@@ -12,9 +12,7 @@
       </br>
       <%= f.password_field :password, :class => "form_input" %>
       <% if @account.errors.any? then %>
-        <% @account.errors.full_messages.each do |msg| %>
-	  <div class="error form_error"><%= sanitize msg %></div>
-	<% end %>
+	<div class="error form_error"><%= sanitize @account.errors.full_messages[0] %></div>
       <% end %>
       <div id="underline" class="underline"></div>
       <%= image_tag "doge_fooce_thumb.png", :id => "signup_form_doge_img", :class => "hori-center form_img" %>
