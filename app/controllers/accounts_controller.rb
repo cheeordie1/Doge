@@ -30,6 +30,9 @@ class AccountsController < ApplicationController
     @account.password=(params[:account][:password])
     if @account.save then
       response.headers["signup-error"] = "false"
+      session[:logged_in] = true
+      session[:username] = @account.username
+      session[:color] = @account.color
       head :ok
     else
       response.headers["signup-error"] = "true"
@@ -84,10 +87,17 @@ class AccountsController < ApplicationController
       flash[:login_form] = true
       flash[:login_error] = error
     else
+      session[:logged_in] = true
       session[:username] = @account.username
       session[:color] = @account.color
     end
     head :ok, :login_error => error != nil
+  end
+
+  # GET /accounts/logout
+  def logout
+    reset_session
+    head :ok
   end
 
   private

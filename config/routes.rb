@@ -61,4 +61,5 @@ Rails.application.routes.draw do
   post "/woof" => "doge#woof"
   get "/login" => "accounts#login"
   post "/login" => "accounts#post_login"
+  get "/logout" => "accounts#logout"
 end

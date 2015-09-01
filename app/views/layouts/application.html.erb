@@ -13,9 +13,16 @@
   <div id="title_container"><p id="doge_title" class="vert-center"></p></div>
   <table id="title_table" class="vert-center">
     <tr>
-      <td class="login_link"><%= link_to "Sign up", new_account_path, :remote => true, :id => "signup_link" %></td>
-      <td>|</td>
-      <td class="login_link"><%= link_to "Login", login_path, :remote => true, :id => "login_link" %></td>
+      <% if session[:logged_in] then %>
+	<td class="welcome">Welcome <span style=<%= "color:" + sanitize(session[:color]) %>><%= sanitize session[:username] %></div>!</td>
+	<td class="login_link"><%= link_to "Log Out", logout_path, :remote => true, :id => "logout_link" %></td>
+	<%= javascript_include_tag "logout-bundle" %>
+      <% else %>
+        <td class="login_link"><%= link_to "Sign up", new_account_path, :remote => true, :id => "signup_link" %></td>
+        <td>|</td>
+	<td class="login_link"><%= link_to "Login", login_path, :remote => true, :id => "login_link" %></td>
+        <%= javascript_include_tag "login-signup-bundle" %>
+      <% end %>
     </tr>
   </table>
 </div>

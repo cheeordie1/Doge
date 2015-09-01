@@ -9,8 +9,6 @@ $(document).ready (function ()
 	    if ($("#signup_form_container") == null)
 	      $("#signup_link").click ();
             $("#signup_form_container").remove ();
-	    for (var i = 0; i < 500; i++)
-	      console.log ("goo");
 	    signup_form.appendTo ("#center_form");
 	  }
         else if (xhr.getResponseHeader ("signup-error") == "false")
