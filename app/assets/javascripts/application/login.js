@@ -1,5 +1,5 @@
 var title_first = ["So", "Such", "Much", "How", "Many", "Very", "Moar"];
-var title_second = ["Wow!", "Wow.", "Doge", "Cute!", "Amaze!", "Soft", "Cuddle", "Excite!", "Cool", "Happi", "Euphoric"];
+var title_second = ["Wow!", "Wow.", "Doge", "Cute!", "Amaze!", "Soft", "Cuddle", "Excite!", "Cool", "Happi", "Euphoric", "Shibe", "Bow", "Bark", "Woof"];
 var title_length, login_form, font_family, h_shadow, v_shadow, blur_radius;
 
 var random_title = function ()

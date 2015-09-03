@@ -46,6 +46,18 @@ span {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffbd', endColorstr='#0fea00',GradientType=0 ); /* IE6-9 */
 }
 
+#stream {
+  position: absolute;
+  top: 15vh;
+  left: 3vw;
+}
+
+#stream_video {
+  position: relative;
+  height: 53vh;
+  width: 47vw;
+}
+
 #chat {
   position: relative;
   white-space: nowrap;
