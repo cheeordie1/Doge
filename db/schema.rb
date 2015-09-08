@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20150815161859) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
-    t.text   "password_digest"
-    t.text   "salt"
+    t.text     "password_digest"
+    t.text     "salt"
     t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
