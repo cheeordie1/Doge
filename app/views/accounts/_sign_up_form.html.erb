@@ -3,7 +3,7 @@
   <%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
   <p id="signup_title" class="form_title">Very Sign Up!</p>
   <div id="login_info" class="form_info">
-    <%= form_for @account, :remote => true, :url => {:controller => "accounts", :action => "create"}, :html => {:id => "signup_form"} do |f| %>
+    <%= form_for @account, :remote => true, :url => accounts_path, :html => {:id => "signup_form"} do |f| %>
       <%= f.label :username, :id => "username_label", :class => "form_label" %>
       </br>
       <%= f.text_field :username, :class => "form_input" %>
