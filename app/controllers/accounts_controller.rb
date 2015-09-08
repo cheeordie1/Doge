@@ -33,10 +33,11 @@ class AccountsController < ApplicationController
       session[:logged_in] = true
       session[:username] = @account.username
       session[:color] = @account.color
+      head :ok
     else
       response.headers["signup-error"] = "true"
+      render "new"
     end
-    head :ok
   end
 
   # PATCH/PUT /accounts/1
