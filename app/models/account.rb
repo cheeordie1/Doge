@@ -1,7 +1,12 @@
 class Account < ActiveRecord::Base
   
+  before_validation :clean_color
   validates :username, presence: true, length: { minimum: 3 }
   validate :username_not_taken, :password_check, :color_valid
+
+  def clean_color
+    self.color = ActionController::Base.helpers.sanitize (self.color); 
+  end
 
   def username_not_taken
     if Account.find_by_username(username) != nil then

@@ -17,6 +17,7 @@ class AccountsController < ApplicationController
     if @account == nil then
       @account = Account.new
     end
+    @color = session[:color]
   end
 
   # GET /accounts/1/edit
@@ -98,6 +99,10 @@ class AccountsController < ApplicationController
   def logout
     reset_session
     head :ok
+  end
+
+  # GET /accounts/color_picker_signup
+  def color
   end
 
   private

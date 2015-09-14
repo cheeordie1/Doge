@@ -2,24 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .form_title {
-  font: bold 22px Tahoma, Geneva, sans-serif;
+  font: bold 2.2vh Tahoma, Geneva, sans-serif;
   color: #E89923;
+  position: relative;
+  top: 4vh;
+  padding-left: 1.7vw;
+  margin: 0px;
 }
 
 .form_label {
-  font: normal 16px Tahoma, Geneva, sans-serif;
-  color: #E09D3A;;
+  font: normal 1.6vh Tahoma, Geneva, sans-serif;
+  color: #E09D3A;
 }
 
 .form_input {
-  height: 20px;
+  height: 2.4vh;
+  width: 11vw;
 }
 
 .form_submit {
   position: relative;
-  height: 30px;
+  height: 4vh;
   width: 100px;
-  font-size: 15px;
+  font-size: 2vh;
 }
 
 .form_container {
@@ -32,34 +37,22 @@
   border: 1px solid #333333;
   background-color: #FFFFFF;
   color: black;
-  width:280px;
+  width: 16vw;
   position: absolute;
-}
-
-#exit_button {
-  position: absolute;
-  height: 16px;
-  top: 6px;
-  left: 254px;
-}
-
-.form_title {
-  position: relative;
-  top: 22px;
-  padding-left: 20px;
-  margin: 0;
 }
 
 .form_info {
-  padding: 20px;
+  padding: 3vh;
+  padding-left: 1.7vw;
+  padding-bottom: 0px;
   position: relative;
-  top: 20px;
+  margin-top: 1.5vh;
 }
 
 .form_img {
-  width: 136px;
-  height: 136px;
-  margin-top: 15px;
+  width: 15vh;
+  height: 15vh;
+  margin-top: 1vh;
   position: relative;
 }
 
@@ -80,4 +73,51 @@
 
 .form_preload {
   display: none;
+}
+
+.color-picker-img {
+  height: 250px;
+}
+
+.color-picker {
+  border: 1px solid grey;
+  border-spacing: 5px;
+  border-bottom: none;
+  border-right: none;
+  padding-left: 1px;
+  padding-top: 1px;
+}
+
+#exit_button {
+  position: absolute;
+  height: 1.3vw;
+  top: 1.3vh;
+  left: 14vw;
+}
+
+#color_picker_popup {
+  position: relative;
+  margin-top: 2vh;
+}
+
+#open_color_picker_signup {
+  position: relative;
+  width: 7.5vh;
+}
+
+#color-picker-signup-container {
+  position: relative;
+}
+
+#color-picker-signup-canvas {
+  position: absolute;
+  left: 135px;
+}
+
+#sv-canvas {
+  position: relative;
+}
+
+#h-canvas {
+  position: relative;
 }
