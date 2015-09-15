@@ -16,6 +16,7 @@
       <% end %>
       <div id="color_picker_popup">
         <canvas width="64px" height="64px" id="open_color_picker_signup" class="hori-center"></canvas>
+        <div id="color_picker_location"></div>
       </div>
       <%= f.hidden_field "color", :value => @color %>
       <div id="underline" class="underline"></div>
@@ -31,4 +32,9 @@
 </div>
 <%= javascript_include_tag "exit-button-bundle" %>
 <%= javascript_include_tag "signup-form-bundle" %>
+<script>
+var signup_opener = new ColorOpener ("open_color_picker_signup",
+                                     "color_picker_location",
+				     "color-picker-signup-container");
+</script>
 </div>

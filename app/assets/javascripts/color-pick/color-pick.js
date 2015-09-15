@@ -12,8 +12,6 @@ function ColorPicker (cid, svid, hid, openerid, formid)
     this.hc = document.getElementById (hid);
     this.hctx = this.hc.getContext ("2d");
     this.hnumPixels = this.hc.width * this.hc.height;
-    this.openerc = document.getelementById (openerid);
-    this.openerctx = this.openerc.getContext ("2d");
 
     this.selectedHue = 0;
     this.selectedS = 0;
@@ -46,7 +44,7 @@ function ColorPicker (cid, svid, hid, openerid, formid)
 
     this.mouseDownSV = function (evt)
       {
-        $("#" + svid).bind ("mousedown", obj.mouseMoveSV);
+        $("#" + svid).bind ("mousemove", obj.mouseMoveSV);
 	obj.pickSV (evt);
       };
 
@@ -58,7 +56,7 @@ function ColorPicker (cid, svid, hid, openerid, formid)
 
     this.unbindSV = function (evt)
       {
-        $("#" + svid).unbind ("mousedown", obj.mouseMoveSV);
+        $("#" + svid).unbind ("mousemove", obj.mouseMoveSV);
       };
 
     $("#" + hid).bind ("mousedown", obj.mouseDownH);
@@ -117,7 +115,7 @@ function ColorPicker (cid, svid, hid, openerid, formid)
         this.hctx.putImageData (himageData, 0, 0);
       };
 
-      this.drawHueLine = function (y)
+      this.drawHueLines = function (y)
         {
 	  this.hctx.fillStyle = "#FFFFFF";
 	  this.hctx.fillRect (0, y-3, this.hc.width, 3);
@@ -130,13 +128,14 @@ function ColorPicker (cid, svid, hid, openerid, formid)
           this.drawH ();
           var hue = Math.round (359 / this.hc.height * (this.hc.height - evt.offsetY));
 	  hueToColor (hue, this.hueColor);
-          this.drawHueLine (evt.offsetY);
+          this.drawHueLines (evt.offsetY);
           this.drawSV (this.hueColor);
         };
 
       this.pickSV = function (evt)
         {
           this.drawSV (this.hueColor);
+	  this.drawSVLines (evt.offsetX, evt.offsetY);
           var val = evt.offsetX / this.svc.width * 100;
           var sat = (this.svc.height - evt.offsetY) / this.svc.height * 100;
 	  var hue = this.hueColor;
@@ -145,13 +144,26 @@ function ColorPicker (cid, svid, hid, openerid, formid)
             {
               curColor [idx] = Math.floor ((hue [idx] + ((100 - sat) / 100 * (255 - hue [idx]))) * val / 100);
             });
-	  curColor = "#" + this.selectedColor [0].toString (16) + 
-                  this.selectedColor [1].toString (16) +
-                  this.selectedColor [2].toString (16);
-	  this.openerctx.fillStyle = curColor;
-	  this.openerctx.fillRect (0, 0, this.openerc.width, this.openerc.height);
+	  curColor = "#" + toHex (this.selectedColor [0]) + 
+                  toHex (this.selectedColor [1]) +
+                  toHex (this.selectedColor [2]);
+          var openerc = document.getElementById (this.openerid);
+          var openerctx = openerc.getContext ("2d");
+	  openerctx.fillStyle = curColor;
+	  openerctx.fillRect (0, 0, openerc.width, openerc.height);
           $("#" + formid).val (curColor);
         };
+
+      this.drawSVLines = function (x, y)
+        {
+          this.svctx.fillStyle = "#FFFFFF";
+	  this.svctx.fillRect (x-1, 0, 3, this.svc.height);
+	  this.svctx.fillRect (0, y-1, this.svc.width, 3);
+	  this.svctx.fillStyle = "#000000";
+	  this.svctx.fillRect (x, 0, 1, this.svc.height);
+	  this.svctx.fillRect (0, y, this.svc.width, 1);
+	};
+
       this.drawH ();
       this.drawSV (Array (255, 0, 0));
     };
@@ -197,3 +209,9 @@ function hueToColor (hue, curColor)
         curColor [2] = decreasing;
       }
     };
+
+function toHex (c)
+  {
+    var hex = c.toString (16);
+    return hex.length ==1 ? "0" + hex : hex;
+  };

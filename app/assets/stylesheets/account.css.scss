@@ -106,11 +106,15 @@
 }
 
 #color-picker-signup-container {
-  position: relative;
+  position: fixed;
+  display:inline-block;
+  top: 9.4vh;
+  left: 9vw;
 }
 
 #color-picker-signup-canvas {
   position: absolute;
+  display: table;
   left: 135px;
 }
 

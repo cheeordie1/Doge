@@ -1,10 +1,5 @@
 $(document).ready (function ()
   {
-    var openerc, openerctx;
-    openerc = document.getElementById ("open_color_picker_signup");
-    openerctx = openerc.getContext ("2d");
-    openerctx.fillStyle = $("#color").val ();
-    openerctx.fillRect (0, 0, openerc.width, openerc.height);
     $("#signup_form").on ("ajax:success", function (event, data, status, xhr)
       {
         if (xhr.getResponseHeader ("signup-error") == "true")
@@ -22,5 +17,5 @@ $(document).ready (function ()
 	  }
 	else
 	  console.log ("Error recieving post_login header.");
-      }); 
+      });
   });
