@@ -62,4 +62,5 @@ Rails.application.routes.draw do
   get "/login" => "accounts#login"
   post "/login" => "accounts#post_login"
   get "/logout" => "accounts#logout"
+  get "/color" => "accounts#color"
 end

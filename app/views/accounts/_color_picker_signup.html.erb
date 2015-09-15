@@ -1,0 +1,11 @@
+<div id="color-picker-signup-container">
+  <%= image_tag "color_picker.png", :class => "color-picker-img"  %>
+  <div id="color-picker-signup-canvas" class="vert-center">
+    <canvas id="sv-canvas" class="color-picker" width="150px" height="180px"></canvas>
+    <canvas id="h-canvas" class="color-picker" width="15px" height="180px"></canvas>
+  </div>
+  <script>
+  var signup_picker = new ColorPicker ("color-picker-signup-container", "sv-canvas", "h-canvas",
+                                       "open_color_picker_signup", "account_color");
+  </script>  
+</div>

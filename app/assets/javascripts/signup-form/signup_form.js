@@ -1,6 +1,5 @@
 $(document).ready (function ()
   {
-    var signup_form;
     $("#signup_form").on ("ajax:success", function (event, data, status, xhr)
       {
         if (xhr.getResponseHeader ("signup-error") == "true")
@@ -18,5 +17,5 @@ $(document).ready (function ()
 	  }
 	else
 	  console.log ("Error recieving post_login header.");
-      }); 
+      });
   });
