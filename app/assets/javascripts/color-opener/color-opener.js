@@ -13,7 +13,7 @@ function ColorOpener (openerid, containerid, searchid)
       {
         $.ajax ({
           method: "GET",
-          url: "http://localhost:3000/color",
+          url: "/color",
           beforeSend: function (xhr)
             {
               if ($("#" + obj.searchid).length)
