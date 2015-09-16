@@ -2,7 +2,9 @@ class Account < ActiveRecord::Base
   
   before_validation :clean_color
   validates :username, presence: true, length: { minimum: 3 }
-  validate :username_not_taken, :password_check, :color_valid
+  validate :color_valid
+  validate :username_not_taken, :on => :create
+  validate :password_check, :on => :create
 
   def clean_color
     self.color = ActionController::Base.helpers.sanitize (self.color); 

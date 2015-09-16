@@ -122,6 +122,9 @@ class AccountsController < ApplicationController
   def change_color
     if session[:logged_in] then
       session[:color] = params[:account_color]
+      @account = Account.find_by_username(session[:username])
+      @account.color = session[:color]
+      @account.save
     end
     response.headers["color"] = session[:color]
     head :ok
