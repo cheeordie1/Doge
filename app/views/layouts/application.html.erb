@@ -4,6 +4,8 @@
   <title>Doge</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "color-pick-bundle" %>
+  <%= javascript_include_tag "color-opener-bundle" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,7 +16,20 @@
   <table id="title_table" class="vert-center">
     <tr>
       <% if session[:logged_in] then %>
-	<td class="welcome">Welcome <span style=<%= "color:" + sanitize(session[:color]) %>><%= sanitize session[:username] %></div>!</td>
+	<%= form_tag color_path, :method => "post", :remote => true, :id => "change_color_form" do%>
+          <%= hidden_field_tag "account_color", session[:color] %>
+        <% end %>
+        <td class="color_picker_general">
+          <canvas height="64px" width="64px" id="open_color_picker"></canvas>
+          <div id="color_picker_location2"></div>
+          <script>
+            var app_color_opener = new ColorOpener ("open_color_picker",
+                                                    "color_picker_location2",
+                                                    "color-picker-container");
+            app_color_opener.bindSubmission ("change_color_form");
+          </script>
+        </td>
+	<td class="welcome">Welcome <span id=username_top style=<%= "color:" + sanitize(session[:color]) %>><%= sanitize session[:username] %></div>!</td>
 	<td class="login_link"><%= link_to "Log Out", logout_path, :remote => true, :id => "logout_link" %></td>
 	<%= javascript_include_tag "logout-bundle" %>
       <% else %>

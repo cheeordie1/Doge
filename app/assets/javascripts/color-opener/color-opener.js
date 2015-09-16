@@ -1,13 +1,16 @@
 function ColorOpener (openerid, containerid, searchid)
   {
+    var obj = this;
     this.openerid = openerid;
     this.containerid = containerid;
     this.searchid = searchid;
-    this.openerc = document.getElementById (this.openerid);
-    this.openerctx = this.openerc.getContext ("2d");
-    this.openerctx.fillStyle = $("#color").val ();
-    this.openerctx.fillRect (0, 0, this.openerc.width, this.openerc.height);
-    var obj = this;
+    $(document).ready (function ()
+      {
+        obj.openerc = document.getElementById (obj.openerid);
+        obj.openerctx = obj.openerc.getContext ("2d");
+        obj.openerctx.fillStyle = $("#color").val ();
+        obj.openerctx.fillRect (0, 0, obj.openerc.width, obj.openerc.height);
+      });
 
     $("#" + this.openerid).on ("click", function ()
       {
@@ -35,5 +38,24 @@ function ColorOpener (openerid, containerid, searchid)
             $("#" + obj.searchid).remove ();
             $(document).unbind ("click", obj.removePicker);
 	  };
+      };
+
+    this.bindSubmission = function (formid)
+      {
+	$("#" + formid).on ("ajax:success", function (event, data, status, xhr)
+          {
+            var newColor = xhr.getResponseHeader ("color");
+            $("#color").val (newColor);
+	    $("#username_top").css ("color", newColor);
+          });
+        obj.removePicker = function (evt)
+          {
+            if (!$(evt.target).closest ("#" + obj.searchid).length)
+              {
+                $("#" + obj.searchid).remove ();
+                $(document).unbind ("click", obj.removePicker);
+		$("#" + formid).trigger ("submit.rails");
+              };
+          };
       };
   };

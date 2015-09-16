@@ -11,7 +11,6 @@ $(document).ready (function ()
     $("#remaining").html ("characters left 1024");
     tab_id = $("#tab_id").val ();
     username = $("#username").val ();
-    color = $("#color").val ();
 
     function addMessage (username, text, color)
       {
@@ -57,7 +56,7 @@ $(document).ready (function ()
 
     function sendMessage ()
       {
-	addMessage (username, cur_msg, color);
+	addMessage (username, cur_msg, $("#color").val ());
 	$("#deliverable_msg").val (cur_msg);        
 	$("#rails_secure_form").trigger ('submit.rails');
         msg.val("");

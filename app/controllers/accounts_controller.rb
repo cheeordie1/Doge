@@ -101,8 +101,30 @@ class AccountsController < ApplicationController
     head :ok
   end
 
-  # GET /accounts/color_picker_signup
+  # GET /color
   def color
+    if session[:logged_in] then
+      @image = "color_picker_top.png"
+      @container_class = "color_container_top"
+      @image_class = "color_picker_img_top"
+      @color_picker_class = "color_picker_div_top"
+      @opener = "open_color_picker"
+    else
+      @image = "color_picker.png"
+      @container_class = "color_container"
+      @image_class = "color_picker_img"
+      @color_picker_class = ["vert-center", "color_picker_div"]
+      @opener = "open_color_picker_signup"
+    end
+  end
+
+  # POST /color
+  def change_color
+    if session[:logged_in] then
+      session[:color] = params[:account_color]
+    end
+    response.headers["color"] = session[:color]
+    head :ok
   end
 
   private

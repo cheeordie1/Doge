@@ -75,7 +75,7 @@
   display: none;
 }
 
-.color-picker-img {
+.color_picker_img {
   height: 250px;
 }
 
@@ -86,6 +86,15 @@
   border-right: none;
   padding-left: 1px;
   padding-top: 1px;
+}
+
+.color_container {
+  top: 9.4vh;
+  left: 9vw;
+}
+
+.color_picker_div {
+  left: 135px;
 }
 
 #exit_button {
@@ -105,17 +114,14 @@
   width: 7.5vh;
 }
 
-#color-picker-signup-container {
+#color-picker-container {
   position: fixed;
   display:inline-block;
-  top: 9.4vh;
-  left: 9vw;
 }
 
-#color-picker-signup-canvas {
+#color-picker-canvas {
   position: absolute;
   display: table;
-  left: 135px;
 }
 
 #sv-canvas {
