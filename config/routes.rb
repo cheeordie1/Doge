@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :accounts
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -56,6 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  resources :accounts
   root 'doge#index'
   resource :doge
   post "/woof" => "doge#woof"

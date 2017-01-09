@@ -77,11 +77,11 @@ class AccountsController < ApplicationController
     else
       @account = Account.find_by_username(params[:login][:username])
       if @account == nil then
-	error = "Invalid username or password"
+	    error = "Invalid username or password"
       else
         if not @account.password_valid? params[:login][:password] then
-	  error = "Invalid username or password"
-	end
+	      error = "Invalid username or password"
+	    end
       end
     end
     if error != nil then
@@ -89,6 +89,7 @@ class AccountsController < ApplicationController
       flash[:login_error] = error
     else
       session[:logged_in] = true
+      session[:id] = @account.id
       session[:username] = @account.username
       session[:color] = @account.color
     end

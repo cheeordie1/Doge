@@ -11,12 +11,14 @@
 <body>
 
 <div id="login_bar">
-  <div id="logo_container"><%= image_tag "dogetime.png", :id => "logo", :class => "vert-center" %></div>
+  <div id="logo_container">
+    <%= link_to image_tag("dogetime.png", id: "logo"), root_path, id: "logo-link", class: "vert-center" %>
+  </div>
   <div id="title_container"><p id="doge_title" class="vert-center"></p></div>
   <table id="title_table" class="vert-center">
     <tr>
       <% if session[:logged_in] then %>
-	<%= form_tag color_path, :method => "post", :remote => true, :id => "change_color_form" do%>
+        <%= form_tag color_path, :method => "post", :remote => true, :id => "change_color_form" do%>
           <%= hidden_field_tag "account_color", session[:color] %>
         <% end %>
         <td class="color_picker_general">
@@ -29,13 +31,14 @@
             app_color_opener.bindSubmission ("change_color_form");
           </script>
         </td>
-	<td class="welcome">Welcome <span id=username_top style=<%= "color:" + sanitize(session[:color]) %>><%= sanitize session[:username] %></div>!</td>
-	<td class="login_link"><%= link_to "Log Out", logout_path, :remote => true, :id => "logout_link" %></td>
-	<%= javascript_include_tag "logout-bundle" %>
-      <% else %>
-        <td class="login_link"><%= link_to "Sign up", new_account_path, :remote => true, :id => "signup_link" %></td>
+        <td class="welcome">Welcome <%= link_to(sanitize(session[:username]), account_path(session[:id]), style: "color:" + sanitize(session[:color]), id: "username_top") %>!</td>
         <td>|</td>
-	<td class="login_link"><%= link_to "Login", login_path, :remote => true, :id => "login_link" %></td>
+	    <td class="login_link"><%= link_to "Log Out", logout_path, remote: true, id: "logout_link" %></td>
+	    <%= javascript_include_tag "logout-bundle" %>
+      <% else %>
+        <td class="login_link"><%= link_to "Sign up", new_account_path, remote: true, id: "signup_link" %></td>
+        <td>|</td>
+	    <td class="login_link"><%= link_to "Login", login_path, remote: true, id: "login_link" %></td>
         <%= javascript_include_tag "login-signup-bundle" %>
       <% end %>
     </tr>
