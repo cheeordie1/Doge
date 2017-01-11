@@ -1,23 +1,29 @@
 <div id="background">
-  <div id="stream">
-      <!--<iframe id="stream_video" src="http://player.twitch.tv/?channel=cheeordie" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe> -->
-  </div>
-  <div id="chat">
-    <div id="chat-border" class="border">
-      <ul id="chat-lines" class="scrolly"></ul>
-      <div id="type-msg">
-        <textArea id="msg" maxlength="1024" name="msg"></textArea>
-        <button id="send" type="submit">Woof</button>
-      </div>
+  <div id="content_container">
+    <div id="stream">
+      <iframe id="stream_video" src="http://player.twitch.tv/?channel=cheeordie" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
     </div>
-    <p id="remaining"></p>
-    <%= form_tag "/woof", :method => "post", :id => "rails_secure_form", :remote => true do %>
-      <%= hidden_field_tag 'deliverable_msg' %>
-      <%= hidden_field_tag 'tab_id', @tab_id %>
-      <%= hidden_field_tag 'username', @username %>
-      <%= hidden_field_tag 'color', @color %>
+    <div id="chat">
+      <div id="chat-border" class="border">
+        <ul id="chat-lines" class="scrolly"></ul>
+        <div id="type-msg">
+          <textArea id="msg" maxlength="1024" name="msg"></textArea>
+          <button id="send" type="submit">Woof</button>
+        </div>
+      </div>
+      <p id="remaining"></p>
+      <%= form_tag "/woof", method: "post", id: "rails_secure_form", remote: true do %>
+        <%= hidden_field_tag 'deliverable_msg' %>
+        <%= hidden_field_tag 'tab_id', @tab_id %>
+        <%= hidden_field_tag 'username', @username %>
+        <%= hidden_field_tag 'color', @color %>
+      <% end %>
+      <%= subscribe_to "/woof" %>
+    </div>
+    <% if (session[:logged_in]) %>
+      <%= render "doge/queue_button" %>
     <% end %>
-    <%= subscribe_to "/woof" %>
   </div>
+
 </div>
 <%= javascript_include_tag "doge-bundle" %>

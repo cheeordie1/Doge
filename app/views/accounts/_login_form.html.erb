@@ -1,29 +1,32 @@
 <div id="login_form_container" class="form_container">
 <div id="login_box" class="form_box">
-  <%= image_tag "exit_normal.png", :id => "exit_button", :draggable => "false" %>
+  <%= image_tag "exit_normal.png", id: "exit_button",
+                 draggable: "false", data: {exit_normal: asset_path("exit_normal.png"),
+                                            exit_highlight: asset_path("exit_highlight.png"),
+                                            exit_pressed: asset_path("exit_pressed.png")} %>
   <p id="login_title" class="form_title">So Login, Much Doge</p>
   <div id="login_info" class="form_info">
-    <%= form_for :login, :remote => true, :html => {:id => "login_form"} do |f| %>
-      <%= f.label :username, :id => "username_label", :class => "form_label" %>
+    <%= form_for :login, remote: true, html: {id: "login_form"} do |f| %>
+      <%= f.label :username, id: "username_label", class: "form_label" %>
       </br>
-      <%= f.text_field :username, :class => "form_input" %>
+      <%= f.text_field :username, class: "form_input" %>
       </br></br>
-      <%= f.label :password, :id => "password_label", :class => "form_label" %>
+      <%= f.label :password, id: "password_label", class: "form_label" %>
       </br>
-      <%= f.password_field :password, :class => "form_input" %>
+      <%= f.password_field :password, class: "form_input" %>
       <% if flash[:login_error] %>
         <div id="login_error" class="error form_error"><%= sanitize flash[:login_error] %></div>
       <% end %>
       <div id="underline" class="underline"></div>
-      <%= image_tag "doge_face_thumb.png", :id => "login_form_doge_img", :class => "hori-center form_img" %>
+      <%= image_tag "doge_face_thumb.png", id: "login_form_doge_img", class: "hori-center form_img" %>
       <br>
-      <%= f.submit "Login", :class => "form_submit hori-center", :id => "login_form_submit" %>
+      <%= f.submit "Login", class: "form_submit hori-center", id: "login_form_submit" %>
     <% end %>
   </div>
 </div>
 <div id="preload_login_form" class="form_preload">
-  <%= image_tag "exit_highlight.png", :height => "1px", :width => "1px" %>
-  <%= image_tag "exit_pressed.png", :height => "1px", :width => "1px" %>
+  <%= image_tag "exit_highlight.png", height: "1px", width: "1px" %>
+  <%= image_tag "exit_pressed.png", height: "1px", width: "1px" %>
 </div>
 <%= javascript_include_tag "exit-button-bundle" %>
 <%= javascript_include_tag "login-form-bundle" %>

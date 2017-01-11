@@ -47,8 +47,8 @@ span {
 }
 
 #stream {
-  position: absolute;
-  top: 15vh;
+  position: relative;
+  margin-top: 15vh;
   left: 3vw;
 }
 
@@ -59,7 +59,7 @@ span {
 }
 
 #chat {
-  position: relative;
+  position: absolute;
   white-space: nowrap;
   top: 15vh;
   left: 53%;
@@ -106,4 +106,20 @@ span {
   width: 100%;
   text-align: right;
   right: 2vw;
+}
+
+#queue_container {
+  position: relative;
+}
+
+#button_container {
+  position: absolute;
+  display: inline-block;
+  top: -37px;
+  margin-left: 13px;
+}
+
+#doge_bootun {
+  height: 125px;
+  z-index: 1;
 }
