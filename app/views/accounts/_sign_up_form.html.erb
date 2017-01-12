@@ -21,7 +21,7 @@
         <canvas width="64px" height="64px" id="open_color_picker_signup" class="hori-center"></canvas>
         <div id="color_picker_location"></div>
       </div>
-      <%= f.hidden_field "color", value: @color %>
+      <%= f.hidden_field "color", value: session[:color] %>
       <div id="underline" class="underline"></div>
       <%= image_tag "doge_fooce_thumb.png", id: "signup_form_doge_img", class: "hori-center form_img" %>
       <br>
@@ -38,6 +38,6 @@
 <script>
 var signup_opener = new ColorOpener ("open_color_picker_signup",
                                      "color_picker_location",
-				     "color-picker-container");
+				                             "color-picker-container");
 </script>
 </div>
