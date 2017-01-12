@@ -36,12 +36,13 @@
 	      <td class="login_link"><%= link_to "Log Out", logout_path, remote: true, id: "logout_link" %></td>
 	      <%= javascript_include_tag "logout-bundle" %>
       <% else %>
-        <div class="no_display" id="account_color" value="<%= session[:color] %>"></div>
+        <%= hidden_field_tag "account_color", session[:color] %>
         <td class="login_link"><%= link_to "Sign up", new_account_path, remote: true, id: "signup_link" %></td>
         <td>|</td>
 	      <td class="login_link"><%= link_to "Login", login_path, remote: true, id: "login_link" %></td>
         <%= javascript_include_tag "login-signup-bundle" %>
       <% end %>
+      <%= hidden_field_tag "account_username", session[:username] %>
     </tr>
   </table>
 </div>

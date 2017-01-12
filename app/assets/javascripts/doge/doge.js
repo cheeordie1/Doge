@@ -10,7 +10,7 @@ $(document).ready (function ()
     msg = $("#msg");
     $("#remaining").html ("characters left 1024");
     tab_id = $("#tab_id").val ();
-    username = $("#username").val ();
+    username = $("#account_username").val ();
 
     function addMessage (username, text, color)
       {
@@ -23,6 +23,7 @@ $(document).ready (function ()
         cur_node.id = postpend;
 	      cur_node = cur_node.appendChild (document.createElement ("li"));
 	      cur_node.id = "line-" + postpend;
+        $(cur_node).addClass ("chat-message-container");
 	      // add message nodes
         for (i = 0; i < 3; i++)
 	        cur_node.appendChild (document.createElement ("span"));
@@ -41,6 +42,7 @@ $(document).ready (function ()
 	      // write message
 	      cur_node = cur_node.nextSibling;
 	      cur_node.id = "message-" + postpend;
+        $(cur_node).addClass ("chat-message-payload");
 	      cur_node.innerHTML = text;
 	      cur_node.style.color = "#000000";
 	      cur_node.style.fontSize = "15px";

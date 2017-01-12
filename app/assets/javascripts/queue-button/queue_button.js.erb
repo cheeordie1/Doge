@@ -2,6 +2,14 @@ $(document).ready (function ()
   {
     makePictureButton("doge_bootun", "bootun-normal",
                       "bootun-highlight", "bootun-pressed");
-
-    
   });
+
+function makeQueueButton (buttonID) {
+  $("#" + buttonID).click (function (evt) {
+    alert("Yeowch");
+  });
+};
+
+function makeFakeQueueButton (buttonID) {
+
+}

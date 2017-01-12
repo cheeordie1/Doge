@@ -6,6 +6,15 @@
                                               bootun_pressed: asset_path("doge_bootun_pressed.png")} %>
   </div>
   <%= javascript_include_tag "queue-button-bundle" %>
+  <% if (session[:logged_in]) %>
+    <script>
+      makeQueueButton ("doge_bootun");
+    </script>
+  <% else %>
+    <script>
+      makeFakeQueueButton ("doge_bootun");
+    </script>
+  <% end %>
   <div id="preload_doge_bootun_form" class="form_preload">
     <%= image_tag "doge_bootun_highlight.png", height: "1px", width: "1px" %>
     <%= image_tag "doge_bootun_pressed.png", height: "1px", width: "1px" %>
