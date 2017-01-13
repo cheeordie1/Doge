@@ -17,7 +17,7 @@
 
 .form_input {
   height: 2.4vh;
-  width: 11vw;
+  width: 15vw;
 }
 
 .form_submit {
@@ -37,8 +37,9 @@
   border: 1px solid #333333;
   background-color: #FFFFFF;
   color: black;
-  width: 16vw;
+  width: 20vw;
   position: absolute;
+  line-height: 2px;
 }
 
 .form_info {
@@ -56,11 +57,15 @@
   position: relative;
 }
 
+.form_input_container {
+  position: relative;
+  margin-top: 2vh;
+}
+
 .form_error {
   position: relative;
   word-wrap: break-word;
-  margin: 0px;
-  margin-top: 5px;
+  margin-top: 2vh;
 }
 
 .underline {
@@ -101,7 +106,11 @@
   position: absolute;
   height: 1.3vw;
   top: 1.3vh;
-  left: 14vw;
+  left: 18vw;
+}
+
+#signup_submit_container, #login_submit_container {
+  margin-bottom: 2vh;
 }
 
 #color_picker_popup {
@@ -121,8 +130,8 @@
 
 #color_picker_location {
   position: absolute;
-  top: -115px;
-  left: 6.4vw;
+  top: -120px;
+  left: 9vw;
   z-index: 1;
 }
 

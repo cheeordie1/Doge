@@ -7,10 +7,14 @@
   <p id="signup_title" class="form_title">Very Sign Up!</p>
   <div id="login_info" class="form_info">
     <%= form_for @account, remote: true, url: accounts_path, html: {id: "signup_form"} do |f| %>
-      <%= f.label :username, id: "username_label", class: "form_label" %>
-      <%= f.text_field :username, class: "form_input" %>
-      <%= f.label :password, id: "password_label", class: "form_label" %>
-      <%= f.password_field :password, class: "form_input" %>
+      <div class="form_input_container">
+        <%= f.label :username, id: "username_label", class: "form_label" %>
+        <%= f.text_field :username, class: "form_input" %>
+      </div>  
+      <div class="form_input_container">
+        <%= f.label :password, id: "password_label", class: "form_label" %>
+        <%= f.password_field :password, class: "form_input" %>
+      </div>
       <% if @account.errors.any? then %>
 	      <div class="error form_error"><%= sanitize @account.errors.full_messages[0] %></div>
       <% end %>
@@ -21,7 +25,9 @@
       <%= f.hidden_field "color", value: session[:color] %>
       <div id="underline" class="underline"></div>
       <%= image_tag "doge_fooce_thumb.png", id: "signup_form_doge_img", class: "hori-center form_img" %>
-      <%= f.submit "Sign Up", class: "form_submit hori-center", id: "signup_form_submit" %>
+      <div id="signup_submit_container" class="form_input_container">
+        <%= f.submit "Sign Up", class: "form_submit hori-center", id: "signup_form_submit" %>
+      </div>
     <% end %>
   </div>
 </div>
