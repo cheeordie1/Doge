@@ -10,7 +10,7 @@ $(document).ready (function ()
     msg = $("#msg");
     $("#remaining").html ("characters left 1024");
     tab_id = $("#tab_id").val ();
-    username = $("#account_username").val ();
+    username = $("#current_account_username").val ();
 
     function addMessage (username, text, color)
       {
@@ -58,7 +58,7 @@ $(document).ready (function ()
 
     function sendMessage ()
       {
-	      addMessage (username, cur_msg, $("#account_color").val ());
+	      addMessage (username, cur_msg, $("#current_account_color").val ());
 	      $("#deliverable_msg").val (cur_msg);        
 	      $("#rails_secure_form").trigger ('submit.rails');
         msg.val("");

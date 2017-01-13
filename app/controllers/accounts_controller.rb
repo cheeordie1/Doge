@@ -32,6 +32,7 @@ class AccountsController < ApplicationController
     if @account.save then
       response.headers["signup-error"] = "false"
       session[:logged_in] = true
+      session[:id] = @account.id
       session[:username] = @account.username
       session[:color] = @account.color
       head :ok

@@ -8,14 +8,11 @@
   <div id="login_info" class="form_info">
     <%= form_for @account, remote: true, url: accounts_path, html: {id: "signup_form"} do |f| %>
       <%= f.label :username, id: "username_label", class: "form_label" %>
-      </br>
       <%= f.text_field :username, class: "form_input" %>
-      </br></br>
       <%= f.label :password, id: "password_label", class: "form_label" %>
-      </br>
       <%= f.password_field :password, class: "form_input" %>
       <% if @account.errors.any? then %>
-	<div class="error form_error"><%= sanitize @account.errors.full_messages[0] %></div>
+	      <div class="error form_error"><%= sanitize @account.errors.full_messages[0] %></div>
       <% end %>
       <div id="color_picker_popup">
         <canvas width="64px" height="64px" id="open_color_picker_signup" class="hori-center"></canvas>
@@ -24,7 +21,6 @@
       <%= f.hidden_field "color", value: session[:color] %>
       <div id="underline" class="underline"></div>
       <%= image_tag "doge_fooce_thumb.png", id: "signup_form_doge_img", class: "hori-center form_img" %>
-      <br>
       <%= f.submit "Sign Up", class: "form_submit hori-center", id: "signup_form_submit" %>
     <% end %>
   </div>

@@ -145,8 +145,8 @@ function ColorPicker (cid, svid, hid, openerid, formid)
               curColor [idx] = Math.floor ((hue [idx] + ((100 - sat) / 100 * (255 - hue [idx]))) * val / 100);
             });
 	        curColor = "#" + toHex (this.selectedColor [0]) + 
-                  toHex (this.selectedColor [1]) +
-                  toHex (this.selectedColor [2]);
+                      toHex (this.selectedColor [1]) +
+                      toHex (this.selectedColor [2]);
           var openerc = document.getElementById (this.openerid);
           var openerctx = openerc.getContext ("2d");
 	        openerctx.fillStyle = curColor;

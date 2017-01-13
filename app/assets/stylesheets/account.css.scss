@@ -42,7 +42,7 @@
 }
 
 .form_info {
-  padding: 3vh;
+  padding: 2vh;
   padding-left: 1.7vw;
   padding-bottom: 0px;
   position: relative;
@@ -52,7 +52,7 @@
 .form_img {
   width: 15vh;
   height: 15vh;
-  margin-top: 1vh;
+  margin-top: 2vh;
   position: relative;
 }
 
@@ -60,12 +60,12 @@
   position: relative;
   word-wrap: break-word;
   margin: 0px;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .underline {
   position: relative;
-  margin-top: 15px;
+  margin-top: 2vh;
   height: 1px;
   width: 100%;
   border-bottom: thin solid #000000;
@@ -114,8 +114,19 @@
   width: 7.5vh;
 }
 
+#color_picker_location2 {
+  position: absolute;
+  right: 4vw;
+}
+
+#color_picker_location {
+  position: absolute;
+  top: -115px;
+  left: 6.4vw;
+  z-index: 1;
+}
+
 #color-picker-container {
-  position: fixed;
   display:inline-block;
 }
 

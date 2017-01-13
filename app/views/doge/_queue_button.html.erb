@@ -8,11 +8,11 @@
   <%= javascript_include_tag "queue-button-bundle" %>
   <% if (session[:logged_in]) %>
     <script>
-      makeQueueButton ("doge_bootun");
+      var doge_queue_bootun = makeQueueButton ("doge_bootun");
     </script>
   <% else %>
     <script>
-      makeFakeQueueButton ("doge_bootun");
+      var doge_queue_bootun = makeFakeQueueButton ("doge_bootun");
     </script>
   <% end %>
   <div id="preload_doge_bootun_form" class="form_preload">

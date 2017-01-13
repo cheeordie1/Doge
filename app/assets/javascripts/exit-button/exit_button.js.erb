@@ -1,13 +1,13 @@
 $(document).ready (function ()
   {
-    makePictureButton ("exit_button", "exit-normal", 
-                       "exit-highlight", "exit-pressed");
+    var exitButton = new makePictureButton ("exit_button", "exit-normal", 
+                                            "exit-highlight", "exit-pressed");
     $("#exit_button").on ("click", function ()
       {
         if ($("#login_form_container").length) 
           $("#login_form_container").remove ();
         else if ($("#signup_form_container").length)
-	      $("#signup_form_container").remove ();
+	        $("#signup_form_container").remove ();
         $("#ls_form_container").css ("display", "none");
       });
   });

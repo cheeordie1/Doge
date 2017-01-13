@@ -1,7 +1,7 @@
 $(document).ready (function ()
   {
-    makePictureButton("doge_bootun", "bootun-normal",
-                      "bootun-highlight", "bootun-pressed");
+    var doge_bootun = new makePictureButton("doge_bootun", "bootun-normal",
+                                            "bootun-highlight", "bootun-pressed");
   });
 
 function makeQueueButton (buttonID) {
@@ -11,5 +11,7 @@ function makeQueueButton (buttonID) {
 };
 
 function makeFakeQueueButton (buttonID) {
-
+  $("#" + buttonID).click (function (evt) {
+    alert("Yeowch");
+  });
 }
