@@ -4,13 +4,18 @@ $(document).ready (function ()
                                             "bootun-highlight", "bootun-pressed");
   });
 
-function makeQueueButton (buttonID) {
+function makeFakeQueueButton (buttonID, signupLinkID) {
+  var obj = this;
   $("#" + buttonID).click (function (evt) {
-    alert("Yeowch");
+    obj.oldURL = $("#" + signupLinkID).attr ("href");
+    $("#" + signupLinkID).attr ("href", obj.oldURL + ((obj.oldURL.indexOf('?')!=-1)?'&':'?') +
+                                "special_message=" + encodeURI ("Register an account before you Doge"));
+    $("#" + signupLinkID).click ();
+    $("#" + signupLinkID).attr ("href", obj.oldURL);
   });
 };
 
-function makeFakeQueueButton (buttonID) {
+function makeQueueButton (buttonID) {
   $("#" + buttonID).click (function (evt) {
     alert("Yeowch");
   });

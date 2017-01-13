@@ -17,6 +17,11 @@ class AccountsController < ApplicationController
     if @account == nil then
       @account = Account.new
     end
+    if params.has_key?(:special_message)
+      @account.errors.add(:base, params[:special_message])
+      response.headers["signup-error"] = "true"
+      render "new"
+    end
     @color = session[:color]
   end
 
