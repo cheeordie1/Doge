@@ -1,0 +1,22 @@
+<div id="queue_container">
+  <div id="button_container"  class="hori-center">
+    <%= image_tag "doge_bootun_normal.png", id: "doge_bootun",
+                   draggable: "false", data: {bootun_normal: asset_path("doge_bootun_normal.png"),
+                                              bootun_highlight: asset_path("doge_bootun_highlight.png"),
+                                              bootun_pressed: asset_path("doge_bootun_pressed.png")} %>
+  </div>
+  <%= javascript_include_tag "queue-button-bundle" %>
+  <% if (session[:logged_in]) %>
+    <script>
+      var doge_queue_bootun = makeQueueButton ("doge_bootun");
+    </script>
+  <% else %>
+    <script>
+      var doge_queue_bootun = makeFakeQueueButton ("doge_bootun", "signup_link");
+    </script>
+  <% end %>
+  <div id="preload_doge_bootun_form" class="form_preload">
+    <%= image_tag "doge_bootun_highlight.png", height: "1px", width: "1px" %>
+    <%= image_tag "doge_bootun_pressed.png", height: "1px", width: "1px" %>
+  </div>
+</div>

@@ -17,6 +17,11 @@ class AccountsController < ApplicationController
     if @account == nil then
       @account = Account.new
     end
+    if params.has_key?(:special_message)
+      @account.errors.add(:base, params[:special_message])
+      response.headers["signup-error"] = "true"
+      render "new"
+    end
     @color = session[:color]
   end
 
@@ -32,6 +37,7 @@ class AccountsController < ApplicationController
     if @account.save then
       response.headers["signup-error"] = "false"
       session[:logged_in] = true
+      session[:id] = @account.id
       session[:username] = @account.username
       session[:color] = @account.color
       head :ok
@@ -77,11 +83,11 @@ class AccountsController < ApplicationController
     else
       @account = Account.find_by_username(params[:login][:username])
       if @account == nil then
-	error = "Invalid username or password"
+	    error = "Invalid username or password"
       else
         if not @account.password_valid? params[:login][:password] then
-	  error = "Invalid username or password"
-	end
+	      error = "Invalid username or password"
+	    end
       end
     end
     if error != nil then
@@ -89,6 +95,7 @@ class AccountsController < ApplicationController
       flash[:login_error] = error
     else
       session[:logged_in] = true
+      session[:id] = @account.id
       session[:username] = @account.username
       session[:color] = @account.color
     end
@@ -109,12 +116,14 @@ class AccountsController < ApplicationController
       @image_class = "color_picker_img_top"
       @color_picker_class = "color_picker_div_top"
       @opener = "open_color_picker"
+      @map_coords = "219,7,229,36,260,62,351,60,361,221,53,221,49,60,181,57,202,38"
     else
       @image = "color_picker.png"
       @container_class = "color_container"
       @image_class = "color_picker_img"
       @color_picker_class = ["vert-center", "color_picker_div"]
       @opener = "open_color_picker_signup"
+      @map_coords = "22,141,22,141,80,105,85,29,380,29,377,230,89,228,77,163"
     end
   end
 

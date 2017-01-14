@@ -1,0 +1,22 @@
+$(document).ready (function ()
+  {
+    var doge_bootun = new makePictureButton("doge_bootun", "bootun-normal",
+                                            "bootun-highlight", "bootun-pressed");
+  });
+
+function makeFakeQueueButton (buttonID, signupLinkID) {
+  var obj = this;
+  $("#" + buttonID).click (function (evt) {
+    obj.oldURL = $("#" + signupLinkID).attr ("href");
+    $("#" + signupLinkID).attr ("href", obj.oldURL + ((obj.oldURL.indexOf('?')!=-1)?'&':'?') +
+                                "special_message=" + encodeURI ("Register an account before you Doge"));
+    $("#" + signupLinkID).click ();
+    $("#" + signupLinkID).attr ("href", obj.oldURL);
+  });
+};
+
+function makeQueueButton (buttonID) {
+  $("#" + buttonID).click (function (evt) {
+    alert("Yeowch");
+  });
+}

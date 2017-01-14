@@ -11,8 +11,8 @@ $(document).ready (function ()
         if ($("#signup_form_container").length)
           {  
             xhr.abort ();
-	    return;
-	  }
+	          return;
+	        }
       });
 
     $("#login_link").on ("ajax:beforeSend", function (event, xhr, settings)
@@ -20,8 +20,8 @@ $(document).ready (function ()
         if ($("#login_form_container").length)
           {
             xhr.abort ();
-	    return;
-	  }
+	          return;
+	        }
       });
    
     $("#signup_tab").on ("click", function ()
@@ -37,28 +37,28 @@ $(document).ready (function ()
     $("#signup_link").on ("ajax:success", function (event, data, status, xhr)
       {
        	login_form = $(data).filter ("#signup_form_container").clone (true);
-	if ($("#login_form_container").length)
+	      if ($("#login_form_container").length)
           $("#login_form_container").remove ();
-	login_form.appendTo ("#center_form");
+	      login_form.appendTo ("#center_form");
         $("#signup_tab").css ("border-color", "#333333");
         $("#login_tab").css ("border-color", "#888888");
         $("#login_tab").css ("border-bottom-color", "#333333");
-	$("#signup_cover").css ("visibility", "visible");
-	$("#login_cover").css ("visibility", "hidden");
+	      $("#signup_cover").css ("visibility", "visible");
+	      $("#login_cover").css ("visibility", "hidden");
         $("#ls_form_container").css ("display", "block");
       });
 
     $("#login_link").on ("ajax:success", function (event, data, status, xhr)
       {
        	login_form = $(data).filter ("#login_form_container").clone (true);
-	if ($("#signup_form_container").length)
+	      if ($("#signup_form_container").length)
           $("#signup_form_container").remove ();
-	login_form.appendTo ("#center_form");
+	      login_form.appendTo ("#center_form");
         $("#login_tab").css ("border-color", "#333333");
         $("#signup_tab").css ("border-color", "#888888");
-	$("#signup_tab").css ("border-bottom-color", "#333333");
-	$("#login_cover").css ("visibility", "visible");
-	$("#signup_cover").css ("visibility", "hidden");
+	      $("#signup_tab").css ("border-bottom-color", "#333333");
+	      $("#login_cover").css ("visibility", "visible");
+	      $("#signup_cover").css ("visibility", "hidden");
         $("#ls_form_container").css ("display", "block");
       });
   });

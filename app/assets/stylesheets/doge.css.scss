@@ -31,6 +31,18 @@ span {
   border: 1px solid #9097E2;
 }
 
+.chat-message-container {
+  display: flex;
+}
+
+.chat-message-payload {
+  position: relative;
+  top: 1.5px;
+  width: 100%;
+  word-break: break-word;
+  white-space: normal;
+}
+
 #background {
   height: 100%;
   width:100%;
@@ -47,8 +59,8 @@ span {
 }
 
 #stream {
-  position: absolute;
-  top: 15vh;
+  position: relative;
+  margin-top: 11vh;
   left: 3vw;
 }
 
@@ -59,9 +71,9 @@ span {
 }
 
 #chat {
-  position: relative;
+  position: absolute;
   white-space: nowrap;
-  top: 15vh;
+  top: 11vh;
   left: 53%;
   width: 45vw;
 }
@@ -106,4 +118,20 @@ span {
   width: 100%;
   text-align: right;
   right: 2vw;
+}
+
+#queue_container {
+  position: relative;
+}
+
+#button_container {
+  position: absolute;
+  display: inline-block;
+  top: -5.4vh;
+  margin-left: 1.3vw;
+}
+
+#doge_bootun {
+  height: 18vh;
+  z-index: 1;
 }

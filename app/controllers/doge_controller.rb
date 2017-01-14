@@ -6,10 +6,8 @@ class DogeController < ApplicationController
       Rails.application.config.users = (Rails.application.config.users + 1) % 100000
     end
     if session[:color] == nil then
-      session[:color] = @color = "#" + SecureRandom.hex(3)
+      session[:color] = "#" + SecureRandom.hex(3)
     end
-    @username = session[:username]
-    @color = session[:color]
     @tab_id = Rails.application.config.tab_id
     Rails.application.config.tab_id = (Rails.application.config.tab_id + 1) % 100000
   end
@@ -19,10 +17,10 @@ class DogeController < ApplicationController
     @tab_id = params[:tab_id]
     @color = session[:color]
     @username = session[:username]
-    PrivatePub.publish_to "/woof", :deliverable_msg => @deliverable_msg,
-	                           :username => @username,
-				   :color => @color,
-				   :tabid => @tab_id
+    PrivatePub.publish_to "/woof", deliverable_msg: @deliverable_msg,
+	                                 username: @username,
+				                           color: @color,
+				                           tabid: @tab_id
   end
 
 end
