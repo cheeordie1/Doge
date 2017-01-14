@@ -1,6 +1,10 @@
 <div id="color-picker-container" class=<%= @container_class %>>
-  <%= image_tag @image, :class => @image_class  %>
-  <%= content_tag "div", :id => "color-picker-canvas", :class => @color_picker_class do %>
+  <%= image_tag @image, class: @image_class, usemap: "#color_picker_map" %>
+  <!-- Image Map doesn't yet work -->
+  <map name="Map" id="color_picker_map">
+    <area shape="poly" coords="<%= @map_coords %>">
+  </map>
+  <%= content_tag "div", id: "color-picker-canvas", class: @color_picker_class do %>
     <canvas id="sv-canvas" class="color-picker" width="150px" height="180px"></canvas>
     <canvas id="h-canvas" class="color-picker" width="15px" height="180px"></canvas>
   <% end %>

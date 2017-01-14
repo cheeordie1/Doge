@@ -116,12 +116,14 @@ class AccountsController < ApplicationController
       @image_class = "color_picker_img_top"
       @color_picker_class = "color_picker_div_top"
       @opener = "open_color_picker"
+      @map_coords = "219,7,229,36,260,62,351,60,361,221,53,221,49,60,181,57,202,38"
     else
       @image = "color_picker.png"
       @container_class = "color_container"
       @image_class = "color_picker_img"
       @color_picker_class = ["vert-center", "color_picker_div"]
       @opener = "open_color_picker_signup"
+      @map_coords = "22,141,22,141,80,105,85,29,380,29,377,230,89,228,77,163"
     end
   end
 
