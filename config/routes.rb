@@ -54,10 +54,14 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :accounts
+  # home page
   root 'doge#index'
-  resource :doge
+
+  # doge routes
   post "/woof" => "doge#woof"
+
+  # account routes
+  resources :accounts, only: [:new, :create, :update, :show]
   get "/login" => "accounts#login"
   post "/login" => "accounts#post_login"
   get "/logout" => "accounts#logout"
