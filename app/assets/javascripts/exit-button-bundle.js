@@ -1,2 +1,2 @@
-//= require_tree ./picture-button/
+//= require picture-button-bundle
 //= require_tree ./exit-button/
