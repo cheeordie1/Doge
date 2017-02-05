@@ -15,7 +15,7 @@ $(document).ready (function ()
     function addMessage (username, text, color)
       {
 	      height =  $("#chat-lines")[0].scrollHeight - $("#chat-lines")[0].clientHeight;
-	      scrolled = $("#chat-lines").scrollTop () - height < 2;
+	      scrolled = height - $("#chat-lines").scrollTop () < 2;
         cur_node = document.getElementById ("chat-lines").appendChild (document.createElement ("div"));
 	      postpend = username + "-" + msg_id.toString ();
 	      // vulnerability if popular!!
