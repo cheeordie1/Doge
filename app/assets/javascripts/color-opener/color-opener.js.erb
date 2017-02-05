@@ -12,28 +12,15 @@ function ColorOpener (openerid, containerid, searchid)
         obj.openerctx.fillRect (0, 0, obj.openerc.width, obj.openerc.height);
       });
 
-    obj.openPicker = function ()
+    obj.onPickerLoad = function ()
       {
-        $.ajax ({
-          method: "GET",
-          url: "/color",
-          beforeSend: function (xhr)
-            {
-              if ($("#" + obj.searchid).length)
-                xhr.abort ();
-            },
-          success: function (data)
-            {
-              if ($("#" + obj.searchid).length)
-                return;
-              var color_pick = $(data).filter ("#" + obj.searchid).clone (true);
-              color_pick.appendTo ("#" + obj.containerid);
-	            $(document).bind ("click", obj.removePicker);
-            },
-        });
-      }
+	      $(document).bind ("click", obj.removePicker);
+      };
 
-    $("#" + this.openerid).on ("click", obj.openPicker);
+    obj.pickerLoader = new ContainerLoader (null, "/color", obj.containerid, 
+                                            obj.searchid, null, obj.onPickerLoad);
+
+    $("#" + this.openerid).on ("click", obj.pickerLoader.openContainer);
 
     this.removePicker = function (evt)
       {
