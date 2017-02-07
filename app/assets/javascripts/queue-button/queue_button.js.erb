@@ -18,21 +18,10 @@ function makeFakeQueueButton (buttonID, signupLinkID) {
 function makeQueueButton (buttonID) {
   var obj = this;
 
-  obj.openQueue = function ()
-    {
-      $.ajax ({
-        method: "GET",
-        url: "/doge_enqueue",
-        success: function (data)
-          {
-        //    loadContainer (data, "#queue_container", "#doge_queue_content",
-        //                   "button_container");
-          },
-      });
-    };
+  obj.data = {"username": gon.username};
+  obj.queueLoader = new ContainerLoader (null, "/doge_enqueue", "POST", obj.data,
+                                         "queue_container", "doge_queue_container",
+                                         "buttonContainer", function () {alert("Successful Queue?");});
 
-  $("#" + buttonID).click (function (evt) {
-    
-    alert("Yeowch");
-  });
+  $("#" + buttonID).click (obj.queueLoader.openContainer);
 }

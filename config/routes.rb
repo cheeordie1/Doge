@@ -59,6 +59,7 @@ Rails.application.routes.draw do
 
   # doge routes
   post "/woof" => "doge#woof"
+  post "/doge_enqueue" => "doge#doge_enqueue"
 
   # account routes
   resources :accounts, only: [:new, :create, :update, :show]

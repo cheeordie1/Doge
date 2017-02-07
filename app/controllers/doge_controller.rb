@@ -1,5 +1,6 @@
 class DogeController < ApplicationController
 
+  #GET root
   def index
     if session[:username] == nil then
       session[:username] = "doge " + Rails.application.config.users.to_s
@@ -8,10 +9,12 @@ class DogeController < ApplicationController
     if session[:color] == nil then
       session[:color] = "#" + SecureRandom.hex(3)
     end
+    gon.username = session[:username];
     @tab_id = Rails.application.config.tab_id
     Rails.application.config.tab_id = (Rails.application.config.tab_id + 1) % 100000
   end
 
+  # POST /woof
   def woof
     @deliverable_msg = params[:deliverable_msg]
     @tab_id = params[:tab_id]
@@ -21,6 +24,11 @@ class DogeController < ApplicationController
 	                                 username: @username,
 				                           color: @color,
 				                           tabid: @tab_id
+  end
+
+  # POST /doge_enqueue
+  def doge_enqueue
+
   end
 
 end

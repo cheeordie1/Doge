@@ -17,7 +17,7 @@ function ColorOpener (openerid, containerid, searchid)
 	      $(document).bind ("click", obj.removePicker);
       };
 
-    obj.pickerLoader = new ContainerLoader (null, "/color", obj.containerid, 
+    obj.pickerLoader = new ContainerLoader (null, "/color", "GET", null, obj.containerid, 
                                             obj.searchid, null, obj.onPickerLoad);
 
     $("#" + this.openerid).on ("click", obj.pickerLoader.openContainer);
