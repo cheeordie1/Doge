@@ -18,8 +18,7 @@ function makeFakeQueueButton (buttonID, signupLinkID) {
 function makeQueueButton (buttonID) {
   var obj = this;
 
-  obj.data = {"username": gon.username};
-  obj.queueLoader = new ContainerLoader (null, "/doge_enqueue", "POST", obj.data,
+  obj.queueLoader = new ContainerLoader (null, "/doge_enqueue", "GET", null,
                                          "queue_container", "doge_queue_container",
                                          "buttonContainer", function () {alert("Successful Queue?");});
 

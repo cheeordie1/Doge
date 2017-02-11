@@ -111,6 +111,7 @@ class AccountsController < ApplicationController
   # GET /color
   def color
     if session[:logged_in] then
+      # TODO Put these in a gon variable some day
       @image = "color_picker_top.png"
       @container_class = "color_container_top"
       @image_class = "color_picker_img_top"
