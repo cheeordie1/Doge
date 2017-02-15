@@ -1,10 +1,9 @@
 $(document).ready (function ()
   {
-    var msg, cur_msg, enter, shift,
+    var msg, enter, shift,
         form, publication, username, color, tab_id, 
 	      cur_node, msg_id, i, postpend, scrolled, height;
     shift = false;
-    cur_msg = "";
     msg_id = 0;
     form = $("#rails_secure_form");
     msg = $("#msg");
@@ -58,6 +57,7 @@ $(document).ready (function ()
 
     function sendMessage ()
       {
+        cur_msg = msg.val ();
 	      addMessage (username, cur_msg, $("#current_account_color").val ());
 	      $("#deliverable_msg").val (cur_msg);        
 	      $("#rails_secure_form").trigger ('submit.rails');
@@ -82,11 +82,10 @@ $(document).ready (function ()
 	      msg.maxLength = "1024";
 	      if (evt.keyCode == 13 && !shift)
           {
-	          msg.val ("");
 	          if (evt.type == "keypress")
 	            sendMessage ();
+            evt.preventDefault ();
 	        }
-        cur_msg = msg.val ();
         remaining.innerHTML = "characters left " + (1024 - msg.val ().length);
       });
   });

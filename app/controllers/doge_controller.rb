@@ -17,6 +17,9 @@ class DogeController < ApplicationController
   # POST /woof
   def woof
     @deliverable_msg = params[:deliverable_msg]
+    if params[:deliverable_msg].length > 1024 then
+      @deliverable_msg = params[:deliverable_msg][0..1023]
+    end
     @tab_id = params[:tab_id]
     @color = session[:color]
     @username = session[:username]
@@ -26,9 +29,13 @@ class DogeController < ApplicationController
 				                           tabid: @tab_id
   end
 
-  # POST /doge_enqueue
+  # GET /doge_enqueue
   def doge_enqueue
-
+    @account = Account.find_by_username(session[:username])
+    if session[:logged_in] then
+      QueueRequest.new(account_id: @account.id)
+    else
+      
+    end
   end
-
 end
