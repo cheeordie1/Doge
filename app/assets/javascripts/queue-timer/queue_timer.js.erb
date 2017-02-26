@@ -1,0 +1,18 @@
+// Queue Timer makes a timer that ticks to 0 and sets up a tennis-ball 
+// controller when the timer ticks to 0
+function QueueTimer (objContainerID, timerSeconds)
+  {
+    var obj = this;
+    timerSeconds = timerSeconds == "" ? 0 : parseInt(timerSeconds);
+    obj.objContainerID = "#" + objContainerID;
+    obj.timer = new Timer (objContainerID, timerSeconds);
+
+    // Make Ajax request to set up controls when timer is out
+    obj.timerUpFunction = function () {
+      // TODO
+      console.log("hi");
+    };
+
+    // Set timer to run timerUpFunction when timer runs out
+    obj.timer.registerTimeOut (obj.timerUpFunction);
+  };

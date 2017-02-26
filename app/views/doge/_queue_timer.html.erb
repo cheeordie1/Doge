@@ -1,0 +1,21 @@
+<div id="doge_queue_container">
+  <div id="doge_queue">
+  </div>
+  <div id="preload_timer_form" class="form_preload">
+    <%= image_tag "colon.png", height: "1px", width: "1px" %>
+    <%= image_tag "0.png", height: "1px", width: "1px" %>
+    <%= image_tag "1.png", height: "1px", width: "1px" %>
+    <%= image_tag "2.png", height: "1px", width: "1px" %>
+    <%= image_tag "3.png", height: "1px", width: "1px" %>
+    <%= image_tag "4.png", height: "1px", width: "1px" %>
+    <%= image_tag "5.png", height: "1px", width: "1px" %>
+    <%= image_tag "6.png", height: "1px", width: "1px" %>
+    <%= image_tag "7.png", height: "1px", width: "1px" %>
+    <%= image_tag "8.png", height: "1px", width: "1px" %>
+    <%= image_tag "9.png", height: "1px", width: "1px" %>
+  </div>
+  <%= javascript_include_tag "queue-timer-bundle" %>
+  <script>
+    var timer = new QueueTimer ("doge_queue", "<%= @timer_seconds %>");
+  </script>
+</div>

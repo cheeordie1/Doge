@@ -1,17 +1,22 @@
 class QueueRequest < ActiveRecord::Base
-  validate :user_is_real, :on => :create
-  validate :not_in_queue, :on => :create
-  validate :control_time, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validate :user_is_real
+  validate :not_in_queue
   
   def user_is_real
-    if Account.find(account_id) == nil
+    if Account.exists?(account_id) == false then
       errors.add(:user, "does not exist");
     end
   end
 
   def not_in_queue
-    if QueueRequest.find_by_account_id(account_id) != nil
+    if QueueRequest.exists?(account_id: account_id) == true then
       errors.add(:queue_request, "already in the queue")
     end
+  end
+
+  def self.prune_requests
+    QueueRequest.delete_all(["end_time < ?", DateTime.current().getutc()])
   end
 end

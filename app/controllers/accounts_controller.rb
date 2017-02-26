@@ -105,7 +105,11 @@ class AccountsController < ApplicationController
   # GET /accounts/logout
   def logout
     reset_session
-    head :ok
+    if request.xhr?
+      head :ok
+    else
+      redirect_to controller: 'doge', action: 'index'
+    end
   end
 
   # GET /color

@@ -1,26 +1,22 @@
-$(document).ready (function ()
-  {
-    var doge_bootun = new makePictureButton("doge_bootun", "bootun-normal",
-                                            "bootun-highlight", "bootun-pressed");
-  });
-
 function makeFakeQueueButton (buttonID, signupLinkID) {
   var obj = this;
-  $("#" + buttonID).click (function (evt) {
-    obj.oldURL = $("#" + signupLinkID).attr ("href");
-    $("#" + signupLinkID).attr ("href", obj.oldURL + ((obj.oldURL.indexOf('?')!=-1)?'&':'?') +
+  obj.buttonID = "#doge_bootun";
+  obj.signupLinkID = "#signup_link";
+  $(obj.buttonID).click (function (evt) {
+    obj.oldURL = $(obj.signupLinkID).attr ("href");
+    $(obj.signupLinkID).attr ("href", obj.oldURL + ((obj.oldURL.indexOf('?')!=-1)?'&':'?') +
                                 "special_message=" + encodeURI ("Register an account before you Doge"));
-    $("#" + signupLinkID).click ();
-    $("#" + signupLinkID).attr ("href", obj.oldURL);
+    $(obj.signupLinkID).click ();
+    $(obj.signupLinkID).attr ("href", obj.oldURL);
   });
 };
 
-function makeQueueButton (buttonID) {
+function makeQueueButton () {
   var obj = this;
 
-  obj.queueLoader = new ContainerLoader (null, "/doge_enqueue", "GET", null,
+  obj.queueLoader = new ContainerLoader (null, "/doge_enqueue", "POST", null,
                                          "queue_container", "doge_queue_container",
-                                         "buttonContainer", function () {alert("Successful Queue?");});
+                                         "button_container", null);
 
-  $("#" + buttonID).click (obj.queueLoader.openContainer);
+  $("#doge_bootun").click (obj.queueLoader.openContainer);
 }

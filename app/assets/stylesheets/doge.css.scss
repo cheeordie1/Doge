@@ -43,6 +43,30 @@ span {
   white-space: normal;
 }
 
+.timerDivContainer {
+  position: absolute;
+  display: inline-flex;
+  background-color: #000000;
+  border: 1px solid #bbbdd6;
+}
+
+.timerDiv {
+  height: 10vh;
+}
+
+.timerNumberDiv {
+  display: inline-flex;
+}
+
+.timerNumber {
+  height: 10vh;
+  width: 4vw;
+}
+
+.timerColon {
+  height: 10vh;
+}
+
 #background {
   height: 100%;
   width:100%;
@@ -122,6 +146,12 @@ span {
 
 #queue_container {
   position: relative;
+}
+
+
+#doge_queue {
+  position: relative;
+  width: 100%;
 }
 
 #button_container {
