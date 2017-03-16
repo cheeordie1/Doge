@@ -20,3 +20,6 @@
 
 # Ignore all swap files
 *.swp
+
+# Ignore npm files
+/node_modules/*

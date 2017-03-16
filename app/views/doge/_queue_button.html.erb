@@ -10,11 +10,11 @@
   <%= javascript_include_tag "queue-button-bundle" %>
   <script>
     <% if (session[:logged_in]) %>
-      var doge_queue_bootun = makeQueueButton ();
+      var doge_queue_bootun = new makeQueueButton ();
     <% else %>
-      var doge_queue_bootun = makeFakeQueueButton ();
+      var doge_queue_bootun = new makeFakeQueueButton ();
     <% end %>
-      var doge_bootun = new makePictureButton("doge_bootun", "bootun-normal",
-                                              "bootun-highlight", "bootun-pressed");
+      var doge_bootun = new makePictureButton ("doge_bootun", "bootun-normal",
+                                               "bootun-highlight", "bootun-pressed");
   </script>
 </div>
