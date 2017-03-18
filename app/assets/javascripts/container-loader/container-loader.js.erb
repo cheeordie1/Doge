@@ -1,7 +1,8 @@
 function loadContainer (data, loadToContainerID, loadFromContainerID,
                         optionalRemoveID, optionalSuccessFunction)
   {
-    var content = $(data).filter (loadFromContainerID).clone (true);
+    var content = $(loadFromContainerID, 
+                    $('<div>').append ($(data))).clone (true);
     // If the received html is empty, do not use it
     if (content.length == 0) {
       return;
