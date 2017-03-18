@@ -2,10 +2,10 @@ function makeDogeControl (controlContainerID, controlRadius)
   {
     var obj = this;
     obj.controlFireButtonRadius = controlRadius;
-    obj.controlSelectorRadius = 8;
+    obj.controlSelectorRadius = 12;
     obj.controlSelectorAngle = 190;
     obj.controlCanvasHeight = 2 * obj.controlFireButtonRadius + 
-                              obj.controlSelectorRadius + 5;
+                              obj.controlSelectorRadius + 25;
     obj.controlCanvasWidth = obj.controlCanvasHeight; 
     obj.controlContainerID = "#" + controlContainerID;
     obj.$controlContainer = $(obj.controlContainerID);
@@ -29,31 +29,58 @@ function makeDogeControl (controlContainerID, controlRadius)
     obj.controlFireButton.fillColor = '#c3bebe';
 
     // Draw Angle Selector Background Arc
-    obj.controlInnerArcCenter = obj.controlCenter.subtract (new paper.Point (0,
-                                  obj.controlFireButtonRadius));
-    obj.controlOuterArcCenter = obj.controlInnerArcCenter.subtract (new paper.Point (0, 
-                                  obj.controlSelectorRadius));
+    obj.drawArc = function (center, radius, angle) 
+      {
+        var innerArcCenter = center.subtract (new paper.Point (0,
+                                              obj.controlFireButtonRadius));
+        
+        var outerArcCenter = innerArcCenter.subtract (new paper.Point (0, 
+                                                      radius));
+        var selectorHalfAngle = angle / 2;
+        // Inner Arc
+        var innerArcLeft = innerArcCenter.rotate (-selectorHalfAngle, center);
+        var innerArcRight = innerArcCenter.rotate (selectorHalfAngle, center);
+        // Outer Arc
+        var outerArcLeft = outerArcCenter.rotate (-selectorHalfAngle, center);
+        var outerArcRight = outerArcCenter.rotate (selectorHalfAngle, center);
+        // Make Path for Arc
+        var arcPath = new paper.Path ();
+        arcPath.add (innerArcLeft);
+        arcPath.arcTo (innerArcCenter, innerArcRight);
+        arcPath.lineTo (outerArcRight);
+        arcPath.arcTo (outerArcCenter, outerArcLeft);
+        arcPath.closed = true;
+        arcPath.fillColor = '#847e7e'; 
+        return arcPath;
+      };
 
-    // Inner Arc
-    obj.controlSelectorHalfAngle = obj.controlSelectorAngle / 2;
-    obj.controlInnerArcLeft = obj.controlInnerArcCenter.rotate (-obj.controlSelectorHalfAngle,
-                                 obj.controlCenter);
-    obj.controlInnerArcRight = obj.controlInnerArcCenter.rotate (obj.controlSelectorHalfAngle,
-                                 obj.controlCenter);
-    obj.controlInnerArc = new paper.Path.Arc (obj.controlInnerArcLeft,
-                                              obj.controlInnerArcCenter,
-                                              obj.controlInnerArcRight);
-    obj.controlInnerArc.strokeColor = '#847e7e';
-
-    // Outer Arc
-    obj.controlOuterArcLeft = obj.controlOuterArcCenter.clone ();
-    obj.controlOuterArcRight = obj.controlOuterArcCenter.clone ();
-    obj.controlOuterArcLeft.rotate (-obj.controlSelectorHalfAngle,
-                                    obj.controlCenter);
-    obj.controlOuterArcRight.rotate (obj.controlSelectorHalfAngle,
-                                     obj.controlCenter);
-
+    obj.controlSelectorArc = obj.drawArc (obj.controlCenter, 
+                                          obj.controlSelectorRadius,
+                                          obj.controlSelectorAngle);
 
     // Draw Angle Selector
+    obj.makeSelector = function (center, distFromCenter, radius)
+      {
+        var selectorWidth = 10;
+        var selectorHeight = radius + 4;
+        var selectorCornerRadius = 3;
+        var selectorSize = new paper.Size (selectorWidth, selectorHeight);
+        var selectorCornerSize = new paper.Size (selectorCornerRadius, 
+                                                 selectorCornerRadius);
+        var corner = center.subtract (new paper.Point (selectorWidth / 2, 
+                                                       distFromCenter + 2));
+        var selector = new paper.Rectangle (corner, selectorSize);
+        var selector = new paper.Path.Rectangle (selector, selectorCornerSize);
+        selector.fillColor = 'black';
+        return selector;
+      };
+
+    obj.controlSelector = obj.makeSelector (obj.controlCenter,
+                                            obj.controlFireButtonRadius + 
+                                            obj.controlSelectorRadius,
+                                            obj.controlSelectorRadius);
+
+    // Make Tool to move Angle Selector
+    obj.controlSelector.rotate (30, obj.controlCenter);
 
   };
