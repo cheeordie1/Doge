@@ -26,7 +26,7 @@ function makeDogeControl (controlContainerID, controlRadius)
                                          obj.controlCanvasHeight / 2);
     obj.controlFireButton = new paper.Path.Circle (obj.controlCenter, 
                                                    obj.controlFireButtonRadius);
-    obj.controlFireButton.fillColor = '#c3bebe';
+    obj.controlFireButton.fillColor = '#2c36df';
 
     // Draw Angle Selector Background Arc
     obj.drawArc = function (center, radius, angle) 
@@ -50,7 +50,7 @@ function makeDogeControl (controlContainerID, controlRadius)
         arcPath.lineTo (outerArcRight);
         arcPath.arcTo (outerArcCenter, outerArcLeft);
         arcPath.closed = true;
-        arcPath.fillColor = '#847e7e'; 
+        arcPath.fillColor = 'rgba(46,44,44,0.5)'; 
         return arcPath;
       };
 
@@ -80,7 +80,45 @@ function makeDogeControl (controlContainerID, controlRadius)
                                             obj.controlSelectorRadius,
                                             obj.controlSelectorRadius);
 
-    // Make Tool to move Angle Selector
-    obj.controlSelector.rotate (30, obj.controlCenter);
+    // Make Angle Selector Move on mouse drag
+    obj.controlSelector.on ('mousedrag', function (event) {
+      var vecDragTo = event.point.subtract (obj.controlCenter);
+      var vecDragFrom = obj.controlSelector.position.subtract (obj.controlCenter);
+      var deltaAngle = vecDragFrom.getDirectedAngle (vecDragTo);
+      var centerAngle = new paper.Point (0, -1).getDirectedAngle (vecDragFrom);
+      var controlHalfAngle = obj.controlSelectorAngle / 2;
+      if ((centerAngle + deltaAngle) < -controlHalfAngle)
+        {
+          var vecLimit = new paper.Point (0, -1).rotate (-controlHalfAngle);
+          deltaAngle = vecDragFrom.getDirectedAngle (vecLimit);
+        }
+      else if ((centerAngle + deltaAngle) > controlHalfAngle)
+        {
+          var vecLimit = new paper.Point (0, -1).rotate (controlHalfAngle);
+          deltaAngle = vecDragFrom.getDirectedAngle (vecLimit);
+        }
+      obj.controlSelector.rotate (deltaAngle, obj.controlCenter);
+    });
+
+    // Make Angle Selector change color on mouseover
+    obj.controlSelector.on ('mousedown', function (event) {
+      obj.controlSelector.strokeColor = '#fffc56';
+    });
+
+    obj.controlSelector.on ('mousedrag', function (event) {
+      obj.controlSelector.strokeColor = '#fffc56';
+    });
+
+    obj.controlSelector.on ('mouseenter', function (event) {
+      obj.controlSelector.strokeColor = '#fffc56';
+    });
+
+    obj.controlSelector.on ('mouseleave', function (event) {
+      obj.controlSelector.strokeColor = '';
+    });
+
+    obj.controlSelector.on ('mouseup', function (event) {
+      obj.controlSelector.strokeColor = '';
+    });
 
   };

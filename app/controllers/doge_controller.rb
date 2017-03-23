@@ -1,5 +1,8 @@
 class DogeController < ApplicationController
 
+  @@default_first_queue_time = 10
+  @@default_next_queue_time = 2
+
   #GET root
   def index
     if session[:username] == nil then
@@ -53,13 +56,16 @@ class DogeController < ApplicationController
         @latest_end_time = QueueRequest.maximum("end_time")
         if @latest_end_time == nil then
           # If there is no queue request in the database, start now
-          @request.start_time = DateTime.current().getutc().advance(seconds: 15)
+          @request.start_time = DateTime.current().getutc().advance(seconds:
+                                                    @@default_first_queue_time)
         else
           # Set the next start time after the last queue request
-          @request.start_time = @latest_end_time.advance(seconds: 2) 
+          @request.start_time = @latest_end_time.advance(seconds:
+                                                    @@default_next_queue_time)
         end
         # For now, queue time is 2 minutes
-        @request.end_time = @request.start_time.advance(minutes: 2)
+        @request.end_time = @request.start_time.advance(minutes: 
+                                                    @@default_next_queue_time)
         @request.save
       end
       # Render a timer for the user that is in the queue
