@@ -1,10 +1,9 @@
 function loadContainer (data, loadToContainerID, loadFromContainerID,
                         optionalRemoveID, optionalSuccessFunction)
   {
-    var content = $(loadFromContainerID, 
-                    $('<div>').append ($(data))).clone (true);
+    var $content = $(loadFromContainerID, $('<body>').html ($(data)));
     // If the received html is empty, do not use it
-    if (content.length == 0) {
+    if ($content.length == 0) {
       return;
     }
     // Remove an html element if specified
@@ -16,7 +15,7 @@ function loadContainer (data, loadToContainerID, loadFromContainerID,
     // If the data is not already in the dom, add it
     if ($(loadFromContainerID).length == 0)
       {
-	      content.appendTo (loadToContainerID);
+	      $(loadToContainerID).append ($content);
       }
     // If there is any other function to call, call it
     if (optionalSuccessFunction != null)

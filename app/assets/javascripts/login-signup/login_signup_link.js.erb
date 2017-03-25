@@ -1,11 +1,5 @@
 $(document).ready (function ()
   {
-    // Make Script transport through ajax asynchronous
-    $.ajaxPrefilter (function (options, originalOptions, jqXHR)
-      {
-        options.async = true;
-      });
-
     $("#signup_tab").on ("click", function ()
       {
         $("#signup_link").click ();

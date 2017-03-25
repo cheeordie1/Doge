@@ -1,8 +1,6 @@
 <div id="button_container"  class="hori-center">
   <%= image_tag "doge_bootun_normal.png", id: "doge_bootun",
-                draggable: "false", data: {bootun_normal: asset_path("doge_bootun_normal.png"),
-                                           bootun_highlight: asset_path("doge_bootun_highlight.png"),
-                                           bootun_pressed: asset_path("doge_bootun_pressed.png")} %>
+                draggable: "false" %>
   <div id="preload_doge_bootun_form" class="form_preload">
     <%= image_tag "doge_bootun_highlight.png", height: "1px", width: "1px" %>
     <%= image_tag "doge_bootun_pressed.png", height: "1px", width: "1px" %>
@@ -14,7 +12,9 @@
     <% else %>
       var doge_queue_bootun = new makeFakeQueueButton ();
     <% end %>
-      var doge_bootun = new makePictureButton ("doge_bootun", "bootun-normal",
-                                               "bootun-highlight", "bootun-pressed");
+      var doge_bootun = new makePictureButton ("doge_bootun", 
+                                               "<%= asset_path('doge_bootun_normal.png') %>",
+                                               "<%= asset_path('doge_bootun_highlight.png') %>",
+                                               "<%= asset_path('doge_bootun_pressed.png') %>");
   </script>
 </div>

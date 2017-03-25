@@ -24,6 +24,7 @@ function makeDogeControl (controlContainerID, controlRadius)
     // Draw Button Circle
     obj.controlCenter = new paper.Point (obj.controlCanvasWidth / 2, 
                                          obj.controlCanvasHeight / 2);
+    obj.controlFireButton = new PaperPictureButton ();
     obj.controlFireButton = new paper.Path.Circle (obj.controlCenter, 
                                                    obj.controlFireButtonRadius);
     obj.controlFireButton.fillColor = '#2c36df';

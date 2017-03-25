@@ -16,8 +16,6 @@
   </div>
   <%= javascript_include_tag "queue-timer-bundle" %>
   <script>
-    $(document).ready (function () {
-        var timer = new QueueTimer ("doge_queue", "<%= @timer_seconds %>");
-    });
+    var timer = new QueueTimer ("doge_queue", "<%= @timer_seconds %>");
   </script>
 </div>
