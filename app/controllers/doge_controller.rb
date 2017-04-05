@@ -87,6 +87,11 @@ class DogeController < ApplicationController
     
   end
 
+  # POST request for the head of queue controls
+  def doge_control_signal
+
+  end
+
   def determine_queue_content
     if session[:logged_in] == true then
       if Account.exists?(username: session[:username]) == false then

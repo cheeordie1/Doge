@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   get  "/doge_enqueue" => "doge#doge_timer"
   post "/doge_enqueue" => "doge#doge_enqueue"
   get  "/doge_control" => "doge#doge_control"
+  post "/doge_control" => "doge#doge_control_signal"
 
   # account routes
   resources :accounts, only: [:new, :create, :update, :show]

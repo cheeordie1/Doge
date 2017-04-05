@@ -1,4 +1,4 @@
-function makeDogeControl (controlContainerID, controlRadius)
+function makeDogeControl (controlContainerID, controlFormID, controlRadius)
   {
     var obj = this;
     obj.controlFireButtonRadius = controlRadius;
@@ -7,6 +7,7 @@ function makeDogeControl (controlContainerID, controlRadius)
     obj.controlCanvasHeight = 2 * obj.controlFireButtonRadius + 
                               obj.controlSelectorRadius + 25;
     obj.controlCanvasWidth = obj.controlCanvasHeight; 
+    obj.controlFormID = "#" + controlFormID;
     obj.controlContainerID = "#" + controlContainerID;
     obj.$controlContainer = $(obj.controlContainerID);
     obj.controlCanvasID = "controlCanvas";
@@ -82,6 +83,11 @@ function makeDogeControl (controlContainerID, controlRadius)
                                             obj.controlSelectorRadius);
 
     // Make Angle Selector Move on mouse drag
+    obj.getSelectorAngle = function () {
+      var vecToSelector = obj.controlSelector.position.subtract (obj.controlCenter);
+      return new paper.Point (0, -1).getDirectedAngle (vecToSelector);
+    }
+
     obj.controlSelector.on ('mousedrag', function (event) {
       var vecDragTo = event.point.subtract (obj.controlCenter);
       var vecDragFrom = obj.controlSelector.position.subtract (obj.controlCenter);
@@ -120,6 +126,21 @@ function makeDogeControl (controlContainerID, controlRadius)
 
     obj.controlSelector.on ('mouseup', function (event) {
       obj.controlSelector.strokeColor = '';
+    });
+
+    // Make Angle Selector submit a form on angle change
+    obj.submitControlSignal = function (name, value) {
+      var $controlSignalData = $("<input name='" + name + "' type='hidden'>");
+      var $controlSignalDataContainer = $("<div>");
+      $controlSignalDataContainer.append ($controlSignalData);
+      $controlSignalData.val (value);
+      $(obj.controlFormID).append ($controlSignalDataContainer);
+      $(obj.controlFormID).submit ();
+    };
+
+    obj.controlSelector.on ('mouseup', function (event) {
+      var angle = obj.getSelectorAngle ();
+      obj.submitControlSignal ('angle', angle);
     });
 
   };

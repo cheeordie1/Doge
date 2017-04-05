@@ -33,6 +33,7 @@
     <%= image_tag "exit_highlight.png", height: "1px", width: "1px" %>
     <%= image_tag "exit_pressed.png", height: "1px", width: "1px" %>
   </div>
+  <%= javascript_include_tag "exit-button-bundle" %>
   <%= javascript_include_tag "signup-form-bundle" %>
   <script>
     var exitButton = new makeExitButton ("exit_button", "signup_form_container",
