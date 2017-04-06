@@ -31,7 +31,7 @@ function PaperPictureButton (size, pos, bound, normalURL,
     });
 
     obj.imgRaster.on ('mouseup', function (event) {
-      obj.imgRaster.source = obj.normalURL;
+      obj.imgRaster.source = obj.highlightURL;
       obj.imgRaster.size = obj.size;
     });
 
