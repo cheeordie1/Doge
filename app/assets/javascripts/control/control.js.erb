@@ -25,10 +25,16 @@ function makeDogeControl (controlContainerID, controlFormID, controlRadius)
     // Draw Button Circle
     obj.controlCenter = new paper.Point (obj.controlCanvasWidth / 2, 
                                          obj.controlCanvasHeight / 2);
-    obj.controlFireButton = new PaperPictureButton ();
-    obj.controlFireButton = new paper.Path.Circle (obj.controlCenter, 
-                                                   obj.controlFireButtonRadius);
-    obj.controlFireButton.fillColor = '#2c36df';
+    obj.controlBounds = new paper.Shape.Circle (obj.controlCenter, 
+                                                obj.controlFireButtonRadius);
+    obj.controlFireButton = new PaperPictureButton (new paper.Size (110, 110), 
+                                                    obj.controlCenter.subtract (new paper.Point (2.5, 0)),
+                                                    obj.controlBounds,
+                                                    "<%= image_path 'doge_bootun_normal.png' %>",
+                                                    "<%= image_path 'doge_bootun_highlight.png' %>",
+                                                    "<%= image_path 'doge_bootun_pressed.png' %>");
+
+    // TODO Move Angle Selector out of file to a new class for cleanliness
 
     // Draw Angle Selector Background Arc
     obj.drawArc = function (center, radius, angle) 
@@ -128,7 +134,8 @@ function makeDogeControl (controlContainerID, controlFormID, controlRadius)
       obj.controlSelector.strokeColor = '';
     });
 
-    // Make Angle Selector submit a form on angle change
+    // Function that adds an input to the control form and sends it, removing
+    // the input element after submitting the form.
     obj.submitControlSignal = function (name, value) {
       var $controlSignalData = $("<input name='" + name + "' type='hidden'>");
       var $controlSignalDataContainer = $("<div>");
@@ -136,8 +143,16 @@ function makeDogeControl (controlContainerID, controlFormID, controlRadius)
       $controlSignalData.val (value);
       $(obj.controlFormID).append ($controlSignalDataContainer);
       $(obj.controlFormID).submit ();
+      $controlSignalDataContainer.remove ();
     };
 
+    // Bind fire signal to fire button
+    obj.controlFireSignal = function () {
+      obj.submitControlSignal ('fire', true);
+    };
+    obj.controlFireButton.bindClick (obj.controlFireSignal);
+
+    // Make Angle Selector submit a form on angle change
     obj.controlSelector.on ('mouseup', function (event) {
       var angle = obj.getSelectorAngle ();
       obj.submitControlSignal ('angle', angle);
