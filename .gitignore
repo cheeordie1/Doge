@@ -21,8 +21,5 @@
 # Ignore all swap files
 *.swp
 
-# Ignore npm files
-/node_modules/*
-
 # Ignore these keep things
 *.keep
