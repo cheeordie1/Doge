@@ -1,45 +1,50 @@
 <div id="signup_form_container" class="form_container">
-<div id="signup_box" class="form_box">
-  <%= image_tag "exit_normal.png", id: "exit_button", 
-                 draggable: "false", data: {exit_normal: asset_path("exit_normal.png"),
-                                            exit_highlight: asset_path("exit_highlight.png"),
-                                            exit_pressed: asset_path("exit_pressed.png")} %>
-  <p id="signup_title" class="form_title">Very Sign Up!</p>
-  <div id="login_info" class="form_info">
-    <%= form_for @account, remote: true, url: accounts_path, html: {id: "signup_form"} do |f| %>
-      <div class="form_input_container">
-        <%= f.label :username, id: "username_label", class: "form_label" %>
-        <%= f.text_field :username, class: "form_input" %>
-      </div>  
-      <div class="form_input_container">
-        <%= f.label :password, id: "password_label", class: "form_label" %>
-        <%= f.password_field :password, class: "form_input" %>
-      </div>
-      <% if @account.errors.any? then %>
-	      <div class="error form_error"><%= sanitize @account.errors.full_messages[0] %></div>
+  <div id="signup_box" class="form_box">
+    <%= image_tag "exit_normal.png", id: "exit_button", 
+                   draggable: "false" %>
+    <p id="signup_title" class="form_title">Very Sign Up!</p>
+    <div id="login_info" class="form_info">
+      <%= form_for @account, remote: true, url: accounts_path, html: {id: "signup_form"} do |f| %>
+        <div class="form_input_container">
+          <%= f.label :username, id: "username_label", class: "form_label" %>
+          <%= f.text_field :username, class: "form_input" %>
+        </div>  
+        <div class="form_input_container">
+          <%= f.label :password, id: "password_label", class: "form_label" %>
+          <%= f.password_field :password, class: "form_input" %>
+        </div>
+        <% if @account.errors.any? then %>
+  	      <div class="error form_error"><%= sanitize @account.errors.full_messages[0] %></div>
+        <% end %>
+        <div id="color_picker_popup">
+          <canvas width="64px" height="64px" id="open_color_picker_signup" class="hori-center"></canvas>
+          <div id="color_picker_location"></div>
+        </div>
+        <%= f.hidden_field "color", value: session[:color] %>
+        <div id="underline" class="underline"></div>
+        <%= image_tag "doge_fooce_thumb.png", id: "signup_form_doge_img", class: "hori-center form_img" %>
+        <div id="signup_submit_container" class="form_input_container">
+          <%= f.submit "Sign Up", class: "form_submit hori-center", id: "signup_form_submit" %>
+        </div>
       <% end %>
-      <div id="color_picker_popup">
-        <canvas width="64px" height="64px" id="open_color_picker_signup" class="hori-center"></canvas>
-        <div id="color_picker_location"></div>
-      </div>
-      <%= f.hidden_field "color", value: session[:color] %>
-      <div id="underline" class="underline"></div>
-      <%= image_tag "doge_fooce_thumb.png", id: "signup_form_doge_img", class: "hori-center form_img" %>
-      <div id="signup_submit_container" class="form_input_container">
-        <%= f.submit "Sign Up", class: "form_submit hori-center", id: "signup_form_submit" %>
-      </div>
-    <% end %>
+    </div>
   </div>
-</div>
-<div id="preload_signup_form" class="form_preload">
-  <%= image_tag "exit_highlight.png", height: "1px", width: "1px" %>
-  <%= image_tag "exit_pressed.png", height: "1px", width: "1px" %>
-</div>
-<%= javascript_include_tag "exit-button-bundle" %>
-<%= javascript_include_tag "signup-form-bundle" %>
-<script>
-var signup_opener = new ColorOpener ("open_color_picker_signup",
-                                     "color_picker_location",
-				                             "color-picker-container");
-</script>
+  <div id="preload_signup_form" class="form_preload">
+    <%= image_tag "exit_highlight.png", height: "1px", width: "1px" %>
+    <%= image_tag "exit_pressed.png", height: "1px", width: "1px" %>
+  </div>
+  <%= javascript_include_tag "exit-button-bundle" %>
+  <%= javascript_include_tag "signup-form-bundle" %>
+  <script>
+    var exitButton = new makeExitButton ("exit_button", "signup_form_container",
+                                         "<%= asset_path('exit_normal.png') %>",
+                                         "<%= asset_path('exit_highlight.png') %>",
+                                         "<%= asset_path('exit_pressed.png') %>");
+    exitButton.bindClick (function () {
+      $("#ls_form_container").css ("display", "none");
+    });
+    var signup_opener = new ColorOpener ("open_color_picker_signup",
+                                         "color_picker_location",
+  	  			                             "color-picker-container");
+  </script>
 </div>

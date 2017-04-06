@@ -2,6 +2,17 @@
 <html>
 <head>
   <title>Doge</title>
+  <!-- 
+    Gon gem allows us to add variables in the controller that javascript can access through the gon object
+  
+    Ex:
+    class ProductsController < ApplicationController
+      def index
+        gon.products = Product.limit(10)
+      end
+    end 
+  -->
+  <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "color-pick-bundle" %>

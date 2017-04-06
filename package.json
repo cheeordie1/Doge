@@ -1,0 +1,28 @@
+{
+  "name": "doge",
+  "version": "1.0.0",
+  "description": "Dog Streaming Application",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheeordie1/Doge.git"
+  },
+  "keywords": [
+    "dogetime"
+  ],
+  "author": "Nich Candor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cheeordie1/Doge/issues"
+  },
+  "homepage": "https://github.com/cheeordie1/Doge#readme",
+  "dependencies": {
+    "paper": "0.10.3"
+  }
+}

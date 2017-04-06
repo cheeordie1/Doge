@@ -1,0 +1,54 @@
+function TimerNumber (timerStartNumber, timerWrapNumber)
+  {
+    var obj = this;
+    obj.timerWrapNumber = timerWrapNumber >= 100 ? 99 : timerWrapNumber;
+    obj.currentTimerNumber = timerStartNumber >= 100 ? 99 : timerStartNumber;
+
+    // Create Number graphic which can be retrieved by clients
+    obj.$timerNumberDiv = $("<div class='timerDiv'></div>");
+    obj.$timerNumberDivLeft = $("<div class='timerNumberDiv'></div>");
+    obj.$timerNumberLeft = $("<img class='timerNumber '>");
+    obj.$timerNumberDivLeft.append (obj.$timerNumberLeft);
+    obj.$timerNumberDiv.append (obj.$timerNumberDivLeft);
+    obj.$timerNumberDivRight = $("<div class='timerNumberDiv'></div>");
+    obj.$timerNumberRight = $("<img class='timerNumber '>");
+    obj.$timerNumberDivRight.append (obj.$timerNumberRight);
+    obj.$timerNumberDiv.append (obj.$timerNumberDivRight);
+
+
+    // Function for client to retrieve html for timer number
+    obj.getHTML = function () {
+      return obj.$timerNumberDiv;
+    };
+
+    // Function to update html to render the current number
+    obj.renderNumber = function () {
+      obj.rightDigit = obj.currentTimerNumber % 10;
+      obj.leftDigit = (Math.floor (obj.currentTimerNumber / 10)) % 10;
+      obj.$timerNumberRight.attr ("src", "/assets/" + obj.rightDigit + ".png");
+      obj.$timerNumberLeft.attr ("src", "/assets/" + obj.leftDigit + ".png");
+    };
+
+    // Check if timer has run out
+    obj.isOut = function () {
+      if (obj.currentTimerNumber <= 0) 
+        {
+          obj.currentTimerNumber = 0;
+          return true;
+        }
+      return false;
+    };
+
+    // Decrement the timer by one number. If timer is 0, wrap around
+    obj.decrement = function () {
+      obj.currentTimerNumber--;
+      if (obj.currentTimerNumber < 0)
+        {
+          obj.currentTimerNumber = obj.timerWrapNumber;
+        }
+      obj.renderNumber ();
+    };
+
+    // Update the empty Number graphic to show the proper images
+    obj.renderNumber ();
+  };

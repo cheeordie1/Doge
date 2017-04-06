@@ -1,22 +1,25 @@
-function makePictureButton (imageID, normalDataLoc, 
-                            highlightDataLoc, pressedDataLoc)
+function makePictureButton (imageID, normalURL, 
+                            highlightURL, pressedURL)
   {
     var obj = this;
-    this.imageFullID = "#" + imageID;
+    obj.imageFullID = "#" + imageID;
+    obj.normalURL = normalURL;
+    obj.highlightURL = highlightURL;
+    obj.pressedURL = pressedURL;
     $(obj.imageFullID).on ("mouseover", function ()
       {
-        $(obj.imageFullID).attr ("src", $(obj.imageFullID).data (highlightDataLoc));
+        $(obj.imageFullID).attr ("src", obj.highlightURL);
       });
     $(obj.imageFullID).on ("mouseout", function ()
       {
-        $(obj.imageFullID).attr ("src", $(obj.imageFullID).data (normalDataLoc));
+        $(obj.imageFullID).attr ("src", obj.normalURL);
       });
     $(obj.imageFullID).on ("mousedown", function ()
       {
-        $(obj.imageFullID).attr ("src", $(obj.imageFullID).data (pressedDataLoc));
+        $(obj.imageFullID).attr ("src", obj.pressedURL);
       }); 
     $(obj.imageFullID).on ("mouseup", function ()
       {
-        $(obj.imageFullID).attr ("src", $(obj.imageFullID).data (highlightDataLoc));
+        $(obj.imageFullID).attr ("src", obj.highlightURL);
       });
   };

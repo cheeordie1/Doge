@@ -1,0 +1,48 @@
+// Timer creates an object that can render a timer on screen
+function Timer (timerContainerID, timerSeconds)
+  {
+    var obj = this;
+    obj.timerContainerID = "#" + timerContainerID;
+    obj.minutes = Math.floor (timerSeconds / 60);
+    obj.seconds = timerSeconds % 60;
+    obj.minuteTimerNumber = new TimerNumber (obj.minutes, 0);
+    obj.secondsTimerNumber = new TimerNumber (obj.seconds, 59);
+    obj.timerOutHandler = function () {};
+
+    // Render the timer html
+    obj.$timerDiv = $("<div class='timerDivContainer hori-center'></div>");
+    $(obj.timerContainerID).append (obj.$timerDiv);
+    obj.$timerDiv.append ($(obj.minuteTimerNumber.getHTML ()));
+    obj.$timerDiv.append ("<div class='timerDiv'>" + 
+                            "<img class='timerColon' src='/assets/colon.png'>" + 
+                          "</div>");
+    obj.$timerDiv.append ($(obj.secondsTimerNumber.getHTML ()));
+
+    // Set up a timer function to be called when timer ticks to 0
+    // Only start the timer after the function is registered
+    obj.registerTimeOut = function (timerOutHandler) {
+      obj.timerOutHandler = timerOutHandler;
+      obj.timerTickHandle = setInterval (obj.tickTimer, 1000);
+    };
+
+    // Function to decrement minutes and seconds left in timer
+    obj.tickTimer = function () {
+      if (obj.secondsTimerNumber.isOut ())
+        {
+          if (obj.minuteTimerNumber.isOut ())
+            {
+              // Stop decrementing if timer is 00:00
+              clearInterval (obj.timerTickHandle);
+              obj.timerOutHandler ();
+              return;
+            }
+          else
+            {
+              // If seconds timer is 00, decrement minute timer
+              obj.minuteTimerNumber.decrement ();
+            }
+        }
+      // Decrement seconds timer every tick
+      obj.secondsTimerNumber.decrement ();
+    };
+  };

@@ -59,12 +59,16 @@ Rails.application.routes.draw do
 
   # doge routes
   post "/woof" => "doge#woof"
+  get  "/doge_enqueue" => "doge#doge_timer"
+  post "/doge_enqueue" => "doge#doge_enqueue"
+  get  "/doge_control" => "doge#doge_control"
+  post "/doge_control" => "doge#doge_control_signal"
 
   # account routes
   resources :accounts, only: [:new, :create, :update, :show]
-  get "/login" => "accounts#login"
+  get  "/login" => "accounts#login"
   post "/login" => "accounts#post_login"
-  get "/logout" => "accounts#logout"
-  get "/color" => "accounts#color"
+  get  "/logout" => "accounts#logout"
+  get  "/color" => "accounts#color"
   post "/color" => "accounts#change_color"
 end

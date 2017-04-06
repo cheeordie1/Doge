@@ -43,6 +43,30 @@ span {
   white-space: normal;
 }
 
+.timerDivContainer {
+  position: absolute;
+  display: inline-flex;
+  background-color: #000000;
+  border: 1px solid #bbbdd6;
+}
+
+.timerDiv {
+  height: 10vh;
+}
+
+.timerNumberDiv {
+  display: inline-flex;
+}
+
+.timerNumber {
+  height: 10vh;
+  width: 4vw;
+}
+
+.timerColon {
+  height: 10vh;
+}
+
 #background {
   height: 100%;
   width:100%;
@@ -66,7 +90,7 @@ span {
 
 #stream_video {
   position: relative;
-  height: 53vh;
+  height: 51.5vh;
   width: 47vw;
 }
 
@@ -124,6 +148,12 @@ span {
   position: relative;
 }
 
+
+#doge_queue {
+  position: relative;
+  width: 100%;
+}
+
 #button_container {
   position: absolute;
   display: inline-block;
@@ -134,4 +164,10 @@ span {
 #doge_bootun {
   height: 18vh;
   z-index: 1;
+}
+
+#doge_control_container {
+  position: absolute;
+  top: -2.4vh;
+  margin-left: 1.3vw;
 }

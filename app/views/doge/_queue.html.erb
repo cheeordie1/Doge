@@ -1,0 +1,9 @@
+<div id="queue_container">
+  <% if (@load_button) %>
+    <%= render "doge/queue_button" %>
+  <% elsif (@load_timer) %>
+    <%= render "doge/queue_timer" %>
+  <% elsif (@load_control) %>
+    <%= render "doge/control" %>
+  <% end %>
+</div>

@@ -26,6 +26,7 @@ class Account < ActiveRecord::Base
   end
 
   def color_valid
+    # color will always be valid. No check added yet
     if false then
       errors.add(:color, "Color is invalid.")
     end

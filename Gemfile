@@ -59,3 +59,6 @@ gem 'private_pub'
 
 # heroku wants this
 gem 'rails_12factor'
+
+# Enables us to set Javascript-accessible Ruby variables in controller
+gem 'gon'
