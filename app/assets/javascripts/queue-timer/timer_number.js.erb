@@ -25,8 +25,8 @@ function TimerNumber (timerStartNumber, timerWrapNumber)
     obj.renderNumber = function () {
       obj.rightDigit = obj.currentTimerNumber % 10;
       obj.leftDigit = (Math.floor (obj.currentTimerNumber / 10)) % 10;
-      obj.$timerNumberRight.attr ("src", "/assets/" + obj.rightDigit + ".png");
-      obj.$timerNumberLeft.attr ("src", "/assets/" + obj.leftDigit + ".png");
+      obj.$timerNumberRight.attr ("src", gon.timerNumberURLs [obj.rightDigit]);
+      obj.$timerNumberLeft.attr ("src", gon.timerNumberURLs [obj.leftDigit]);
     };
 
     // Check if timer has run out

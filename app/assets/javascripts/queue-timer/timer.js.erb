@@ -14,7 +14,7 @@ function Timer (timerContainerID, timerSeconds)
     $(obj.timerContainerID).append (obj.$timerDiv);
     obj.$timerDiv.append ($(obj.minuteTimerNumber.getHTML ()));
     obj.$timerDiv.append ("<div class='timerDiv'>" + 
-                            "<img class='timerColon' src='/assets/colon.png'>" + 
+                          "<img class='timerColon' src='<%= image_path 'colon.png' %>'>" + 
                           "</div>");
     obj.$timerDiv.append ($(obj.secondsTimerNumber.getHTML ()));
 

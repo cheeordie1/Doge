@@ -13,6 +13,17 @@ class DogeController < ApplicationController
       session[:color] = "#" + SecureRandom.hex(3)
     end
     gon.username = session[:username];
+    # include timer image url variables in page to access in javascript 
+    gon.timerNumberURLs = [view_context.image_path("0.png"),
+                           view_context.image_path('1.png'), 
+                           view_context.image_path('2.png'),
+                           view_context.image_path('3.png'),
+                           view_context.image_path('4.png'),
+                           view_context.image_path('5.png'),
+                           view_context.image_path('6.png'),
+                           view_context.image_path('7.png'),
+                           view_context.image_path('8.png'),
+                           view_context.image_path('9.png')]    
     @tab_id = Rails.application.config.tab_id
     Rails.application.config.tab_id = (Rails.application.config.tab_id + 1) % 100000
     determine_queue_content
