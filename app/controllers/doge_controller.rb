@@ -106,6 +106,7 @@ class DogeController < ApplicationController
 
   # GET request for the head of queue controls
   def doge_control
+      @next_queue_time = get_queue_time
   end
 
   # POST request for the head of queue controls
@@ -169,7 +170,14 @@ class DogeController < ApplicationController
     if @userRequest == nil then
       return 0
     end
-    return 5
+    # Compare request end time to now
+    @now = DateTime.current().getutc()
+    if @now <= @userRequest.end_time then
+      # Return time left in seconds
+      return @userRequest.end_time.to_i - @now.to_i
+    else
+      return 0
+    end    
   end
 
   helper_method :get_number_balls, :get_queue_time

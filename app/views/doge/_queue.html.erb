@@ -4,6 +4,6 @@
   <% elsif (@load_timer) %>
     <%= render "doge/queue_timer" %>
   <% elsif (@load_control) %>
-    <%= render "doge/control" %>
+    <%= render "doge/control", locals: {queue_time: queue_time, number_balls: number_balls} %>
   <% end %>
 </div>
