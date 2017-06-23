@@ -1,10 +1,17 @@
 <div id="doge_control_container" class="hori-center">
   <%= form_tag({action: 'doge_control'}, id: 'doge_control_signal', remote: true) do %>
   <% end %>
-  <%= javascript_include_tag "control-bundle" %>
+  <%= javascript_include_tag "doge-control-bundle" %>
+  <%= javascript_include_tag "generic-timer-bundle" %>
+  <div id="doge_timer_container">
+    <p id="doge_control_timer_par"></p>
+  </div>
   <script>
     var doge_controller = new makeDogeControl ("doge_control_container",
-                                               "doge_control_signal",  45);
+                                               "doge_control_signal",
+                                               "doge_control_timer_par", 45,
+                                               <%= queue_time * 60 %>,
+                                               <%= number_balls %>);
   </script>
   <div id="preload_doge_bootun_form" class="form_preload">
     <%= image_tag "doge_bootun_normal.png", height: "1px", width: "1px" %>

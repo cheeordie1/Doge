@@ -1,0 +1,28 @@
+function makeDogeControl (controlContainerID, controlFormID, controlTimerParID, 
+                          controlRadius, controlTimeSeconds, numberDogeBalls)
+{
+  var obj = this;
+  obj.controlTime = controlTimeSeconds;
+  console.log (controlTimeSeconds);
+  obj.seconds = controlTimeSeconds % 60;
+  controlTimeSeconds = Math.round (controlTimeSeconds / 60);
+  obj.minutes = controlTimeSeconds % 60;
+  controlTimeSeconds = Math.round (controlTimeSeconds / 60);
+  obj.hours = controlTimeSeconds;
+
+  // Make controller with button and angle controller
+  obj.controller = new makeControl (controlContainerID, controlFormID,
+                                    controlRadius);
+  obj.numberDogeBalls = numberDogeBalls;
+
+  // Make Timer that reloads page when control timer runs out
+  obj.timeoutFunction = function () {
+    location.reload ();
+  };
+
+  // Make Timer to track time left in control of queue
+  obj.dogeControlTimer = new makeGenericTimer (controlTimerParID, 
+                                               obj.seconds, obj.minutes, 
+                                               obj.hours);
+  obj.dogeControlTimer.bindTimeout (obj.timeoutFunction);
+};

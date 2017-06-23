@@ -39,10 +39,17 @@ function Timer (timerContainerID, timerSeconds)
           else
             {
               // If seconds timer is 00, decrement minute timer
-              obj.minuteTimerNumber.decrement ();
+              obj.minuteTimerNumber.decrement (true);
             }
         }
       // Decrement seconds timer every tick
-      obj.secondsTimerNumber.decrement ();
+      if (obj.minuteTimerNumber.isOverBig ()) 
+        {
+          obj.secondsTimerNumber.decrement (false);
+        }
+      else
+        {
+          obj.secondsTimerNumber.decrement (true);
+        }
     };
   };

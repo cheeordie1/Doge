@@ -9,7 +9,9 @@ function PaperPictureButton (size, pos, bound, normalURL,
     obj.highlightURL = highlightURL;
     obj.pressedURL = pressedURL;
     obj.imgRaster = new paper.Raster (obj.normalURL, pos);
-    obj.imgRaster.size = obj.size;
+    obj.imgRaster.onLoad = function () {
+      obj.imgRaster.size = obj.size;
+    };
     obj.bound = bound;
     obj.boundGroup = new paper.Group ([obj.bound, obj.imgRaster]);
     obj.boundGroup.clipped = true;

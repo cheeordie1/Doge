@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211220734) do
+ActiveRecord::Schema.define(version: 20170621233254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: true do |t|
-    t.string   "username"
+  create_table "accounts", force: :cascade do |t|
+    t.string   "username",        limit: 255
     t.text     "password_digest"
     t.text     "salt"
-    t.string   "color"
+    t.string   "color",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number_balls"
   end
 
-  create_table "queue_requests", force: true do |t|
+  create_table "queue_requests", force: :cascade do |t|
     t.integer  "account_id"
     t.datetime "start_time"
     t.datetime "end_time"

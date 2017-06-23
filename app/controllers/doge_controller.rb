@@ -46,7 +46,18 @@ class DogeController < ApplicationController
 
   # GET /doge_enqueue
   def doge_timer
-    @timer_seconds = 60
+    # include timer image url variables in page to access in javascript 
+    gon.timerNumberURLs = [view_context.image_path("0.png"),
+                           view_context.image_path('1.png'), 
+                           view_context.image_path('2.png'),
+                           view_context.image_path('3.png'),
+                           view_context.image_path('4.png'),
+                           view_context.image_path('5.png'),
+                           view_context.image_path('6.png'),
+                           view_context.image_path('7.png'),
+                           view_context.image_path('8.png'),
+                           view_context.image_path('9.png')]  
+    @timer_seconds = 145
     render "doge_enqueue"
   end
 
@@ -95,14 +106,13 @@ class DogeController < ApplicationController
 
   # GET request for the head of queue controls
   def doge_control
-    
   end
 
   # POST request for the head of queue controls
   def doge_control_signal
-
   end
 
+  # Helper to determine what html to load for doge button
   def determine_queue_content
     if session[:logged_in] == true then
       if Account.exists?(username: session[:username]) == false then
@@ -138,4 +148,29 @@ class DogeController < ApplicationController
       @load_button = true
     end
   end
+
+  # Helper to get number of balls belonging to current user
+  def get_number_balls
+    @account = current_user
+    if @account != nil then
+      return current_user.number_balls
+    else
+      return 0
+    end
+  end
+
+  # Helper to get queue time
+  def get_queue_time
+    @account = current_user
+    if @account == nil then
+      return 0
+    end
+    @userRequest = QueueRequest.find_by account_id: @account.id
+    if @userRequest == nil then
+      return 0
+    end
+    return 5
+  end
+
+  helper_method :get_number_balls, :get_queue_time
 end

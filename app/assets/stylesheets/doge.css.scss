@@ -45,6 +45,8 @@ span {
 
 .timerDivContainer {
   position: absolute;
+  margin-top: 4vh;
+  margin-left: 1.5vw;
   display: inline-flex;
   background-color: #000000;
   border: 1px solid #bbbdd6;
@@ -73,12 +75,9 @@ span {
   position: fixed;
   z-index: 0;
   background: #a6ffbd; /* Old browsers */
-  background: -moz-linear-gradient(top,  #a6ffbd 0%, #0fea00 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6ffbd), color-stop(100%,#0fea00)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #a6ffbd 0%,#0fea00 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #a6ffbd 0%,#0fea00 100%); /* W3C */
+  // Old Green
+  // background: linear-gradient(to bottom,  #a6ffbd 0%,#0fea00 100%); /* W3C */
+  background: linear-gradient(to bottom, #91bbf9 0%, #04175d 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffbd', endColorstr='#0fea00',GradientType=0 ); /* IE6-9 */
 }
 
@@ -137,7 +136,7 @@ span {
 
 #remaining {
   position: relative;
-  color: #4807B5;
+  color: #f1e4f7;
   margin: 0px;
   width: 100%;
   text-align: right;
@@ -170,4 +169,12 @@ span {
   position: absolute;
   top: -2.4vh;
   margin-left: 1.3vw;
+}
+
+#doge_control_timer_par {
+  margin: 0px;
+  margin-top: -15px;
+  font-size: 16px;
+  text-align: center;
+  color: #ffffff;
 }

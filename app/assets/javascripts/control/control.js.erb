@@ -1,4 +1,4 @@
-function makeDogeControl (controlContainerID, controlFormID, controlRadius)
+function makeControl (controlContainerID, controlFormID, controlRadius)
   {
     var obj = this;
     obj.controlFireButtonRadius = controlRadius;
@@ -17,7 +17,7 @@ function makeDogeControl (controlContainerID, controlFormID, controlRadius)
                            "' width=" + obj.controlCanvasWidth +
                            " height=" + obj.controlCanvasHeight +
                            "></canvas>");
-    obj.$controlCanvas.appendTo (obj.$controlContainer);
+    obj.$controlCanvas.prependTo (obj.$controlContainer);
 
     // Setup Control Graphics
 		paper.setup(obj.$controlCanvas.get (0));
@@ -156,6 +156,6 @@ function makeDogeControl (controlContainerID, controlFormID, controlRadius)
     obj.controlSelector.on ('mouseup', function (event) {
       var angle = obj.getSelectorAngle ();
       obj.submitControlSignal ('angle', angle);
-    });
+    }); 
 
   };
