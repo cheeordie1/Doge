@@ -43,15 +43,14 @@ td {
 }
 
 .welcome {
-  font-size: 15px;
+  font-size: 1.3vw;
   color: #4D1FCE;
   font-weight: normal;
 }
 
 .login_link {
   position: relative;
-  font-size: 15px; 
-  width: 60px;
+  font-size: 1.3vw; 
   text-align: center;
 }
 
@@ -205,4 +204,24 @@ td {
 
 #username_top:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .welcome {
+    font-size: 15px;
+  }
+  
+  .login_link {
+    font-size: 15px; 
+  }
+}
+
+@media (max-width: 700px) {
+  .welcome {
+    font-size: 9px;
+  }
+  
+  .login_link {
+    font-size: 9px; 
+  }
 }
