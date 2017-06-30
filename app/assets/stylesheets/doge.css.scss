@@ -143,6 +143,35 @@ span {
   right: 2vw;
 }
 
+/*
+ * Doge coin amount display under chat
+ */
+#tokenContainer1 {
+  position: absolute;
+  display: flex;
+  right: 2vw;
+}
+
+#doge_coin_img {
+  height: 40px;
+  width: 40px;
+}
+
+#doge_coin_x {
+  margin: auto;
+  margin-right: 4px;
+  margin-left: 2px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+#doge_number_balls {
+  margin: auto;
+  font-size: 26px;
+  padding-top: 4px;
+  color: #ffec0d;
+}
+
 #queue_container {
   position: relative;
 }

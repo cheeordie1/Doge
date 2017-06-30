@@ -104,13 +104,20 @@ class DogeController < ApplicationController
     end
   end
 
-  # GET request for the head of queue controls
+  # GET /doge_control
+  # request for the head of queue controls
   def doge_control
       @next_queue_time = get_queue_time
   end
 
   # POST request for the head of queue controls
   def doge_control_signal
+  end
+
+  # GET /purchase
+  # test purchase from braintree
+  def purchase
+    @client_token = Braintree::ClientToken.generate
   end
 
   # Helper to determine what html to load for doge button

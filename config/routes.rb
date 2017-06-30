@@ -54,6 +54,9 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  # Custom error pages
+  get "/404", :to => "error#page_not_found"
+
   # home page
   root 'doge#index'
 
@@ -63,6 +66,9 @@ Rails.application.routes.draw do
   post "/doge_enqueue" => "doge#doge_enqueue"
   get  "/doge_control" => "doge#doge_control"
   post "/doge_control" => "doge#doge_control_signal"
+
+  # test route
+  get "/doge_purchase_test" => "doge#purchase"
 
   # account routes
   resources :accounts, only: [:new, :create, :update, :show]
