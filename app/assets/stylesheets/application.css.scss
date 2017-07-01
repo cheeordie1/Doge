@@ -17,8 +17,6 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 td {
@@ -49,6 +47,9 @@ td {
   font-weight: normal;
 }
 
+/*
+ * CSS for the login/signup form and header bar
+ */
 .login_link {
   position: relative;
   font-size: 1.3vw; 
@@ -100,7 +101,7 @@ td {
 }
 
 #login_bar {
-  position: relative;
+  position: fixed;
   z-index: 6;
   width: 100%;
   height: 70px;
@@ -159,7 +160,9 @@ td {
 
 #ls_form_container {
   display: none;
-  position: absolute;
+  position: fixed;
+  top: 71px;
+  z-index: 1;
   height: 100%;
   width: 100%;
 }
@@ -225,4 +228,16 @@ td {
   .login_link {
     font-size: 9px; 
   }
+}
+
+/*
+ * CSS for the application background
+ */
+.app_background {
+  position: fixed;
+  top: 71px;
+  height: calc( 100vh - 71px );
+  width:100%;
+  z-index: 0;
+  background: linear-gradient(to bottom, #91bbf9 0%, #04175d 100%);
 }

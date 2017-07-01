@@ -69,22 +69,13 @@ span {
   height: 10vh;
 }
 
-#background {
-  height: 100%;
-  width:100%;
-  position: fixed;
-  z-index: 0;
-  background: #a6ffbd; /* Old browsers */
-  // Old Green
-  // background: linear-gradient(to bottom,  #a6ffbd 0%,#0fea00 100%); /* W3C */
-  background: linear-gradient(to bottom, #91bbf9 0%, #04175d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffbd', endColorstr='#0fea00',GradientType=0 ); /* IE6-9 */
-}
-
-#stream {
+#doge_content_container {
   position: relative;
-  margin-top: 11vh;
-  left: 3vw;
+  top: 71px;
+  padding-top: 11vh;
+  padding-left: 3vw;
+  padding-bottom: 6vh;
+  z-index: 0;
 }
 
 #stream_video {
@@ -186,7 +177,6 @@ span {
   position: absolute;
   display: inline-block;
   top: -5.4vh;
-  margin-left: 1.3vw;
 }
 
 #doge_bootun {
@@ -197,7 +187,6 @@ span {
 #doge_control_container {
   position: absolute;
   top: -2.4vh;
-  margin-left: 1.3vw;
 }
 
 #doge_control_timer_par {

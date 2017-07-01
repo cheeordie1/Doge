@@ -170,13 +170,22 @@ class DogeController < ApplicationController
   # Helper to get queue time
   def get_queue_time
     @account = current_user
+    # if the user is not logged in, give arbitrary time
     if @account == nil then
-      return 0
+      if Rails.env.development? then
+        return 140
+      else
+        return 0
+      end
     end
     @userRequest = QueueRequest.find_by account_id: @account.id
+    # if there is no actual queue request, give arbitrary time
     if @userRequest == nil then
-      return 0
-    end
+      if Rails.env.development? then
+        return 140
+      else
+        return 0
+      end    end
     # Compare request end time to now
     @now = DateTime.current().getutc()
     if @now <= @userRequest.end_time then
