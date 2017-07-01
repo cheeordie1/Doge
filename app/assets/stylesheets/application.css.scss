@@ -17,12 +17,11 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 td {
-  font: bold 20px Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
   color: #4D2EA5;
 }
 
@@ -43,15 +42,17 @@ td {
 }
 
 .welcome {
-  font-size: 15px;
+  font-size: 1.3vw;
   color: #4D1FCE;
   font-weight: normal;
 }
 
+/*
+ * CSS for the login/signup form and header bar
+ */
 .login_link {
   position: relative;
-  font-size: 15px; 
-  width: 60px;
+  font-size: 1.3vw; 
   text-align: center;
 }
 
@@ -100,7 +101,7 @@ td {
 }
 
 #login_bar {
-  position: relative;
+  position: fixed;
   z-index: 6;
   width: 100%;
   height: 70px;
@@ -149,6 +150,7 @@ td {
 #open_color_picker {
   padding-top: 4px;
   padding-right: 10px;
+  padding-bottom: 3px;
 }
 
 #form_pop_up {
@@ -159,7 +161,9 @@ td {
 
 #ls_form_container {
   display: none;
-  position: absolute;
+  position: fixed;
+  top: 71px;
+  z-index: 1;
   height: 100%;
   width: 100%;
 }
@@ -205,4 +209,36 @@ td {
 
 #username_top:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .welcome {
+    font-size: 15px;
+  }
+  
+  .login_link {
+    font-size: 15px; 
+  }
+}
+
+@media (max-width: 700px) {
+  .welcome {
+    font-size: 9px;
+  }
+  
+  .login_link {
+    font-size: 9px; 
+  }
+}
+
+/*
+ * CSS for the application background
+ */
+.app_background {
+  position: fixed;
+  top: 71px;
+  height: calc( 100vh - 71px );
+  width:100%;
+  z-index: 0;
+  background: linear-gradient(to bottom, #91bbf9 0%, #04175d 100%);
 }

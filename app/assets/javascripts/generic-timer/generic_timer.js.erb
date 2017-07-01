@@ -2,6 +2,8 @@ function makeGenericTimer (timerContainerID, seconds, minutes, hours)
   {
     var obj = this;
   
+    console.log (minutes);
+
     // Local variables
     obj.timerContainerID = timerContainerID == null ? null : "#" + timerContainerID;
   
@@ -26,18 +28,18 @@ function makeGenericTimer (timerContainerID, seconds, minutes, hours)
         return;
       }
   
-      if (seconds <= 0) {
-        seconds = 59;
-        if (minutes > 0) {
-          minutes--;
+      if (obj.seconds <= 0) {
+        obj.seconds = 59;
+        if (obj.minutes > 0) {
+          obj.minutes--;
         } else {
-          if (hours > 0) {
-            hours--;
-            minutes = 59;
+          if (obj.hours > 0) {
+            obj.hours--;
+            obj.minutes = 59;
           }
         }
       } else {
-        seconds--;
+        obj.seconds--;
       }
     };
   
@@ -55,9 +57,9 @@ function makeGenericTimer (timerContainerID, seconds, minutes, hours)
     // toString function to return string version of timer
     obj.toString = function () {
       var out = "";
-      out += obj.timerNumberToString (hours) + ":" +
-             obj.timerNumberToString (minutes) + ":" +
-             obj.timerNumberToString (seconds);
+      out += obj.timerNumberToString (obj.hours) + ":" +
+             obj.timerNumberToString (obj.minutes) + ":" +
+             obj.timerNumberToString (obj.seconds);
       return out;
     }; 
   

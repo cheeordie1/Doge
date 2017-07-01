@@ -1,24 +1,38 @@
-<div id="background">
-  <div id="content_container">
-    <div id="stream">
-      <iframe id="stream_video" src="http://player.twitch.tv/?channel=cheeordie" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+<!-- Render the gradient background -->
+<%= render partial: "layouts/background" %>
+<div id="doge_content_container">
+  <!-- Stream of Doge -->
+  <div id="stream">
+    <iframe id="stream_video" src="http://player.twitch.tv/?channel=cheeordie" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+  </div>
+  <div id="chat">
+    <!-- Chat box -->
+    <div id="chat-border" class="border">
+      <ul id="chat-lines" class="scrolly"></ul>
+      <div id="type-msg">
+        <textArea id="msg" maxlength="1024" name="msg"></textArea>
+        <button id="send" type="submit">Woof</button>
+      </div>
     </div>
-    <div id="chat">
-      <div id="chat-border" class="border">
-        <ul id="chat-lines" class="scrolly"></ul>
-        <div id="type-msg">
-          <textArea id="msg" maxlength="1024" name="msg"></textArea>
-          <button id="send" type="submit">Woof</button>
+    <!-- Number of characters remaining beneath chat -->
+    <p id="remaining"></p>
+    <!-- Display number of Doge tokens -->
+    <% if current_user %>
+      <div id="tokenContainer">
+        <div id="tokenContainer1">
+          <%= image_tag "doge_coin.png", id: "doge_coin_img" %>
+          <p id="doge_coin_x">x</p>
+          <p id="doge_number_balls"><%= current_user.number_balls %></p>
         </div>
       </div>
-      <p id="remaining"></p>
-      <%= form_tag "/woof", method: "post", id: "rails_secure_form", remote: true do %>
-        <%= hidden_field_tag 'deliverable_msg' %>
-        <%= hidden_field_tag 'tab_id', @tab_id %>
-      <% end %>
-      <%= subscribe_to "/woof" %>
-    </div>
-    <%= render "doge/queue" %>
+    <% end %>
+    <%= form_tag "/woof", method: "post", id: "rails_secure_form", remote: true do %>
+      <%= hidden_field_tag 'deliverable_msg' %>
+      <%= hidden_field_tag 'tab_id', @tab_id %>
+    <% end %>
+    <%= subscribe_to "/woof" %>
   </div>
+  <!-- Display the queue control -->
+  <%= render partial: "doge/queue", locals: { queue_time: get_queue_time, number_balls: get_number_balls } %>
 </div>
 <%= javascript_include_tag "doge-bundle" %>

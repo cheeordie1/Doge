@@ -5,9 +5,9 @@ function makeDogeControl (controlContainerID, controlFormID, controlTimerParID,
   obj.controlTime = controlTimeSeconds;
   console.log (controlTimeSeconds);
   obj.seconds = controlTimeSeconds % 60;
-  controlTimeSeconds = Math.round (controlTimeSeconds / 60);
+  controlTimeSeconds = Math.floor (controlTimeSeconds / 60);
   obj.minutes = controlTimeSeconds % 60;
-  controlTimeSeconds = Math.round (controlTimeSeconds / 60);
+  controlTimeSeconds = Math.floor (controlTimeSeconds / 60);
   obj.hours = controlTimeSeconds;
 
   // Make controller with button and angle controller

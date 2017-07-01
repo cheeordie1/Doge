@@ -21,6 +21,7 @@ module Doge
     # config.i18n.default_locale = :de
     config.assets.paths << Rails.root.join('node_modules')
     config.assets.precompile += %w( *-bundle.js )
+    config.exceptions_app = self.routes
   end
   Rails.application.config.users = 0
   Rails.application.config.tab_id = 0

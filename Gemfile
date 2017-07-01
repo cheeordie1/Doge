@@ -62,3 +62,6 @@ gem 'rails_12factor'
 
 # Enables us to set Javascript-accessible Ruby variables in controller
 gem 'gon'
+
+# Braintree payment service
+gem 'braintree', '~> 2.76.0' 

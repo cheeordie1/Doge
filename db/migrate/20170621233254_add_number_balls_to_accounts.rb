@@ -1,5 +1,7 @@
 class AddNumberBallsToAccounts < ActiveRecord::Migration
   def self.up
-    add_column :accounts, :number_balls, :integer
+    unless column_exists? :accounts, :number_balls
+      add_column :accounts, :number_balls, :integer
+    end
   end
 end

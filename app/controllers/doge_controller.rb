@@ -104,12 +104,20 @@ class DogeController < ApplicationController
     end
   end
 
-  # GET request for the head of queue controls
+  # GET /doge_control
+  # request for the head of queue controls
   def doge_control
+      @next_queue_time = get_queue_time
   end
 
   # POST request for the head of queue controls
   def doge_control_signal
+  end
+
+  # GET /purchase
+  # test purchase from braintree
+  def purchase
+    @client_token = Braintree::ClientToken.generate
   end
 
   # Helper to determine what html to load for doge button
@@ -162,14 +170,30 @@ class DogeController < ApplicationController
   # Helper to get queue time
   def get_queue_time
     @account = current_user
+    # if the user is not logged in, give arbitrary time
     if @account == nil then
-      return 0
+      if Rails.env.development? then
+        return 140
+      else
+        return 0
+      end
     end
     @userRequest = QueueRequest.find_by account_id: @account.id
+    # if there is no actual queue request, give arbitrary time
     if @userRequest == nil then
+      if Rails.env.development? then
+        return 140
+      else
+        return 0
+      end    end
+    # Compare request end time to now
+    @now = DateTime.current().getutc()
+    if @now <= @userRequest.end_time then
+      # Return time left in seconds
+      return @userRequest.end_time.to_i - @now.to_i
+    else
       return 0
-    end
-    return 5
+    end    
   end
 
   helper_method :get_number_balls, :get_queue_time
