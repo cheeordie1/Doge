@@ -81,6 +81,9 @@ function makeGenericTimer (timerContainerID, seconds, minutes, hours)
     };
   
     // Initiate the tick function
+    if (obj.timerContainerID != null) {
+      obj.render ();
+    }
     obj.tickInterval = setInterval (obj.tick, 1000);
 
   };
