@@ -1,10 +1,37 @@
-/*
- * All CSS related to custom error pages will be placed here.
- */
-#404_container {
-  position: absolute;
+//
+// All CSS related to custom error pages will be placed here.
+//
+#pnf_container {
+  position: relative;
+  top: 71px;
+  height: calc( 100vh - 71px );
+  width: 100vw;
 }
 
-#404_img {
+#pnf_img {
+  position: absolute;
+  height: calc( 100vh - 71px );
+  width: 100vw;
+}
 
+.pnf_txt {
+  position: relative;
+  margin: 0px;
+  color: #ffffff;
+  font-family: Impact;
+  font-size: 14vh;
+  line-height: 14vh;
+  text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+#pnf_txt1 {
+  position: relative;
+  top: 4vh;
+}
+
+#pnf_txt2 {
+  position: relative;
+  top: 48vh;
 }
