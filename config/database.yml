@@ -29,7 +29,7 @@ test:
 
 production:
   <<: *default
-  database: de3ssq7urs6ff3
-  host: ec2-54-163-228-0.compute-1.amazonaws.com
-  username: <%= ENV['PG_USERNAME'] %>
-  password: <%= ENV['PG_PASSWORD'] %>
+  database:
+  host: dogetimedb.ch3oiqx8ibku.us-east-2.rds.amazonaws.com
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
