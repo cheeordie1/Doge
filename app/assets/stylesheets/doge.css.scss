@@ -135,34 +135,138 @@ span {
 }
 
 /*
+ * Display for purchasing new tokens
+ */
+#tokenPurchaserContainer {
+  display: flex;
+}
+
+#tokenPurchasePar {
+  padding-top: 3px;
+}
+
+#tokenPurchaseButton {
+  display: none;
+}
+
+.tokenPurchaseButton {
+  margin: auto;
+  margin-right: 10px;
+	box-shadow: 0px 0px 0px 2px #aed6b2;
+	background: linear-gradient(to bottom, #f2f5ba 5%, #c8f2bf 100%);
+	background-color: #f2f5ba;
+	border-radius: 10px;
+	border: 1px solid #51d689;
+	display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  width: 66px;
+	cursor: pointer;
+	color: #4d4f52;
+	font-family: "Robot";
+	font-size: 14px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #23c433;
+}
+.tokenPurchaseButton:hover {
+	background:linear-gradient(to bottom, #c8f2bf 5%, #f2f5ba 100%);
+	background-color:#c8f2bf;
+  color: #4d4f52;
+}
+
+.tokenPurchaseButton:active {
+	position: relative;
+  color: #4d4f52;
+	top: 2px;
+  height: 23px;
+}
+
+.tokenNumberChanger {
+  color: #ffffff;  
+  font-size: 34px;
+}
+
+.tokenNumberChanger:link {
+  font-size: 34px;
+  text-shadow: none;
+}
+
+#tokenPlus {
+  margin-right: 10px;
+}
+
+#tokenMinus {
+  margin-right: 4px.5;
+}
+
+#tokenPlus:hover {
+  text-shadow:
+    -1px -1px 0 #35f728,  
+     1px -1px 0 #35f728,
+    -1px 1px 0 #35f728,
+     1px 1px 0 #35f728;
+}
+
+#tokenMinus:hover {
+  text-shadow:
+    -1px -1px 0 #f72424,  
+     1px -1px 0 #f72424,
+    -1px 1px 0 #f72424,
+     1px 1px 0 #f72424;
+}
+
+#tokenPlus:active {
+  margin-left: 3.5px;
+}
+
+#tokenMinus:active {
+  margin-left: 2px;
+}
+
+.tokenNumberChanger:active {
+  font-size: 30px; 
+}
+
+/*
  * Doge coin amount display under chat
  */
+#tokenContainer {
+  padding-top: 2px;
+  position: relative;
+}
+
 #tokenContainer1 {
   position: absolute;
   display: flex;
   right: 2vw;
+  top: -2px;
 }
 
-#doge_coin_img {
+#dogeCoinImg {
+  margin: auto;
   height: 40px;
   width: 40px;
 }
 
-#doge_coin_x {
+#dogeCoinX {
   margin: auto;
   margin-right: 4px;
-  margin-left: 2px;
+  margin-left: 1px;
+  padding-bottom: 4px;
   font-size: 20px;
   color: #ffffff;
 }
 
-#doge_number_balls {
+#dogeNumberBalls {
   margin: auto;
   font-size: 26px;
-  padding-top: 4px;
   color: #ffec0d;
 }
 
+/*
+ * Doge Queue CSS for Enqueue button, timer, controller
+ */
 #queue_container {
   position: relative;
 }

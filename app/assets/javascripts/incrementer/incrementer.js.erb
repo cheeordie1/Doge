@@ -1,0 +1,43 @@
+function makeIncrementer (minValue, maxValue)
+  {
+    var obj = this;
+
+    obj.curVal = 0;
+    obj.min = minValue;
+    obj.max = maxValue;
+
+    obj.increment = function () {
+        if (obj.max == null) {
+          obj.curVal++;
+        } else {
+          if (obj.curVal < obj.max) {
+            obj.curVal++;
+          } else {
+            return false;
+          }
+        }
+        return true;
+      };
+
+    obj.decrement = function () {
+      if (obj.min == null) {
+        obj.curVal--;
+      } else {
+        if (obj.curVal > obj.min) {
+          obj.curVal--;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    obj.getValue = function () {
+      return obj.curVal;
+    };
+
+    obj.toString = function () {
+      return "" + obj.curVal;
+    };
+
+  };

@@ -67,9 +67,6 @@ Rails.application.routes.draw do
   get  "/doge_control" => "doge#doge_control"
   post "/doge_control" => "doge#doge_control_signal"
 
-  # test route
-  get "/doge_purchase_test" => "doge#purchase"
-
   # account routes
   resources :accounts, only: [:new, :create, :update, :show]
   get  "/login" => "accounts#login"
@@ -77,4 +74,11 @@ Rails.application.routes.draw do
   get  "/logout" => "accounts#logout"
   get  "/color" => "accounts#color"
   post "/color" => "accounts#change_color"
+
+  # purchase routes
+  get "/purchase" => "purchase#buy_token"
+  post "/purchase" => "purchase#post_buy_token"
+
+  # test route
+  get "/doge_purchase_test" => "doge#purchase"
 end

@@ -47,6 +47,11 @@ td {
   font-weight: normal;
 }
 
+.noHighlight {
+  -moz-user-select: none;
+  user-select: none;
+}
+
 /*
  * CSS for the login/signup form and header bar
  */

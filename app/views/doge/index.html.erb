@@ -17,14 +17,8 @@
     <!-- Number of characters remaining beneath chat -->
     <p id="remaining"></p>
     <!-- Display number of Doge tokens -->
-    <% if current_user %>
-      <div id="tokenContainer">
-        <div id="tokenContainer1">
-          <%= image_tag "doge_coin.png", id: "doge_coin_img" %>
-          <p id="doge_coin_x">x</p>
-          <p id="doge_number_balls"><%= current_user.number_balls %></p>
-        </div>
-      </div>
+    <% if logged_in? %>
+      <%= render partial: "doge/coins", locals: { number_balls: current_user.number_balls } %>
     <% end %>
     <%= form_tag "/woof", method: "post", id: "rails_secure_form", remote: true do %>
       <%= hidden_field_tag 'deliverable_msg' %>

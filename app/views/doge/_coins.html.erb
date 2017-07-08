@@ -1,0 +1,18 @@
+<!-- Partial that displays a row with the  -->
+<div id="tokenContainer">
+  <!-- Display number of tokens -->
+  <div id="tokenContainer1">
+      <!-- Display token purchase mechanism -->
+    <%= javascript_include_tag "doge-token-purchaser-bundle" %>
+    <div id="tokenPurchaserContainer">
+    </div>
+    <%= image_tag "doge_coin.png", id: "dogeCoinImg", class: "noHighlight" %>
+    <p id="dogeCoinX" class="noHighlight">x</p>
+    <p id="dogeNumberBalls" class="noHighlight"><%= number_balls %></p>
+  </div>
+  <script>
+    var tokenPurchase = new makeDogeTokenPurchaser ("tokenPurchaserContainer",
+                                                    "dogeNumberBalls",
+                                                    <%= number_balls %>);
+  </script>  
+</div>
