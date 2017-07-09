@@ -114,6 +114,11 @@ class DogeController < ApplicationController
   def doge_control_signal
   end
 
+  # GET /doge_token_dropin
+  # request the html form that loads the braintree dropin
+  def doge_token_dropin
+  end
+
   # GET /purchase
   # test purchase from braintree
   def purchase

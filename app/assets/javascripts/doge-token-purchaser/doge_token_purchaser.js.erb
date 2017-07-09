@@ -9,15 +9,21 @@
  *    disappears if no tokens left
  *  - Purchase button will load drop in when clicked
  */
-function makeDogeTokenPurchaser (tokenPurchaserContainerID,
+function makeDogeTokenPurchaser (toContainerID,
+                                 fromContainerID,
                                  tokenNumberDisplayID,
+                                 dropinContainerID,
                                  currentNumTokens)
   {
     var obj = this;
     var buttonClass = "'tokenPurchaseButton noHighlight'";
     var changerClass = "'tokenNumberChanger pointer noHighlight'";
+    
+    obj.toContainerID = toContainerID;
+    obj.fromContainerID = fromContainerID;
+    obj.dropinContainerID = dropinContainerID;
 
-    obj.$container = $("#" + tokenPurchaserContainerID);
+    obj.$container = $("#" + toContainerID);
     obj.$tokenDisplay = $("#" + tokenNumberDisplayID);
 
     obj.numTokens = currentNumTokens;
@@ -27,7 +33,7 @@ function makeDogeTokenPurchaser (tokenPurchaserContainerID,
 
     // Create the buttons that add or remove tokens to purchase
     obj.$purchasePar = $("<p id='tokenPurchasePar'></p>");
-    obj.$purchase = $("<a id='tokenPurchaseButton' class=" + buttonClass + ">Purchase</a>").appendTo (obj.$container);
+    obj.$purchase = $("<a href='/doge_token_dropin' id='tokenPurchaseButton' class=" + buttonClass + " data-remote='true'>Purchase</a>").appendTo (obj.$container);
     obj.$plus = $("<span id='tokenPlus' class=" + changerClass + ">+</span>").appendTo (obj.$purchasePar);
     obj.$minus = $("<span id='tokenMinus' class=" + changerClass + ">-</span>").appendTo (obj.$purchasePar);
     obj.$container.append (obj.$purchasePar);
@@ -36,7 +42,6 @@ function makeDogeTokenPurchaser (tokenPurchaserContainerID,
     obj.tokenIncrement = function () {
       if (obj.incrementer.increment ()) {
         obj.$tokenDisplay.text ("" + (obj.numTokens + obj.incrementer.getValue ()));
-        console.log (obj.$tokenDisplay);
       }
       obj.$purchase.css ("display", "initial");
     };
@@ -53,7 +58,20 @@ function makeDogeTokenPurchaser (tokenPurchaserContainerID,
     obj.$plus.on ("click", obj.tokenIncrement);
     obj.$minus.on ("click", obj.tokenDecrement);
 
-    // Bind purchase button to a function that creates a container to load
-    // Braintree dropin into
-    // TODO
+    // Function to retrieve client token for dropin setup
+    // TODO 
+
+    // Bind purchase button to a function that loads Braintree dropin shell from another page
+    obj.loadBraintreeDropin = function () {
+      /*braintree.setup ('CLIENT-TOKEN-FROM-SERVER', 'dropin', {
+        container: obj.dropinContainerID
+      });*/
+    };
+
+    // Object that loads the token purchaser into the page when the link is clicked
+    obj.purchaserContainerLoader = new ContainerLoader ("tokenPurchaseButton",
+                                                        null, null, null,
+                                                        obj.toContainerID,
+                                                        obj.fromContainerID,
+                                                        null, obj.loadBraintreeDropin);
   };

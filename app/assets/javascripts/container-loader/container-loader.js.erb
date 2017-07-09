@@ -25,6 +25,24 @@ function loadContainer (data, loadToContainerID, loadFromContainerID,
     content = null;
   };
 
+/*
+ * Object that loads another page into a container from either a link or
+ * another html object:
+ *  - ajaxLinkID: id of the ajax link that loads data into a container, or null
+ *                if not being used
+ *  - ajaxLink:   URL to use in AJAX request if <a> link is not being used
+ *                (i.e. some non-<a> element is being clicked)
+ *  - method:     AJAX method (i.e. GET or POST) if non-<a> element is being
+ *                used
+ *  - data:       data to send with request
+ *
+ *  - loadToContainerID:   ID selector of div to load html into
+ *  - loadFromContainerID: ID selector of div to load html from
+ *  - optionalRemoveID:    (optional) ID selector of element to delete on load
+ *
+ *  - optionalSuccessFunction: (optional) function to call on success after
+*                              appending html new into page
+ */
 function ContainerLoader (ajaxLinkID, ajaxLink, method, data, 
                           loadToContainerID, loadFromContainerID,
                           optionalRemoveID, optionalSuccessFunction)

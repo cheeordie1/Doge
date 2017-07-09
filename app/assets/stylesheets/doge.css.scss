@@ -229,6 +229,38 @@ span {
 }
 
 /*
+ * CSS for doge token purchaser dropin
+ */
+#dogeBTDropinContainer {
+  position: fied;
+  height: 100vh;
+  width: 100vw;
+}
+
+#dogeBTContainer {
+  display: inline-block;
+  position: absolute;
+  z-index: 2;
+  background-color: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#dogeBTExitButton {
+  position: absolute;
+  height: 2vh;
+}
+
+#dogeBTForm {
+  position: relative;
+  margin: 0px;
+  height: 45vh;
+  width: 25vw;
+}
+
+/*
  * Doge coin amount display under chat
  */
 #tokenContainer {

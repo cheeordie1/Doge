@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   post "/doge_enqueue" => "doge#doge_enqueue"
   get  "/doge_control" => "doge#doge_control"
   post "/doge_control" => "doge#doge_control_signal"
+  get  "/doge_token_dropin" => "doge#doge_token_dropin"
 
   # account routes
   resources :accounts, only: [:new, :create, :update, :show]
