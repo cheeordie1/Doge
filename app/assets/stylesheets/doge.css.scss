@@ -232,9 +232,11 @@ span {
  * CSS for doge token purchaser dropin
  */
 #dogeBTDropinContainer {
-  position: fied;
-  height: 100vh;
+  position: fixed;
+  top: 71px;
+  height: calc( 100vh - 71px );
   width: 100vw;
+  border: solid 1px #696565;
 }
 
 #dogeBTContainer {
@@ -242,22 +244,64 @@ span {
   position: absolute;
   z-index: 2;
   background-color: #ffffff;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 8px;
-  padding-right: 8px;
+  border: 1px solid #817b7b;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+#dogeBTExitButtonContainer {
+  text-align: right;
 }
 
 #dogeBTExitButton {
-  position: absolute;
-  height: 2vh;
+  position: relative;
+  height: 1.3vw;
+}
+
+#dogeBTCoinImageContainer {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+#dogeBTCoin {
+  position: relative;
+  height: 14vh;
+  width: 14vh;
+}
+
+.dogeBTCostSpan1 {
+  font-size: 3vh;
+}
+
+.dogeBTCostSpan2 {
+  font-size: 2vh;
+}
+
+#dogeBTCostPar {
+  text-align: center;
+}
+
+#dogeBTXSpan {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#dogeBTEqualsSpan {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#dogeBTUnderline {
+  margin-bottom: 2vh;
 }
 
 #dogeBTForm {
   position: relative;
   margin: 0px;
-  height: 45vh;
-  width: 25vw;
+  width: 30vw;
 }
 
 /*

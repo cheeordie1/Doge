@@ -12,7 +12,6 @@
 function makeDogeTokenPurchaser (toContainerID,
                                  fromContainerID,
                                  tokenNumberDisplayID,
-                                 dropinContainerID,
                                  currentNumTokens)
   {
     var obj = this;
@@ -21,7 +20,6 @@ function makeDogeTokenPurchaser (toContainerID,
     
     obj.toContainerID = toContainerID;
     obj.fromContainerID = fromContainerID;
-    obj.dropinContainerID = dropinContainerID;
 
     obj.$container = $("#" + toContainerID);
     obj.$tokenDisplay = $("#" + tokenNumberDisplayID);
@@ -30,6 +28,11 @@ function makeDogeTokenPurchaser (toContainerID,
 
     // Create Incrementer object to track number of tokens to buy
     obj.incrementer = new makeIncrementer (0, null);
+
+    // Update the URL by adding number of tokens parameters
+    obj.updateURL = function () {
+      obj.$purchase.attr ("href", "/doge_token_dropin?num_tokens=" + obj.incrementer.getValue ());
+    };
 
     // Create the buttons that add or remove tokens to purchase
     obj.$purchasePar = $("<p id='tokenPurchasePar'></p>");
@@ -43,6 +46,7 @@ function makeDogeTokenPurchaser (toContainerID,
       if (obj.incrementer.increment ()) {
         obj.$tokenDisplay.text ("" + (obj.numTokens + obj.incrementer.getValue ()));
       }
+      obj.updateURL ();
       obj.$purchase.css ("display", "initial");
     };
 
@@ -50,6 +54,7 @@ function makeDogeTokenPurchaser (toContainerID,
       if (obj.incrementer.decrement ()) {
         obj.$tokenDisplay.text ("" + (obj.numTokens + obj.incrementer.getValue ()));
       }
+      obj.updateURL ();
       if (obj.incrementer.getValue () == 0) {
         obj.$purchase.css ("display", "none");
       }
@@ -58,20 +63,10 @@ function makeDogeTokenPurchaser (toContainerID,
     obj.$plus.on ("click", obj.tokenIncrement);
     obj.$minus.on ("click", obj.tokenDecrement);
 
-    // Function to retrieve client token for dropin setup
-    // TODO 
-
-    // Bind purchase button to a function that loads Braintree dropin shell from another page
-    obj.loadBraintreeDropin = function () {
-      /*braintree.setup ('CLIENT-TOKEN-FROM-SERVER', 'dropin', {
-        container: obj.dropinContainerID
-      });*/
-    };
-
     // Object that loads the token purchaser into the page when the link is clicked
     obj.purchaserContainerLoader = new ContainerLoader ("tokenPurchaseButton",
                                                         null, null, null,
-                                                        obj.toContainerID,
+                                                        "dogeAppBody",
                                                         obj.fromContainerID,
                                                         null, obj.loadBraintreeDropin);
   };

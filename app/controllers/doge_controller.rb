@@ -117,11 +117,10 @@ class DogeController < ApplicationController
   # GET /doge_token_dropin
   # request the html form that loads the braintree dropin
   def doge_token_dropin
-  end
-
-  # GET /purchase
-  # test purchase from braintree
-  def purchase
+    if params[:num_tokens] == nil then
+      params[:num_tokens] = 0
+    end
+    # Generate Braintree payment token
     @client_token = Braintree::ClientToken.generate
   end
 
@@ -190,7 +189,8 @@ class DogeController < ApplicationController
         return 140
       else
         return 0
-      end    end
+      end    
+    end
     # Compare request end time to now
     @now = DateTime.current().getutc()
     if @now <= @userRequest.end_time then
@@ -201,5 +201,10 @@ class DogeController < ApplicationController
     end    
   end
 
-  helper_method :get_number_balls, :get_queue_time
+  # Helper method to calculate cost of token purchase
+  def calculate_cost(numTokens)
+    return ActionController::Base.helpers.number_to_currency(numTokens * Rails.application.config.cost_of_token)
+  end
+
+  helper_method :get_number_balls, :get_queue_time, :calculate_cost
 end

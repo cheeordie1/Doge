@@ -25,4 +25,5 @@ module Doge
   end
   Rails.application.config.users = 0
   Rails.application.config.tab_id = 0
+  Rails.application.config.cost_of_token = 1.00
 end
