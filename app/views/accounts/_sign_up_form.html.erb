@@ -43,7 +43,7 @@
     exitButton.bindClick (function () {
       $("#ls_form_container").css ("display", "none");
     });
-    var signup_opener = new ColorOpener ("open_color_picker_signup",
+    var signup_opener = new ColorOpener ("<%= session[:color] %>", "open_color_picker_signup",
                                          "color_picker_location",
   	  			                             "color-picker-container");
   </script>

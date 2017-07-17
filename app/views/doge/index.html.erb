@@ -28,5 +28,8 @@
   </div>
   <!-- Display the queue control -->
   <%= render partial: "doge/queue", locals: { queue_time: get_queue_time, number_balls: get_number_balls } %>
+  <%= javascript_include_tag "doge-bundle" %>
+  <script>
+    var dogeChatter = new makeDogeChat ();
+  </script>
 </div>
-<%= javascript_include_tag "doge-bundle" %>

@@ -1,0 +1,38 @@
+function makeBTTokenDropin (authorization, containerID, nonceInputID, 
+                            submitButtonID, formID) {
+  var obj = this;
+
+  obj.authorization = authorization;
+  obj.$nonceInput = $("#" + nonceInputID);
+  obj.$submitButton = $("#" + submitButtonID);
+  obj.$form = $("#" + formID);
+
+  braintree.dropin.create ({
+    authorization: obj.authorization,
+    container: "#" + containerID
+  }, function (createErr, instance) {
+    if (createErr) {
+      // Handle errors from dropin
+      console.error (createErr);
+      return;
+    }
+
+    obj.$submitButton.on ('click', function (event) {
+      // Prevent Rails submission from happening normally
+      event.preventDefault ();
+
+      instance.requestPaymentMethod (function (requestPaymentMethodErr, payload) {
+        if (requestPaymentMethodErr) {
+          // Handle errors from dropin
+          console.error (requestPaymentMethodErr);
+          return;
+        }
+
+        // Submit payload.nonce to server
+        obj.$nonceInput.val (payload.nonce);
+        console.log ("WORKING BABY");
+        obj.$form.trigger ('submit.rails');
+      });
+    });
+  });
+};

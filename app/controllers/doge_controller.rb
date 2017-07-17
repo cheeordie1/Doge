@@ -67,36 +67,32 @@ class DogeController < ApplicationController
       # Prune users that have completed their duration
       QueueRequest.prune_requests
       # If User is already queued, use that request to make timer
-      @account = Account.find_by username: session[:username]
-      @request = QueueRequest.find_by account_id: @account.id
-      if @request == nil then
-
+      @account = current_user
+      if @account.queue_request == nil then
         # TODO Only create a request if the user has coins
 
         # User is not already queued, try to create request
-        @request = QueueRequest.new(account_id: @account.id)
         @latest_end_time = QueueRequest.maximum("end_time")
         if @latest_end_time == nil then
           # If there is no queue request in the database, start now
-          @request.start_time = DateTime.current().getutc().advance(seconds:
+          @start_time = DateTime.current().getutc().advance(seconds:
                                                     @@default_first_queue_time)
         else
           # Set the next start time after the last queue request
-          @request.start_time = @latest_end_time.advance(seconds:
-                                                    @@default_next_queue_time)
+          @start_time = @latest_end_time.advance(seconds:
+                                                @@default_next_queue_time)
         end
-        # For now, queue time is 2 minutes
-        @request.end_time = @request.start_time.advance(minutes: 
-                                                    @@default_next_queue_time)
-        @request.save
+        # For now, control time is 2 minutes
+        @end_time = @start_time.advance(minutes: @@default_next_queue_time)
+        @account.create_queue_request(start_time: @start_time, end_time: @end_time)
       end
       # Render a timer for the user that is in the queue
       # If the user is head of queue, give the timer 0 seconds left
       @now = DateTime.current().getutc()
-      if @request.start_time < @now then
+      if @account.queue_request.start_time < @now then
         @timer_seconds = 0
       else
-        @timer_seconds = @request.start_time.to_i - @now.to_i
+        @timer_seconds = @account.queue_request.start_time.to_i - @now.to_i
       end
     else
       # Not logged in
@@ -127,13 +123,13 @@ class DogeController < ApplicationController
   # Helper to determine what html to load for doge button
   def determine_queue_content
     if session[:logged_in] == true then
-      if Account.exists?(username: session[:username]) == false then
+      @account = current_user
+      if @account == nil then
         redirect_to controller: 'accounts', action: 'logout'
       end
       # Prune users that have completed their duration
       QueueRequest.prune_requests
-      @account = Account.find_by username: session[:username]
-      @request = QueueRequest.find_by account_id: @account.id
+      @request = @account.queue_request
       # Check if te User has any requests
       if @request != nil then
         # User's request exists
@@ -165,7 +161,7 @@ class DogeController < ApplicationController
   def get_number_balls
     @account = current_user
     if @account != nil then
-      return current_user.number_balls
+      return @account.number_balls
     else
       return 0
     end
@@ -182,7 +178,7 @@ class DogeController < ApplicationController
         return 0
       end
     end
-    @userRequest = QueueRequest.find_by account_id: @account.id
+    @userRequest = @account.queue_request
     # if there is no actual queue request, give arbitrary time
     if @userRequest == nil then
       if Rails.env.development? then

@@ -1,16 +1,14 @@
-function ColorOpener (openerid, containerid, searchid)
+function ColorOpener (currentColor, openerid, containerid, searchid)
   {
     var obj = this;
     this.openerid = openerid;
     this.containerid = containerid;
     this.searchid = searchid;
-    $(document).ready (function ()
-      {
-        obj.openerc = document.getElementById (obj.openerid);
-        obj.openerctx = obj.openerc.getContext ("2d");
-        obj.openerctx.fillStyle = $("#current_account_color").val ();
-        obj.openerctx.fillRect (0, 0, obj.openerc.width, obj.openerc.height);
-      });
+
+    obj.openerc = document.getElementById (obj.openerid);
+    obj.openerctx = obj.openerc.getContext ("2d");
+    obj.openerctx.fillStyle = currentColor;
+    obj.openerctx.fillRect (0, 0, obj.openerc.width, obj.openerc.height);
 
     obj.onPickerLoad = function ()
       {

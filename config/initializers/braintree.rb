@@ -1,4 +1,8 @@
-Braintree::Configuration.environment = :sandbox
+if Rails.env.development?
+  Braintree::Configuration.environment = :sandbox
+elsif Rails.env.production?
+  Braintree::Configuration.environment = :production
+end
 Braintree::Configuration.logger = Logger.new('log/braintree.log')
 Braintree::Configuration.merchant_id = ENV['BRAINTREE_MERCHANT_ID']
 Braintree::Configuration.public_key = ENV['BRAINTREE_PUBLIC_KEY']

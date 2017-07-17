@@ -18,7 +18,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "color-pick-bundle" %>
   <%= javascript_include_tag "color-opener-bundle" %>
-  <%= javascript_include_tag "https://js.braintreegateway.com/js/braintree-2.32.1.min.js" %>
+  <%= javascript_include_tag "https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body id="dogeAppBody">
@@ -38,7 +38,8 @@
           <canvas height="64px" width="64px" id="open_color_picker"></canvas>
           <div id="color_picker_location2"></div>
           <script>
-            var app_color_opener = new ColorOpener ("open_color_picker",
+            var app_color_opener = new ColorOpener ("<%= session[:color] %>",
+                                                    "open_color_picker",
                                                     "color_picker_location2",
                                                     "color-picker-container");
             app_color_opener.bindSubmission ("change_color_form");
