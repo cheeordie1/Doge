@@ -1,22 +1,48 @@
-function makeBTTokenDropin (authorization, containerID, nonceInputID, 
-                            submitButtonID, formID) {
+function makeBTTokenDropin (amount, authorization, containerID,
+                            submitButtonID, formID, environment) {
   var obj = this;
 
+  obj.environment = environment;
   obj.authorization = authorization;
-  obj.$nonceInput = $("#" + nonceInputID);
+  obj.amount = amount;
   obj.$submitButton = $("#" + submitButtonID);
   obj.$form = $("#" + formID);
 
+  // Set up nonce input and device_data collection input
+  // Add inputs to form 
+
+  obj.$deviceDataInput = obj.$form.append ($("<input type='hidden' name='device_data'>"));
+  obj.$nonceInput = obj.$form.append ($("<input type='hidden' name='payment_method_nonce'>"));
+
+  // Add dropin to page
   braintree.dropin.create ({
     authorization: obj.authorization,
-    container: "#" + containerID
+    container: "#" + containerID,
+    dataCollector: {
+      kount: {environment: obj.environment},
+      paypal: true
+    },
+    paypal: {
+      flow: "vault",
+      amount: obj.amount,
+      currency: "USD"
+    }
   }, function (createErr, instance) {
+    // Setup for dropin:
+    // - Enable submission of dropin through pay button
+    // - Add device data to form input
+
     if (createErr) {
       // Handle errors from dropin
       console.error (createErr);
       return;
     }
 
+    // Add device data to form
+    obj.$deviceDataInput.val (instance.deviceData);
+
+
+    // Set up dropin information submission on button click
     obj.$submitButton.on ('click', function (event) {
       // Prevent Rails submission from happening normally
       event.preventDefault ();
@@ -30,7 +56,6 @@ function makeBTTokenDropin (authorization, containerID, nonceInputID,
 
         // Submit payload.nonce to server
         obj.$nonceInput.val (payload.nonce);
-        console.log ("WORKING BABY");
         obj.$form.trigger ('submit.rails');
       });
     });

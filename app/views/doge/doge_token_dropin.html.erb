@@ -22,11 +22,13 @@
               <span id="dogeBTXSpan"
                     class="dogeBTCostSpan2" 
                     style="color: <%= session[:color] %>;">x</span>
-              <span class="dogeBTCostSpan1" style="color: <%= session[:color] %>;"><%= token_cost %></span>
+              <span class="dogeBTCostSpan1" style="color: <%= session[:color] %>;">
+                <%= get_currency(token_cost) %>
+              </span>
               <span id="dogeBTEqualsSpan" 
                     class="dogeBTCostSpan2" 
                     style="color: <%= session[:color] %>;">=</span>
-              <span class="dogeBTCostSpan1" style="color: <%= session[:color] %>;"><%= calculate_cost(params[:num_tokens]) %></span>
+              <span class="dogeBTCostSpan1" style="color: <%= session[:color] %>;"><%= get_currency(@base_cost) %></span>
             </p>
           </div>
           <div id="dogeBTUnderline" class="underline"></div>
@@ -37,28 +39,30 @@
         </div>
       </div>
       <div id="dogePurchaseButtonDiv">
-        <%= hidden_field_tag "payment_method_nonce", id: "dogeBTNonceInput"  %>
         <%= submit_tag "Purchase", id: "dogeBTPurchaseButton", class: "tokenPurchaseButton noHighlight" %>
       </div>
     <% end %>
   </div>
+  <%= javascript_include_tag "https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js" %>
+  <%= javascript_include_tag "https://js.braintreegateway.com/web/3.20.0/js/data-collector.min.js"> %>
   <%= javascript_include_tag "doge-token-dropin-bundle" %>
   <%= javascript_include_tag "exit-button-bundle" %>
   <div id="preload_braintree_form" class="form_preload">
     <%= image_tag "exit_highlight.png", height: "1px", width: "1px" %>
     <%= image_tag "exit_pressed.png", height: "1px", width: "1px" %>
   </div>
-  <script>
+  <script type="text/javascript">
     // Load Braintree dropin shell from another page
-    var braintreeTokenDropin = makeBTTokenDropin ("<%= @client_token %>", "dogeBTDropinDiv",
-                                                  "dogeBTNonceInput", "dogeBTPurchaseButton",
-                                                  "dogeBTForm");
+    var braintreeTokenDropin = makeBTTokenDropin (<%= @base_cost %>, "<%= @client_token %>", 
+                                                  "dogeBTDropinDiv", "dogeBTNonceInput",
+                                                  "dogeBTPurchaseButton", "dogeBTForm",
+                                                  "<%= get_kount_environment %>");
 
     // Add an exit button to delete the form
     var dogeBTExitButton = new makeExitButton ("dogeBTExitButton", 
-                                    "dogeBTDropinContainer",
-                                    "<%= asset_path('exit_normal.png') %>",
-                                    "<%= asset_path('exit_highlight.png') %>",
-                                    "<%= asset_path('exit_pressed.png') %>");
+                                               "dogeBTDropinContainer",
+                                               "<%= asset_path('exit_normal.png') %>",
+                                               "<%= asset_path('exit_highlight.png') %>",
+                                               "<%= asset_path('exit_pressed.png') %>");
   </script>
 </div>

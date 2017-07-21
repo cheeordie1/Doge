@@ -110,14 +110,29 @@ class DogeController < ApplicationController
   def doge_control_signal
   end
 
+  # POST /doge_token_dropin
+  # Confirm a purchase and send to the server
+  def post_doge_token_dropin
+    
+  end
+
   # GET /doge_token_dropin
-  # request the html form that loads the braintree dropin
+  # Request the html form that loads the braintree dropin
   def doge_token_dropin
     if params[:num_tokens] == nil then
       params[:num_tokens] = 0
     end
-    # Generate Braintree payment token
-    @client_token = Braintree::ClientToken.generate
+
+    # Set the base cost of the tokens
+    @base_cost = calculate_base_cost(params[:num_tokens])
+
+    if current_user then
+      # Generate Braintree payment token for logged in users
+      @client_token = Braintree::ClientToken.generate(customer_id: @current_user.customer_id)
+    else
+      # Render an error for non logged in users
+      render status: 401
+    end
   end
 
   # Helper to determine what html to load for doge button
@@ -198,8 +213,8 @@ class DogeController < ApplicationController
   end
 
   # Helper method to calculate cost of token purchase
-  def calculate_cost(numTokens)
-    return ActionController::Base.helpers.number_to_currency(numTokens * Rails.application.config.cost_of_token)
+  def calculate_base_cost(numTokens)
+    return numTokens * Rails.application.config.cost_of_token
   end
 
   helper_method :get_number_balls, :get_queue_time, :calculate_cost

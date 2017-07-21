@@ -15,7 +15,7 @@
     <%= image_tag "9.png", height: "1px", width: "1px" %>
   </div>
   <%= javascript_include_tag "queue-timer-bundle" %>
-  <script>
+  <script type="text/javascript">
     var timer = new QueueTimer ("doge_queue", "<%= @timer_seconds %>");
   </script>
 </div>

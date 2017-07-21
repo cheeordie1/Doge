@@ -280,11 +280,13 @@ span {
   position: relative;
   margin: auto;
   margin-right: 20px;
-  width: 40vw;
+  width: 28vw;
 }
 
 #dogeBTMainDiv2 {
-
+  position: relative;
+  width: 28vw;
+  min-width: 200px;
 }
 
 #dogeBTCoinImageContainer {
@@ -332,6 +334,7 @@ span {
 
 #dogePurchaseButtonDiv {
   text-align: center;
+  padding: 5px;
 }
 
 #dogeBTPurchaseButton {
