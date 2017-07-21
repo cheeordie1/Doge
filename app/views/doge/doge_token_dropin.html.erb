@@ -39,12 +39,11 @@
         </div>
       </div>
       <div id="dogePurchaseButtonDiv">
+        <%= hidden_field_tag "num_tokens", params[:num_tokens] %>
         <%= submit_tag "Purchase", id: "dogeBTPurchaseButton", class: "tokenPurchaseButton noHighlight" %>
       </div>
     <% end %>
   </div>
-  <%= javascript_include_tag "https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js" %>
-  <%= javascript_include_tag "https://js.braintreegateway.com/web/3.20.0/js/data-collector.min.js"> %>
   <%= javascript_include_tag "doge-token-dropin-bundle" %>
   <%= javascript_include_tag "exit-button-bundle" %>
   <div id="preload_braintree_form" class="form_preload">
@@ -54,9 +53,8 @@
   <script type="text/javascript">
     // Load Braintree dropin shell from another page
     var braintreeTokenDropin = makeBTTokenDropin (<%= @base_cost %>, "<%= @client_token %>", 
-                                                  "dogeBTDropinDiv", "dogeBTNonceInput",
-                                                  "dogeBTPurchaseButton", "dogeBTForm",
-                                                  "<%= get_kount_environment %>");
+                                                  "dogeBTDropinDiv", "dogeBTPurchaseButton", 
+                                                  "dogeBTForm", "<%= get_kount_environment %>");
 
     // Add an exit button to delete the form
     var dogeBTExitButton = new makeExitButton ("dogeBTExitButton", 

@@ -113,7 +113,31 @@ class DogeController < ApplicationController
   # POST /doge_token_dropin
   # Confirm a purchase and send to the server
   def post_doge_token_dropin
-    
+    if current_user then
+      # Process payment base cost
+      # TODO make this full cost
+      tokens = params[:num_tokens]
+      amount = calculate_base_cost(tokens)
+
+      # Transaction.sale will create a new Customer id if none is specified
+      result = Braintree::Transaction.sale(
+        payment_method_nonce: params[:payment_method_nonce],
+        customer_id: @current_user.id,
+        amount: amount,
+        options: {
+          submit_for_settlement: true
+        }
+      )
+      if result.success? && @current_user.customer_id == nil then
+        @current_user.customer_id = result.customer.id
+        @current_user.save
+      else
+        puts "THERE HAS BEEN A MASSIVE FAILURE"
+      end
+      redirect_to root_path
+    else
+      render status: 401
+    end
   end
 
   # GET /doge_token_dropin
@@ -124,6 +148,7 @@ class DogeController < ApplicationController
     end
 
     # Set the base cost of the tokens
+    # TODO fix this to be the full cost + tax
     @base_cost = calculate_base_cost(params[:num_tokens])
 
     if current_user then

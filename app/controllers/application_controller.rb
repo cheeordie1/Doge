@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_kount_environment
-    if Rails.Rails.env.production? then
+    if Rails.env.production? then
       return "production"
     else
       return "sandbox"

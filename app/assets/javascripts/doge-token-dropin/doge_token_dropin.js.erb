@@ -23,9 +23,9 @@ function makeBTTokenDropin (amount, authorization, containerID,
       paypal: true
     },
     paypal: {
-      flow: "vault",
-      amount: obj.amount,
-      currency: "USD"
+      flow: "vault",      // Required
+      amount: obj.amount, // Required
+      currency: "USD"     // Required
     }
   }, function (createErr, instance) {
     // Setup for dropin:
