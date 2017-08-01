@@ -5,13 +5,6 @@ class DogeController < ApplicationController
 
   #GET root
   def index
-    if session[:username] == nil then
-      session[:username] = "doge " + Rails.application.config.users.to_s
-      Rails.application.config.users = (Rails.application.config.users + 1) % 100000
-    end
-    if session[:color] == nil then
-      session[:color] = "#" + SecureRandom.hex(3)
-    end
     gon.username = session[:username];
     # include timer image url variables in page to access in javascript 
     gon.timerNumberURLs = [view_context.image_path("0.png"),
@@ -119,24 +112,46 @@ class DogeController < ApplicationController
       tokens = params[:num_tokens]
       amount = calculate_base_cost(tokens)
 
-      # Transaction.sale will create a new Customer id if none is specified
+      # Transaction.sale and create a new Customer id if none is specified
+      if @current_user.customer_id == nil then
+        result = Braintree::Customer.create
+        if result.success? then
+          # If there was no customer ID, add customer id
+          if @current_user.customer_id == nil then
+            @current_user.customer_id = result.customer.id
+            @current_user.save
+          end
+        else
+          # Handle customer creation failure
+          render json: {error: result.message}, status: 401
+          return
+        end
+      end
+
       result = Braintree::Transaction.sale(
         payment_method_nonce: params[:payment_method_nonce],
-        customer_id: @current_user.id,
         amount: amount,
+        customer_id: @current_user.customer_id,
         options: {
-          submit_for_settlement: true
+          submit_for_settlement: true,
+          store_in_vault_on_success: true
         }
       )
-      if result.success? && @current_user.customer_id == nil then
-        @current_user.customer_id = result.customer.id
-        @current_user.save
+
+      if result.success? then
+        # Transaction customer ID should be the same as user customer ID
+        if result.transaction.customer_details.id.to_i != @current_user.customer_id.to_i then
+          flash[:error] = "Unexpected Error"
+          raise "Customer ID Mismatch"
+        end
       else
-        puts "THERE HAS BEEN A MASSIVE FAILURE"
+        # Deal with the settlement errors
+        render json: {error: result.message}, status: 401
+        return
       end
-      redirect_to root_path
+      render json: {success: "Purchase Success!"}, status: 200
     else
-      render status: 401
+      render json: {error: "Not Logged In"}, status: 401
     end
   end
 

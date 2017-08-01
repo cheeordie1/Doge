@@ -1,0 +1,15 @@
+function generateBraintreeClientToken () {
+  var ret = {};
+  $.ajax ({
+    async: false,
+    method: "GET",
+    url: "/bt_token",
+    success: function (data) {
+      ret.token = data.token;
+    },
+    error: function (data) {
+      ret.error = "failed";
+    }
+  });
+  return ret;
+};

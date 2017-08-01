@@ -31,7 +31,10 @@
               <span class="dogeBTCostSpan1" style="color: <%= session[:color] %>;"><%= get_currency(@base_cost) %></span>
             </p>
           </div>
-          <div id="dogeBTUnderline" class="underline"></div>
+          <div id="dogeBTUnderline" class="underline">
+          </div>
+          <div id="dogeBTErrors">
+          </div>
         </div>
         <div id="dogeBTMainDiv2">
             <div id="dogeBTDropinDiv">
@@ -54,7 +57,8 @@
     // Load Braintree dropin shell from another page
     var braintreeTokenDropin = makeBTTokenDropin (<%= @base_cost %>, "<%= @client_token %>", 
                                                   "dogeBTDropinDiv", "dogeBTPurchaseButton", 
-                                                  "dogeBTForm", "<%= get_kount_environment %>");
+                                                  "dogeBTForm", "dogeBTErrors", 
+                                                  "<%= get_kount_environment %>");
 
     // Add an exit button to delete the form
     var dogeBTExitButton = new makeExitButton ("dogeBTExitButton", 

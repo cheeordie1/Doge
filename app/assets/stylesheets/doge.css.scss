@@ -44,7 +44,7 @@ span {
 }
 
 .timerDivContainer {
-  position: absolute;
+  position: relative;
   margin-top: 4vh;
   margin-left: 1.5vw;
   display: inline-flex;
@@ -71,7 +71,7 @@ span {
 
 #doge_content_container {
   position: relative;
-  top: 71px;
+  margin-top: 71px;
   padding-top: 11vh;
   padding-left: 3vw;
   padding-bottom: 6vh;
@@ -327,6 +327,14 @@ span {
   margin-bottom: 2vh;
 }
 
+#dogeBTErrors {
+  text-align: center;
+}
+
+.BTError {
+  font-size: 1.5vw;
+}
+
 #dogeBTForm {
   position: relative;
   margin: 0px;
@@ -357,6 +365,7 @@ span {
 
 #tokenContainer1 {
   position: absolute;
+  z-index: 1;
   display: flex;
   right: 2vw;
   top: -2px;
@@ -388,6 +397,7 @@ span {
  */
 #queue_container {
   position: relative;
+  text-align: center;
 }
 
 
@@ -397,9 +407,6 @@ span {
 }
 
 #button_container {
-  position: absolute;
-  display: inline-block;
-  top: -5.4vh;
 }
 
 #doge_bootun {
@@ -408,8 +415,6 @@ span {
 }
 
 #doge_control_container {
-  position: absolute;
-  top: -2.4vh;
 }
 
 #doge_control_timer_par {

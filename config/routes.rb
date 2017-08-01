@@ -57,6 +57,11 @@ Rails.application.routes.draw do
   # Custom error pages
   get "/404", :to => "error#page_not_found"
 
+  # Application pages
+  get "/bt_token", :to => "application#get_braintree_token"
+  get "/terms", :to => "application#terms_of_service"
+  get "/privacy", :to => "application#privacy_policy"
+
   # home page
   root 'doge#index'
 
