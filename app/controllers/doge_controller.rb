@@ -107,10 +107,40 @@ class DogeController < ApplicationController
   # Confirm a purchase and send to the server
   def post_doge_token_dropin
     if current_user then
-      # Process payment base cost
-      # TODO make this full cost
       tokens = params[:num_tokens]
-      amount = calculate_base_cost(tokens)
+      # CREATE TEST TRANSACTION TODO Make it work
+      # Handle Taxes for Taxcloud
+      customer = @current_user
+      # TODO Change this to retrieved destination
+      test_destination = TaxCloud::Address.new(
+        address1: '317 112th Ave NE',
+        address2: 'Room 1016',
+        city: 'Bellevue',
+        state: 'WA',
+        zip5: '98004'
+      )
+      transaction = TaxCloud::Transaction.new(
+        customer_id: customer.customer_id,
+        cart_id: '1',
+        origin: DogeTaxCloud.doge_origin,
+        destination: test_destination
+      )
+      transaction.cart_items << DogeTaxCloud.doge_token(tokens)
+      session[:transaction] = transaction
+      #lookup = transaction.lookup # Returns a TaxCloud::Responses::Lookup
+      puts "TAX AMOUNT:"
+#      puts lookup.tax_amount
+
+      # Error if no transaction is in the process
+      if session[:transaction] == nil then
+        render json: {error: "Transaction Not Properly Set Up"}, status: 401
+        return
+      else
+        transaction = session[:transaction]
+      end
+
+      # Process payment base cost, add sales tax amount
+      amount = calculate_base_cost(tokens) #+ lookup.tax_amount
 
       # Transaction.sale and create a new Customer id if none is specified
       if @current_user.customer_id == nil then
@@ -124,6 +154,7 @@ class DogeController < ApplicationController
         else
           # Handle customer creation failure
           render json: {error: result.message}, status: 401
+          session[:transaction] = nil
           return
         end
       end
@@ -142,7 +173,12 @@ class DogeController < ApplicationController
         # Transaction customer ID should be the same as user customer ID
         if result.transaction.customer_details.id.to_i != @current_user.customer_id.to_i then
           flash[:error] = "Unexpected Error"
+          session[:transaction] = nil
           raise "Customer ID Mismatch"
+        else
+          # Handle Taxes for Taxcloud
+          transaction.order_id = result.transaction.order_id
+          transaction.authorized_with_capture # returns "OK" or raises error          
         end
       else
         # Deal with the settlement errors
