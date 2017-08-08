@@ -1,4 +1,7 @@
 class QueueRequest < ActiveRecord::Base
+
+  belongs_to :account
+
   validates :start_time, presence: true
   validates :end_time, presence: true
   validate :user_is_real

@@ -1,0 +1,94 @@
+function makeBTTokenDropin (amount, authorization, containerID,
+                            submitButtonID, formID, errorID,
+                            environment) {
+  var obj = this;
+
+  obj.environment = environment;
+  obj.authorization = authorization;
+  obj.amount = amount;
+  obj.containerID = containerID
+  obj.$errorContainer = $("#" + errorID);
+  obj.$submitButton = $("#" + submitButtonID);
+  obj.$form = $("#" + formID);
+
+  // Set up nonce input and device_data collection input
+  // Add inputs to form 
+
+  obj.$deviceDataInput = $("<input type='hidden' name='device_data'>").appendTo (obj.$form);
+  obj.$nonceInput = $("<input type='hidden' name='payment_method_nonce'>").appendTo (obj.$form);
+
+  // Function to create a dropin
+  obj.create = function (token) {
+    // Add dropin to page
+    braintree.dropin.create ({
+      authorization: token,
+      container: "#" + obj.containerID,
+      dataCollector: {
+        kount: {environment: obj.environment},
+        paypal: true
+      },
+      paypal: {
+        flow: "vault",      // Required
+        amount: obj.amount, // Required
+        currency: "USD"     // Required
+      }
+    }, function (createErr, instance) {
+      // Setup for dropin:
+      // - Enable submission of dropin through pay button
+      // - Add device data to form input
+
+      if (createErr) {
+        // Handle errors from dropin
+        console.error (createErr);
+        return;
+      }
+
+      // Add device data to form
+      obj.$deviceDataInput.val (instance.deviceData);
+
+
+      // Set up dropin information submission on button click
+      obj.$submitButton.on ('click', function (event) {
+        // Prevent Rails submission from happening normally
+        event.preventDefault ();
+
+        instance.requestPaymentMethod (function (requestPaymentMethodErr, payload) {
+          if (requestPaymentMethodErr) {
+            // Handle errors from dropin
+            console.error (requestPaymentMethodErr);
+            return;
+          }
+
+          // Submit payload.nonce to server
+          obj.$nonceInput.val (payload.nonce);
+          obj.$form.submit ();
+        });
+      });
+    });
+  };
+
+  // Function to reset the dropin
+  obj.reset = function () {
+    $("#" + obj.containerID).html ("");
+    var result = generateBraintreeClientToken ();
+    if (result.token != null) {
+      obj.create (result.token);
+    } else {
+      location.reload ();
+    }
+  };
+
+  // Set up ajax handler for form success and failure
+  obj.$form.on ("ajax:success", function (data, response, xhr) {
+    obj.$errorContainer.html ("<p class='success BTError'>" + response.success + "</p>");
+    setTimeout(function () {location.reload ();}, 1000);
+  });
+
+  obj.$form.on ("ajax:error", function (xhr, data, errStatus) {
+    var response = JSON.parse (data.responseText);
+    obj.$errorContainer.html ("<p class='error BTError'>" + response.error + "</p>");
+    obj.reset ();
+  });
+
+  obj.create (obj.authorization);
+};

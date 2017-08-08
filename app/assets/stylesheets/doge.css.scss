@@ -44,7 +44,7 @@ span {
 }
 
 .timerDivContainer {
-  position: absolute;
+  position: relative;
   margin-top: 4vh;
   margin-left: 1.5vw;
   display: inline-flex;
@@ -71,7 +71,7 @@ span {
 
 #doge_content_container {
   position: relative;
-  top: 71px;
+  margin-top: 71px;
   padding-top: 11vh;
   padding-left: 3vw;
   padding-bottom: 6vh;
@@ -146,16 +146,16 @@ span {
 }
 
 #tokenPurchaseButton {
+  margin: auto;
+  margin-right: 10px;
   display: none;
 }
 
 .tokenPurchaseButton {
-  margin: auto;
-  margin-right: 10px;
 	box-shadow: 0px 0px 0px 2px #aed6b2;
 	background: linear-gradient(to bottom, #f2f5ba 5%, #c8f2bf 100%);
 	background-color: #f2f5ba;
-	border-radius: 10px;
+	border-radius: 6px;
 	border: 1px solid #51d689;
 	display: inline-block;
   height: 24px;
@@ -229,6 +229,133 @@ span {
 }
 
 /*
+ * CSS for doge token purchaser dropin
+ */
+#dogeBTDropinContainer {
+  position: fixed;
+  top: 71px;
+  height: calc( 100vh - 71px );
+  width: 100vw;
+  border: solid 1px #696565;
+}
+
+#dogeBTContainer {
+  display: inline-block;
+  position: absolute;
+  z-index: 2;
+  background-color: #ffffff;
+  border: 1px solid #817b7b;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+#dogeBTExitButtonContainer {
+  position: absolute;
+  width: 95%;
+  text-align: right;
+  z-index: 2;
+}
+
+#dogeBTExitButton {
+  position: relative;
+  height: 1.3vw;
+}
+
+#dogeBTMainDiv {
+  position: relative;
+  display: flex;
+}
+
+#dogeBTExitButtonContainer {
+  text-align: right;
+}
+
+#dogeBTExitButton {
+  position: relative;
+  height: 1.3vw;
+}
+#dogeBTMainDiv1 {
+  position: relative;
+  margin: auto;
+  margin-right: 20px;
+  width: 28vw;
+}
+
+#dogeBTMainDiv2 {
+  position: relative;
+  width: 28vw;
+  min-width: 200px;
+}
+
+#dogeBTCoinImageContainer {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+#dogeBTCoin {
+  position: relative;
+  height: 10vw;
+  width: 10vw;
+}
+
+.dogeBTCostSpan1 {
+  font-size: 1.7vw;
+}
+
+.dogeBTCostSpan2 {
+  font-size: 1.2vw;
+}
+
+#dogeBTCostPar {
+  text-align: center;
+}
+
+#dogeBTXSpan {
+  margin-left: 0.4vw;
+  margin-right: 0.4vw;
+}
+
+#dogeBTEqualsSpan {
+  margin-left: 0.8vw;
+  margin-right: 0.8vw;
+}
+
+#dogeBTUnderline {
+  margin-bottom: 2vh;
+}
+
+#dogeBTErrors {
+  text-align: center;
+}
+
+.BTError {
+  font-size: 1.5vw;
+}
+
+#dogeBTForm {
+  position: relative;
+  margin: 0px;
+}
+
+#dogePurchaseButtonDiv {
+  text-align: center;
+  padding: 5px;
+}
+
+#dogeBTPurchaseButton {
+  height: 30px;
+  line-height: 30px;
+  width: 78px;
+}
+
+#dogeBTPurchaseButton:focus {
+  outline: 0;
+}
+
+/*
  * Doge coin amount display under chat
  */
 #tokenContainer {
@@ -238,6 +365,7 @@ span {
 
 #tokenContainer1 {
   position: absolute;
+  z-index: 1;
   display: flex;
   right: 2vw;
   top: -2px;
@@ -269,6 +397,7 @@ span {
  */
 #queue_container {
   position: relative;
+  text-align: center;
 }
 
 
@@ -278,9 +407,6 @@ span {
 }
 
 #button_container {
-  position: absolute;
-  display: inline-block;
-  top: -5.4vh;
 }
 
 #doge_bootun {
@@ -289,8 +415,6 @@ span {
 }
 
 #doge_control_container {
-  position: absolute;
-  top: -2.4vh;
 }
 
 #doge_control_timer_par {

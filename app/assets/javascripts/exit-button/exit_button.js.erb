@@ -3,14 +3,17 @@ function makeExitButton (buttonContainerID, formContainerID,
   {
     var obj = this;
     obj.buttonContainerID = "#" + buttonContainerID;
-    obj.formContainerID = "#" + formContainerID;
-    obj.exitButton = new makePictureButton ("exit_button", normalURL, 
+    obj.formContainerID = formContainerID == null ? null : "#" + formContainerID;
+    obj.exitButton = new makePictureButton (buttonContainerID, normalURL, 
                                             highlightURL, pressedURL);
-    $(obj.buttonContainerID).on ("click", function ()
-      {
-        if ($(obj.formContainerID).length) 
-          $(obj.formContainerID).remove ();
+    
+    if (obj.formContainerID != null) {
+      $(obj.buttonContainerID).on ("click", function () {
+            if ($(obj.formContainerID).length) { 
+              $(obj.formContainerID).remove ();
+            }
       });
+    }
 
     obj.bindClick = function (clickHandle) {
       $(obj.buttonContainerID).on ("click", function () {

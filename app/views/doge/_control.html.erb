@@ -1,4 +1,4 @@
-<div id="doge_control_container" class="hori-center">
+<div id="doge_control_container">
   <%= form_tag({action: 'doge_control'}, id: 'doge_control_signal', remote: true) do %>
   <% end %>
   <%= javascript_include_tag "doge-control-bundle" %>
@@ -6,7 +6,7 @@
   <div id="doge_timer_container">
     <p id="doge_control_timer_par"></p>
   </div>
-  <script>
+  <script type="text/javascript">
     var doge_controller = new makeDogeControl ("doge_control_container",
                                                "doge_control_signal",
                                                "doge_control_timer_par", 45,

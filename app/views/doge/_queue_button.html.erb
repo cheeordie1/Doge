@@ -1,4 +1,4 @@
-<div id="button_container"  class="hori-center">
+<div id="button_container">
   <%= image_tag "doge_bootun_normal.png", id: "doge_bootun",
                 draggable: "false" %>
   <div id="preload_doge_bootun_form" class="form_preload">
@@ -6,7 +6,7 @@
     <%= image_tag "doge_bootun_pressed.png", height: "1px", width: "1px" %>
   </div>
   <%= javascript_include_tag "queue-button-bundle" %>
-  <script>
+  <script type="text/javascript">
     <% if (session[:logged_in]) %>
       var doge_queue_bootun = new makeQueueButton ();
     <% else %>

@@ -35,7 +35,8 @@
   </div>
   <%= javascript_include_tag "exit-button-bundle" %>
   <%= javascript_include_tag "signup-form-bundle" %>
-  <script>
+  <script type="text/javascript">
+    var signupForm = new makeSignupForm ();
     var exitButton = new makeExitButton ("exit_button", "signup_form_container",
                                          "<%= asset_path('exit_normal.png') %>",
                                          "<%= asset_path('exit_highlight.png') %>",
@@ -43,7 +44,7 @@
     exitButton.bindClick (function () {
       $("#ls_form_container").css ("display", "none");
     });
-    var signup_opener = new ColorOpener ("open_color_picker_signup",
+    var signup_opener = new ColorOpener ("<%= session[:color] %>", "open_color_picker_signup",
                                          "color_picker_location",
   	  			                             "color-picker-container");
   </script>

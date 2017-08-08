@@ -1,4 +1,6 @@
 class Account < ActiveRecord::Base
+
+  has_one :queue_request, dependent: :destroy
   
   before_validation :clean_color
   validates :username, presence: true, length: { minimum: 3 }

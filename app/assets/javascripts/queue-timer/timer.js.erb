@@ -10,7 +10,7 @@ function Timer (timerContainerID, timerSeconds)
     obj.timerOutHandler = function () {};
 
     // Render the timer html
-    obj.$timerDiv = $("<div class='timerDivContainer hori-center'></div>");
+    obj.$timerDiv = $("<div class='timerDivContainer'></div>");
     $(obj.timerContainerID).append (obj.$timerDiv);
     obj.$timerDiv.append ($(obj.minuteTimerNumber.getHTML ()));
     obj.$timerDiv.append ("<div class='timerDiv'>" + 

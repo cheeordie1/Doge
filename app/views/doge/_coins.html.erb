@@ -10,8 +10,9 @@
     <p id="dogeCoinX" class="noHighlight">x</p>
     <p id="dogeNumberBalls" class="noHighlight"><%= number_balls %></p>
   </div>
-  <script>
+  <script type="text/javascript">
     var tokenPurchase = new makeDogeTokenPurchaser ("tokenPurchaserContainer",
+                                                    "dogeBTDropinContainer",
                                                     "dogeNumberBalls",
                                                     <%= number_balls %>);
   </script>  

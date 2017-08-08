@@ -1,6 +1,14 @@
 // Place all the styles related to the account controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.backdrop {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+}
+
 .form_title {
   font: bold 2.2vh Tahoma, Geneva, sans-serif;
   color: #E89923;
@@ -64,6 +72,7 @@
 }
 
 .form_error {
+  font-size: 2vh;
   position: relative;
   word-wrap: break-word;
   margin-top: 2vh;

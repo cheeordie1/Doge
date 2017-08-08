@@ -55,7 +55,7 @@ function load_random_font ()
 
 load_random_font ();
 
-$(document).ready (function ()
+$(document).on ("turbolinks:load", function ()
   {
     $("#doge_title").html (random_title ());
     $("#doge_title").css ("color", random_color ());
