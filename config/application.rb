@@ -22,6 +22,7 @@ module Doge
     config.assets.paths << Rails.root.join('node_modules')
     config.assets.precompile += %w( *-bundle.js )
     config.exceptions_app = self.routes
+    config.use_ssl = false
   end
   Rails.application.config.users = 0
   Rails.application.config.tab_id = 0

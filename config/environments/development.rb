@@ -34,4 +34,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.use_ssl = true
+  config.ssl_port = 3001
+  config.force_ssl = true
 end

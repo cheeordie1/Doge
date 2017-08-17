@@ -13,7 +13,7 @@ default: &default
 development:
   <<: *default
   username: doge
-  password: access the past to present the future
+  password: <%= ENV['PG_PASSWORD'] %>
   host: localhost
   database: db/development
 
@@ -23,7 +23,7 @@ development:
 test:
   <<: *default
   username: doge
-  password: access the past to present the future
+  password: <%= ENV['PG_PASSWORD'] %>
   host: localhost
   database: db/test
 
